@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<sdf version="1.11">
+  <model name="cross_law_sdf">
+    <link name="chassis"/>
+    <link name="segment">
+      <pose relative_to="spin">0 0 0 0 0 0</pose>
+    </link>
+    <link name="effector">
+      <pose relative_to="slide">0 0 0 0 0 0</pose>
+    </link>
+    <joint name="spin" type="revolute">
+      <parent>chassis</parent>
+      <child>segment</child>
+      <pose relative_to="chassis">0.1 -0.2 0.4 0 0 0</pose>
+      <axis>
+        <xyz expressed_in="spin">0 0 1</xyz>
+        <limit><lower>-1.2</lower><upper>1.0</upper></limit>
+      </axis>
+    </joint>
+    <joint name="slide" type="prismatic">
+      <parent>segment</parent>
+      <child>effector</child>
+      <pose relative_to="segment">0.35 0 0.05 0 0 0</pose>
+      <axis>
+        <xyz expressed_in="slide">1 0 0</xyz>
+        <limit><lower>0</lower><upper>0.25</upper></limit>
+      </axis>
+    </joint>
+  </model>
+</sdf>

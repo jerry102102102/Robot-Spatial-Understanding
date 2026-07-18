@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<mujoco model="cross_law_mjcf">
+  <compiler coordinate="local" angle="radian"/>
+  <worldbody>
+    <body name="root_body">
+      <body name="middle_body" pos="0.1 -0.2 0.4">
+        <joint name="hinge_a" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-1.2 1.0"/>
+        <body name="end_body" pos="0.35 0 0.05">
+          <joint name="slide_b" type="slide" pos="0 0 0" axis="1 0 0" limited="true" range="0 0.25"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

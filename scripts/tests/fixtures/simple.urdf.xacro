@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="xacro_demo">
+  <xacro:arg name="base_height" default="0.1"/>
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="1 1 $(arg base_height)"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>

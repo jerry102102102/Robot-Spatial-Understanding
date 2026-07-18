@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot name="two_dof_demo">
+  <link name="base_link">
+    <visual name="base_visual">
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+      <geometry><box size="0.4 0.4 0.2"/></geometry>
+    </visual>
+    <collision name="base_collision">
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+      <geometry><box size="0.4 0.4 0.2"/></geometry>
+    </collision>
+  </link>
+  <link name="arm_link">
+    <inertial>
+      <origin xyz="0.5 0 0" rpy="0 0 0"/>
+      <mass value="2.0"/>
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.2" iyz="0" izz="0.2"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.5 0 0" rpy="0 1.5707963267948966 0"/>
+      <geometry><cylinder radius="0.05" length="1.0"/></geometry>
+    </visual>
+  </link>
+  <link name="slider_link">
+    <collision>
+      <origin xyz="0.1 0 0" rpy="0 0 0"/>
+      <geometry><mesh filename="package://demo/slider.stl" scale="1 1 1"/></geometry>
+    </collision>
+  </link>
+  <link name="tool0"/>
+  <joint name="shoulder" type="revolute">
+    <parent link="base_link"/>
+    <child link="arm_link"/>
+    <origin xyz="1 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.141592653589793" upper="3.141592653589793" effort="20" velocity="2"/>
+  </joint>
+  <joint name="slide" type="prismatic">
+    <parent link="arm_link"/>
+    <child link="slider_link"/>
+    <origin xyz="1 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="1" effort="10" velocity="1"/>
+  </joint>
+  <joint name="tool_mount" type="fixed">
+    <parent link="slider_link"/>
+    <child link="tool0"/>
+    <origin xyz="0 0 0.2" rpy="0 0 0"/>
+  </joint>
+</robot>

@@ -1,0 +1,7 @@
+{
+  "pose_name": "bent",
+  "joints": {
+    "shoulder": 1.5707963267948966,
+    "slide": 0.5
+  }
+}

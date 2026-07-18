@@ -1,0 +1,139 @@
+{
+  "schema_version": "robot-spatial-world-scene.v1",
+  "scene_id": "two_dof_workcell",
+  "snapshot": {
+    "id": "fixture_snapshot_001",
+    "time_semantics": "static_snapshot",
+    "captured_at": "2026-07-18T06:00:00Z",
+    "valid_until": null
+  },
+  "world_frame": "world",
+  "source": {
+    "type": "synthetic",
+    "reference": "unit-test fixture",
+    "captured_at": "2026-07-18T06:00:00Z"
+  },
+  "gravity": {
+    "vector_xyz_m_s2": [0.0, 0.0, -10.0],
+    "expressed_in_frame": "world",
+    "source": {
+      "type": "declared",
+      "reference": "test convention",
+      "captured_at": null
+    }
+  },
+  "frames": {
+    "cell": {
+      "parent": "world",
+      "pose": {
+        "xyz_m": [1.0, 2.0, 0.0],
+        "rpy_rad": [0.0, 0.0, 1.5707963267948966]
+      },
+      "semantics": {
+        "category": "workcell",
+        "roles": ["planning_frame"],
+        "meaning": "fixture workcell origin"
+      },
+      "source": {
+        "type": "calibrated",
+        "reference": "fixture calibration",
+        "captured_at": "2026-07-18T06:00:00Z"
+      }
+    },
+    "camera_mount": {
+      "parent": "cell",
+      "pose": {
+        "xyz_m": [0.0, -1.0, 2.0],
+        "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]
+      },
+      "semantics": {
+        "category": "sensor_mount",
+        "roles": ["observation_frame"],
+        "meaning": "fixture camera mount"
+      },
+      "source": {
+        "type": "declared",
+        "reference": "fixture layout",
+        "captured_at": null
+      }
+    }
+  },
+  "robot": {
+    "instance_id": "demo_arm",
+    "robot_name": "two_dof_demo",
+    "root_link": "base_link",
+    "parent_frame": "cell",
+    "pose": {
+      "xyz_m": [0.0, 0.0, 0.0],
+      "rpy_rad": [1.5707963267948966, 0.0, 0.0]
+    },
+    "source": {
+      "type": "calibrated",
+      "reference": "fixture base survey",
+      "captured_at": "2026-07-18T06:00:00Z"
+    }
+  },
+  "objects": {
+    "near_obstacle": {
+      "parent_frame": "cell",
+      "pose": {
+        "xyz_m": [0.25, -0.1, 0.0],
+        "rpy_rad": [0.0, 0.0, 0.0]
+      },
+      "semantics": {
+        "category": "fixture",
+        "roles": ["keep_out"],
+        "meaning": "box intentionally intersecting the mounted base"
+      },
+      "source": {
+        "type": "measured",
+        "reference": "fixture measurement",
+        "captured_at": "2026-07-18T06:00:00Z"
+      },
+      "collision_geometries": [
+        {
+          "id": "body",
+          "pose": {
+            "xyz_m": [0.0, 0.0, 0.0],
+            "rpy_rad": [0.0, 0.0, 0.0]
+          },
+          "geometry": {
+            "type": "box",
+            "size_xyz_m": [0.2, 0.2, 0.2]
+          },
+          "semantics": {
+            "category": "solid",
+            "roles": ["collision"],
+            "meaning": "exact analytic box"
+          }
+        }
+      ]
+    },
+    "far_sphere": {
+      "parent_frame": "world",
+      "pose": {
+        "xyz_m": [5.0, 5.0, 5.0],
+        "rpy_rad": [0.0, 0.0, 0.0]
+      },
+      "semantics": {
+        "category": "marker",
+        "roles": ["collision"],
+        "meaning": "separated analytic sphere"
+      },
+      "source": {
+        "type": "synthetic",
+        "reference": "unit-test fixture",
+        "captured_at": null
+      },
+      "collision_geometries": [
+        {
+          "id": "sphere",
+          "geometry": {
+            "type": "sphere",
+            "radius_m": 0.1
+          }
+        }
+      ]
+    }
+  }
+}

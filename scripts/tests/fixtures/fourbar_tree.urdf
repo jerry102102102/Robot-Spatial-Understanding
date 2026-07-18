@@ -1,0 +1,28 @@
+<robot name="fourbar_spanning_tree">
+  <link name="ground"/>
+  <link name="crank"/>
+  <link name="coupler"/>
+  <link name="rocker"/>
+
+  <joint name="crank_angle" type="revolute">
+    <parent link="ground"/>
+    <child link="crank"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-2.5" upper="2.5" effort="1" velocity="1"/>
+  </joint>
+
+  <joint name="coupler_angle" type="continuous">
+    <parent link="crank"/>
+    <child link="coupler"/>
+    <origin xyz="1 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="rocker_angle" type="continuous">
+    <parent link="ground"/>
+    <child link="rocker"/>
+    <origin xyz="2 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+</robot>

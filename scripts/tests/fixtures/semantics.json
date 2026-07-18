@@ -1,0 +1,29 @@
+{
+  "schema_version": "robot-semantics.v1",
+  "frames": {
+    "base_link": {
+      "roles": ["base", "planning"],
+      "meaning": "Robot mounting base"
+    },
+    "slider_link": {
+      "roles": ["flange"]
+    },
+    "tool0": {
+      "roles": ["tcp"],
+      "meaning": "Commanded process point"
+    }
+  },
+  "groups": {
+    "manipulator": {
+      "joints": ["shoulder", "slide"],
+      "base_frame": "base_link",
+      "tip_frame": "tool0"
+    }
+  },
+  "end_effectors": {
+    "demo_tool": {
+      "mount_frame": "slider_link",
+      "tcp_frame": "tool0"
+    }
+  }
+}

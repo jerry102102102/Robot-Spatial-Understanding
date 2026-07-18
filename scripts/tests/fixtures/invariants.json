@@ -1,0 +1,146 @@
+{
+  "schema_version": "robot-spatial-invariants.v1",
+  "robot": "two_dof_demo",
+  "default_tolerances": {
+    "translation_m": 1e-9,
+    "rotation_deg": 1e-7,
+    "axis_deg": 1e-7,
+    "distance_m": 1e-9,
+    "aabb_m": 1e-9,
+    "contact_m": 1e-9,
+    "mass_kg": 1e-9,
+    "center_of_mass_m": 1e-9,
+    "inertia_kg_m2": 1e-9,
+    "generalized_effort": 1e-9
+  },
+  "poses": {
+    "bent": {
+      "joints": {
+        "shoulder": 1.5707963267948966,
+        "slide": 0.5
+      }
+    }
+  },
+  "assertions": [
+    {
+      "id": "tool-offset-from-slider",
+      "type": "frame_pose",
+      "pose": "bent",
+      "from": "slider_link",
+      "to": "tool0",
+      "expected": {
+        "translation_xyz_m": [0.0, 0.0, 0.2],
+        "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]
+      }
+    },
+    {
+      "id": "base-to-tool-distance",
+      "type": "frame_distance",
+      "pose": "bent",
+      "from": "base_link",
+      "to": "tool0",
+      "expected_m": 1.8138357147217055
+    },
+    {
+      "id": "slide-axis-in-base",
+      "type": "joint_axis",
+      "pose": "bent",
+      "joint": "slide",
+      "frame": "base_link",
+      "expected_unit_vector": [0.0, 1.0, 0.0]
+    },
+    {
+      "id": "tool-chain",
+      "type": "chain",
+      "from_link": "base_link",
+      "to_link": "tool0",
+      "expected": {
+        "links": ["base_link", "arm_link", "slider_link", "tool0"],
+        "joints": ["shoulder", "slide", "tool_mount"]
+      }
+    },
+    {
+      "id": "shoulder-causal-subtree",
+      "type": "affected_links",
+      "joint": "shoulder",
+      "expected_links": ["arm_link", "slider_link", "tool0"]
+    },
+    {
+      "id": "slider-collision-frame-semantics",
+      "type": "frame_semantics",
+      "frame": "collision/slider_link/0",
+      "expected": {
+        "semantic_type": "collision",
+        "parent_frame": "slider_link"
+      }
+    },
+    {
+      "id": "slider-collision-aabb",
+      "type": "geometry_aabb",
+      "pose": "bent",
+      "geometry_frame": "collision/slider_link/0",
+      "expected": {
+        "min_xyz_m": [0.95, 1.6, -0.025],
+        "max_xyz_m": [1.05, 1.8, 0.025]
+      }
+    },
+    {
+      "id": "bent-pose-self-collision-free",
+      "type": "self_collision_status",
+      "pose": "bent",
+      "expected": "collision_free"
+    },
+    {
+      "id": "declared-mass-properties-at-bent-pose",
+      "type": "declared_mass_properties",
+      "pose": "bent",
+      "subtree_root": "base_link",
+      "frame": "base_link",
+      "expected": {
+        "status": "computed",
+        "declared_mass_kg": 2.0,
+        "center_of_mass_xyz_m": [1.0, 0.5, 0.0],
+        "inertia_about_center_of_mass_matrix_3x3_kg_m2": [
+          [0.2, 0.0, 0.0],
+          [0.0, 0.1, 0.0],
+          [0.0, 0.0, 0.2]
+        ]
+      }
+    },
+    {
+      "id": "declared-static-gravity-loads-at-bent-pose",
+      "type": "static_gravity_loads",
+      "pose": "bent",
+      "subtree_root": "base_link",
+      "gravity_frame": "base_link",
+      "gravity_vector_xyz_m_s2": [0.0, 0.0, -9.80665],
+      "expected": {
+        "status": "computed",
+        "generalized_gravity_forces": {
+          "shoulder": 0.0,
+          "slide": 0.0
+        },
+        "ideal_static_holding_efforts": {
+          "shoulder": 0.0,
+          "slide": 0.0
+        }
+      }
+    },
+    {
+      "id": "embedded-actuation-declarations",
+      "type": "actuation_declarations",
+      "expected": {
+        "ros2_control_systems": [],
+        "legacy_transmissions": [],
+        "joint_command_interfaces": {
+          "shoulder": [],
+          "slide": []
+        },
+        "joint_state_interfaces": {
+          "shoulder": [],
+          "slide": []
+        }
+      }
+    }
+  ]
+}

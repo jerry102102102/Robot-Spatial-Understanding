@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot name="spherical_loop_tree">
+  <link name="ground"/>
+  <link name="x_rotor"/>
+  <link name="z_rotor"/>
+  <link name="end_rotor"/>
+
+  <joint name="q_a" type="revolute">
+    <parent link="ground"/>
+    <child link="x_rotor"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-1.2" upper="1.2" effort="1" velocity="1"/>
+  </joint>
+
+  <joint name="q_b" type="continuous">
+    <parent link="x_rotor"/>
+    <child link="z_rotor"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="q_c" type="continuous">
+    <parent link="z_rotor"/>
+    <child link="end_rotor"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+  </joint>
+</robot>

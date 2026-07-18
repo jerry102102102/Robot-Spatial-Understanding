@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="two_dof_demo">
+  <group name="tool">
+    <link name="tool0"/>
+  </group>
+  <group name="manipulator">
+    <chain base_link="base_link" tip_link="tool0"/>
+  </group>
+  <group_state name="home" group="manipulator">
+    <joint name="shoulder" value="0.25"/>
+    <joint name="slide" value="0.3"/>
+  </group_state>
+  <virtual_joint name="world_joint" type="fixed" parent_frame="world" child_link="base_link"/>
+  <end_effector name="demo_tool" parent_link="slider_link" group="tool" parent_group="manipulator"/>
+  <disable_collisions link1="base_link" link2="arm_link" reason="Adjacent"/>
+</robot>

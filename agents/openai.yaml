@@ -1,0 +1,4 @@
+interface:
+  display_name: "Robot Spatial Understanding"
+  short_description: "Understand robot structure and judge action results"
+  default_prompt: "Use $understand-robot-spatial to understand this robot model and judge the supplied simulated or ROS execution result with verified evidence and explicit known/unknown boundaries."

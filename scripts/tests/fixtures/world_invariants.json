@@ -1,0 +1,65 @@
+{
+  "schema_version": "robot-spatial-invariants.v1",
+  "robot": "two_dof_demo",
+  "world_scene": {
+    "scene_id": "two_dof_workcell",
+    "snapshot_id": "fixture_snapshot_001",
+    "sha256": "15c3b1ab23c1e10dc169dd54556f0a35b0d64e177596ed9607bf505b5e0c07c3"
+  },
+  "default_tolerances": {
+    "translation_m": 1e-9,
+    "rotation_deg": 1e-7,
+    "distance_m": 1e-9,
+    "contact_m": 1e-9,
+    "gravity_m_s2": 1e-9,
+    "generalized_effort": 1e-9
+  },
+  "poses": {},
+  "assertions": [
+    {
+      "id": "world_from_root",
+      "type": "scene_transform",
+      "pose": "zero",
+      "from": "scene_frame/world",
+      "to": "robot_frame/base_link",
+      "expected": {
+        "translation_xyz_m": [1.0, 2.0, 0.0],
+        "quaternion_xyzw": [0.5, 0.5, 0.5, 0.5]
+      }
+    },
+    {
+      "id": "world_gravity_load",
+      "type": "scene_gravity_loads",
+      "pose": "zero",
+      "expected": {
+        "status": "computed",
+        "gravity_in_robot_root_xyz_m_s2": [0.0, -10.0, 0.0],
+        "generalized_gravity_forces": {
+          "shoulder": -10.0,
+          "slide": 0.0
+        },
+        "ideal_static_holding_efforts": {
+          "shoulder": 10.0,
+          "slide": 0.0
+        }
+      }
+    },
+    {
+      "id": "base_hits_fixture",
+      "type": "robot_environment_collision",
+      "pose": "zero",
+      "expected": {
+        "status": "collision",
+        "minimum_separation_status": "computed",
+        "minimum_separation_m": 0.0,
+        "collision_pairs": [
+          {
+            "robot_geometry": "robot_geometry/collision/base_link/0",
+            "environment_geometry": "scene_geometry/near_obstacle/body"
+          }
+        ],
+        "indeterminate_pair_count": 2
+      }
+    }
+  ]
+}

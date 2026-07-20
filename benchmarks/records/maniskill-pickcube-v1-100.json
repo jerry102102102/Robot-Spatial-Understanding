@@ -1,0 +1,2953 @@
+{
+  "acceptance": {
+    "minimum_refuted_references": 25,
+    "minimum_supported_references": 25,
+    "passed": true,
+    "refuted_references": 49,
+    "requires_full_episode_agreement": true,
+    "supported_references": 51
+  },
+  "benchmark_sha256": "c5149a920cc0ea1bdc6d54e85339f29099f47533fff1927b6986c83c374e9c96",
+  "case_count": 100,
+  "cases": [
+    {
+      "agreement": true,
+      "case_id": "seed-000-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "bef0b870c97bcf5c08186f30971dd80ca7cd56eb17abc28720efbc09d1f3e68f",
+      "report_sha256": "f74c4b99828a9b91ab79c594cffb7f874a06b9665e8b76fb4ddbeb59c32eb462",
+      "run_manifest_sha256": "5a9321d7df3377d69a67f59d50aad75389122bbe6f6ad934023fde379355549c",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 0,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-000-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "508c804c2e308f6527c4beb57aa2ba71fe5939aedf575535fd6e9fbdd364da6e",
+      "report_sha256": "2c53bacdf7c8a2cbfd1238a29a32f3fa6fb5fb7e1ba939979766eb186f0c6fba",
+      "run_manifest_sha256": "2b87cb2352c95b862c7ef3e36a68df12cf78e67e4210e83f1fa6bf8e65546500",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 0,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-001-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "29ea75c70edf6cbbc393a6874685a0cbd0332754637888fe115d82ca4b6d824d",
+      "report_sha256": "29f35a81384d63ef662045d69170e2cdedd39c09957ed743ffd988268f037f19",
+      "run_manifest_sha256": "5e035d700d73606fb48056e2e609b6cbed4358c560381f6f41eddc36e7adaf19",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 1,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-001-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "702b3ada829ed7142cb324d7e988ef3b7f79abcfa7ec32549f890af79db9fe16",
+      "report_sha256": "cca19c2c4a6e3d3b701445768542e6a357962cdf6a16cb52e36c2e9a25e192db",
+      "run_manifest_sha256": "b23ae138c0d33fde72bccd66b9949d662f0e4b695bfa6e6ec20826f469acf288",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 1,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-002-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "4997f57f30dfa129c58150161c3c692355d1fae7a08b0e458996b864bad51b1e",
+      "report_sha256": "73dda74d1e76f4510ff14013ef14b0b18aa14acc95ec99e0ecefcec7315a521c",
+      "run_manifest_sha256": "c298aa53634785ae0230dd15e6b0fd4c650cc511337416e5f7b455c411e9fc09",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 2,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-002-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "59d5ba781d8eda896cfd48c04a29d05bb312cdee0ad8d2087f58e7850ce74240",
+      "report_sha256": "02612f54ae111b442e8e87d598ab1820f51656670cf5172a837d63bd89f5063c",
+      "run_manifest_sha256": "608bcf9576be2719941c26c8f5eed826a8e47707872aff7aa6ef4a3dbaf3a258",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 2,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-003-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "fed9f2e9beb6d5b07064f9e184deca4c412410d790abc2090979159c4484fc70",
+      "report_sha256": "5b3ffb4276e0b6bdd8c16bcc2dd60e4baf512c31bd06463fefea2dcf5ec23de0",
+      "run_manifest_sha256": "e8f8e14490ce4a35ec58f745f9636e2fb0bf015151a1e6f5070a52b05402039f",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 3,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-003-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "d6e6b326d4d3e368e22342fa491e4c00f10da0a2212733eae1e62aab0008c413",
+      "report_sha256": "d1c58817f90c77e1fe5bcc63018fe7d0cc6b21cc2268c52584f39a0464b0c5a5",
+      "run_manifest_sha256": "f6d0ddf915633029ae352302be6c37da791dd99e8e374191833624eb345f08e5",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 3,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-004-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "b7c025338a0f0ecb395742b78038eb2cb64f34a3f0aeb1f112a276a87d66519c",
+      "report_sha256": "b5a2662372af9e54633ab3ba53433c7f1ebd4b1dcf08ce84bb642de5daf430c8",
+      "run_manifest_sha256": "dedb04fe1c7d9cf366b04738a441b4b6ab1de5e0a5411c1c633b48b294226b19",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 4,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-004-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "e31fd24ec909b99b8a161dd700e6f9d4928f72d2bf130ee0d6f42c989948a101",
+      "report_sha256": "17abf4d84a4e40b1acc907b1bb079110ccb2baf74e4388bd1945a07e071f73fb",
+      "run_manifest_sha256": "9516ee4fd4b6711408cc6f805b231fc04f2b187a47e54c897020bead9427ab10",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 4,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-005-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "f06935c686917830815ddd08d2f9c840971abdac4f7ca92e45626f886e8699b7",
+      "report_sha256": "fd1e6682a7c7d8c4d7ea71f3893c2bc053456ddaa38e24bbe20f4fe774cae977",
+      "run_manifest_sha256": "f1e3ae95d9184500b7d6cefa08f14f79c1ae380cd126f0dd27548ccacba4f856",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 5,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-005-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "837f77d45cb6ebbdb51473bd3e6e1909acecdba52d92770b1756ef746fd130fa",
+      "report_sha256": "9d9ac3bbe31be83ed586f97e79b7b744557ebef5e599b1f35b076fed273d913a",
+      "run_manifest_sha256": "2ca5fe728f1f20e5239edb22d2b894b86d3ede4b489864bfac9f36affac86724",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 5,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-006-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "28e4f6c87a1ce9f7a729ec2208439d6570bb49afe034c7669a62bb6d04ff4fcc",
+      "report_sha256": "02996d06bd63a9e8fb4ef1a29c0a7e17256fa4bbc1d28a9a34e811b3624f0a0f",
+      "run_manifest_sha256": "5337e3824a9930a3aa0e0fe989c7e1f4653f3d8db7bdd9c7d6b9be17416a1dc4",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 6,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-006-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "1f1e930699133ecb279746b2f67ca00eeac9f56a2a0a0ad53574543f701024f7",
+      "report_sha256": "15662cf7275aae9a42cad11bd45b3338b3a6f04c21f2d1818c0f6559d2e1117a",
+      "run_manifest_sha256": "38948e3907b1ceda0d1d7389c81eab0706561e52cc836e2d84b3cf6fbbe8c2d2",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 6,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-007-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "cb7212298818cb95c23c737e0e28935ce0e97e680d0572126b39543068079098",
+      "report_sha256": "3f072827447da23ec76720a46622ad41816c52b49c2b5ca928650891065ba452",
+      "run_manifest_sha256": "1b5e59b79d803a5411b1db00b7cdeaa7a9cfc8efeb03fcf65d62f77eaf957822",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 7,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-007-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "fa391b3bf628ceadcdf3ae5e9af10a0d2e1a22f7dc7de4a357f3ebe4428159b2",
+      "report_sha256": "7cb90cb7ac25cd810ddd57b2c79747db7e024af3f032230cd5895bbe7dbfab0e",
+      "run_manifest_sha256": "c19625210fba7cec937522ce9f65ab96329e4fe4c8c9a55594e2dd10c67baadc",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 7,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-008-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "cd8cab98d87ac74eff90bb409ddbd4cd1f43ae4596063fa1621165fd97cc9cb6",
+      "report_sha256": "1a3a419868fb8e14519248f0f9e1caca58eb1dbc7ddf289f3745eba8ad925499",
+      "run_manifest_sha256": "e351ade13cb0e8c1cb48bc52923b5c7f13e155483dee867127b0237c81acb62d",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 8,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-008-no-op",
+      "intervention": "no-op",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "2071ac813ae9f265816a96e106d1ba05456b7d2b6c9b1d12b8c1889f48364e60",
+      "report_sha256": "4728029bf388fda25526dca4e9879ca994ffde34f78c3543f74c20c45faefc4b",
+      "run_manifest_sha256": "3cb9c5e8aee2192aef26890dc5c356a25351a29c951377fb91577d41849ec50c",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 8,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-009-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "14752de6a99aba52f1774d28633187a731e936a1ce8ef9869c1752b3660f3544",
+      "report_sha256": "593b6a20764b29c714cc294b2b545ef811a0b9313c5206b3839084c12a638f26",
+      "run_manifest_sha256": "9e1ff30a06b87bc3f663ab2aee42a2ab566e934da70ddadcbcea95f23b4b272c",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 9,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-009-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "15a7c40d6115c82e626cdb10dff01cfc615c9ea86c5b6076658c507e1d2a2c10",
+      "report_sha256": "8aaf82c45a622964f9cd80462a2e89f2d72c31d5d8f4eaa224777adb3539dd0b",
+      "run_manifest_sha256": "6f855a7b198cb71e4c1b2a2a4457b91c65bf31ac05e134fa94fdc9042116b8ed",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 9,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-010-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "271feaab938edc15887dd082f931e36e67f1f1e12021582c34c79e59abda0566",
+      "report_sha256": "dfe1ca08bfa6e390f9f29e0fb69690d0d12cdfad2948ba8f347fe384f0cbc323",
+      "run_manifest_sha256": "7e4b36ab93e72413ffe53eef841c9798e124cac0df0e630fab9640d3ba3c0281",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 10,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-010-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "d3ff90f9baa27c62d4be97dfb4af9e8ef13434a09c2afeef6ef1f83fc6ac4659",
+      "report_sha256": "0938d16bc70f93c6f9364b8c7ba27a987d6c2daf9ac2ac30b9b9904d5b167c51",
+      "run_manifest_sha256": "d3631ab563740340b46a1c7d6fabed0db1f0616f45da1071e1bef583b302eaa8",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 10,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-011-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "ebb13a3fd98eca5bbf3d48fbe205fddf22b5ae374df06554a651611a552942f5",
+      "report_sha256": "1b0ebe18c1dea338001a35746220a3e278b5d736a83eb2919a259d0d093dfbde",
+      "run_manifest_sha256": "6e744aebfe95c52cde22a83c0901e653f784bc8d0fa3b05fd199e4418a12896c",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 11,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-011-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "752b78f359e921f87108acd33171cdcf11af7ec55edf17b49db8c09b49588159",
+      "report_sha256": "298f9d6f2297dbfb89a0c02cfa8b32448841facfbf5b04f1a9bf4080a56b5a65",
+      "run_manifest_sha256": "4a9344411e3672c8fe1cc5529dfb5b4ee446eb7bac6923b3a40f098d193413e0",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 11,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-012-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "290ec942cf2c678e8080d486b3ed94f1c688fee04927beeb397f2cc85b9d470c",
+      "report_sha256": "b2a0bf6efae9c2f09199a4aeaaf8a20fdff696403f4eb98dac6bfaac669bb7a6",
+      "run_manifest_sha256": "59bc8652dd1caa610f26c26ccfc7a34991fb41dc5b780dbccc38d87ffa41fb30",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 12,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-012-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "7b4edb2e0b88c898046aa700eebcfdabdf3dd4cbc7591640ec16e9b5d18c4905",
+      "report_sha256": "9f30055daa0e4adf34b60f232f3e3e9c304efdeeb7272c05755c41cd6d43cc31",
+      "run_manifest_sha256": "084c9b3cbfe1b2dc434c880abb3d584fab909fb4a6f4687999c00ced3cf1f745",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 12,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-013-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "05b1df101eb3a0dabe993cf7c19dba2a41ccac367300d10e02ebe5e96df4bdbb",
+      "report_sha256": "0a80166b85b5a7fcf6c630a25475e4d31921cab39186dbb9007ac2ea5126a459",
+      "run_manifest_sha256": "200c5560f29b62f874f07fe73f35c19088868dc0bed213983c13465fca321c47",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 13,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-013-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "4e6212106afa5e47cbe3d8b565606ce194b687707e00a78cbd92572ad747ea8e",
+      "report_sha256": "b71f243abe48831b7f33ae66a26ffe67ce8f3010a5f516da2d656ffc4034b6bc",
+      "run_manifest_sha256": "f7c438fef10e6b03420669e353e2e72c75568576c2eeefeb14595bc1e025bae4",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 13,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-014-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "ce7cb1d9aee8033c0359e0d8a4e970e3572dc52db89a3643da1f7525a99f2b9e",
+      "report_sha256": "35a2b0eabe1d556109b73ea9a4cd05f162948f2b0a2e6b7da2658a8073585a7c",
+      "run_manifest_sha256": "cd02b9a2a397a50867669805e7b4a3a5524dbea44688e23d808f2eca01f02044",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 14,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-014-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "5e25328afd95749c66f5c15f0eaf683c96fbb4855a4e6179f8e558c2cafc591d",
+      "report_sha256": "120f16acbc2a09f46b642179720cc9c68949173c21224f1d17f04cc501d8e029",
+      "run_manifest_sha256": "3bbc6abec72832a081b8b20baebca5e11d0019185690702f3e20bf199d57cdbb",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 14,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-015-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "11ddf9bcec817e15329dca38299c737dcd25e9261ee0dfcd62ebe0651f5c02e0",
+      "report_sha256": "074f68212cf21d61838eabeabb5429ae70feb12b3937bf8491a405f512ddb21d",
+      "run_manifest_sha256": "d5ed4a27f2cc4e032ba736ff687c2d056e58efb603996f7c394c634ddafe7705",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 15,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-015-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "68519a5f61ae3e91197c84371e5ac848537beb74f6c42049170da19c04e0b41a",
+      "report_sha256": "8ade810a704c7053e112f475a8319a445ae8de4a24480439111ba1cb96b2dc31",
+      "run_manifest_sha256": "78bc6867418edc4da7a3c00d59c1700e78d9f57ae2e3173018bbf4c2e51a33cd",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 15,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-016-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "02d0ce1d8b73dbd484d0baa38acdda4f3ca613cec9021c2df4b48dba2f78d929",
+      "report_sha256": "704100f9af279f7dbb92f4b622e952a901bd6a3bd893ca1fa387778be0bb08a8",
+      "run_manifest_sha256": "f5a3c1ca0f01984673ef5d449046bd93d0a8d213edcbe26a1f5da125df1c8bd1",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 16,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-016-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "3fbbc8f83d9eb5f1b6710ad44a1b3b66844440b69e0b6c3f1591904d17e00f2c",
+      "report_sha256": "a16e0facfc962d3c5265787af24e0f358d39095cdbcad249256cf0475b6b4f13",
+      "run_manifest_sha256": "ff264f1129b235d2b0cc2a02438b9d38f47ec3f70f100f62ac2187deb8fdc1e0",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 16,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-017-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "133d9f728d2c98a28df1829762155bee30ded9116fa90343569f7bb94aa2dff3",
+      "report_sha256": "2bea0c439750b583d1edf066063e078e66655dc8dadb7f01851c68190f543ad4",
+      "run_manifest_sha256": "148e702ce8b8c99c4c62909689ba23ee822f1ffa713f0227d9fb10b70e23b67a",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 17,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-017-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "d412e3be31fff4d3faddec3bb8393df8be24ae3c68e5f15a85dce73472f97d2a",
+      "report_sha256": "56dbb3800bb503f0074b79bcf62fbbdcbde16c47133806d558f4044a0e857759",
+      "run_manifest_sha256": "32467f8225db768104ba0b9f6d9f6506d5ab3dc9e49530d4df0debfb2075010a",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 17,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-018-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "9878bc98f66d9f5f9e13c3c2fdf41512ad236431e6610375c31ec11adc1b33ec",
+      "report_sha256": "25433aa7aeb25ed722d9aa6237ba9313ebd379894629614b1ecae231e7664a61",
+      "run_manifest_sha256": "c67ac6c56d5df56c7b124d09eb269e5accdcc676de565052fa20eef28c251489",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 18,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-018-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "8bae9c018c3e5e17eee61ce2b4861d87d5f26cd7acb1ac973ccae7670eebe4d6",
+      "report_sha256": "f507af156877322ce4d1db3237a7d2dc551bc5d2919676bcdc601acc0e522ba9",
+      "run_manifest_sha256": "8c6c5905264b380905aa2ce919126b0fe1b47e5c6e67ec4d3857e98dd6421ec1",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 18,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-019-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "3b6e4089811ab205507707433c0d95c55972510dc6f4b9c31f8ebef14fae81ad",
+      "report_sha256": "a0b58a47fa403ec2b9de30207a947576d576d0a74a6b482c6fb026405fd2fe0d",
+      "run_manifest_sha256": "3536e4b4babe9e4f3446ad10b8d20e34f53fc49fa1117fa11ea309461640f8cd",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 19,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-019-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "b66271c4d0af05ec588720d471599c4658a14ab140a3bf32d292fc0e518feacc",
+      "report_sha256": "dd4b7c9593c9186fc29e4820beefba63fe9f5e3b87ef118f8797285a30450eb1",
+      "run_manifest_sha256": "15e938135ede9e188ea72581282f917b748071ab1f3ece87b7abe0d605489444",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 19,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-020-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "95c6e2a6d4664d32a11d18e187ed72e9644019538bada04ba5289507653a70f7",
+      "report_sha256": "dac417fea91a00fbe4fffaa174763dbbb3d573f4ade375c7e5770e21e91030b5",
+      "run_manifest_sha256": "d78306456ca2a9201fafe80c7e4a680ccfe6086bdec93f302e8d369cfdd4a2f8",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 20,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-020-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "2ebb23c05e86455c2e00ad9e89ada1d2adfc7e1089177b50de6393c2d59a1620",
+      "report_sha256": "d3a74d01d889c20179fd69422c525c20e10af4027af3419a02b0283bc5831844",
+      "run_manifest_sha256": "e2e990a6237a8c1b34fddf77f277469ceb99c4344f38cb2ae52b1405e4c18bc2",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 20,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-021-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "f9baed8835374fbfb825c16764094a7919594d145a17b3807a117bde5cfe96e3",
+      "report_sha256": "5a123e2125e1fb1785533c51d4e254506ff7628a91ab269d994dff839562c08a",
+      "run_manifest_sha256": "962e1d7a00ec7ee7802d2c6b339628f976394001231e32c0dc8fd97f72041308",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 21,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-021-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "4cad2bfc7e5f359c1de64204407754da61daae7f89c7bc6d420e5463ccf5cb15",
+      "report_sha256": "1ee4091f10edb1cb3a0b92244a5b2fb4851f4987d17e8850708b170091c6d903",
+      "run_manifest_sha256": "ea96cebcb88726bf86a1794179b89be35d8dfc3dcb57b6fc39c576f93848cab0",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 21,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-022-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "938dec4dbffecdf43ddaf610a363b976ce1efcae7ab940668890a0766acffd10",
+      "report_sha256": "7e3aa62e70251f3916e155c8bec811c66064790033e7a02140f5620920ea878c",
+      "run_manifest_sha256": "c0ca430a5f284157f3a62bedd43d639b30da9047d1279a5b1a3f17d95dce4e0a",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 22,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-022-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "a1d4fd8c58c6386058120231aa63aee76cb4c20a5e716b7d0182bd605ebd8fc8",
+      "report_sha256": "57d7e22bcb5b7e41d16fd05d27ebc1fac609b05db0f171e62d0b0ea052a6f9d3",
+      "run_manifest_sha256": "fa0be5fa4453f820459091f394fda13cb868c1992300acd096aa599f676e01fd",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 22,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-023-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "2d7a978926f197d60f43bdeeb361161780f94c3aec600341817f954b2d5daad4",
+      "report_sha256": "8f75e003d151ca1c52a334b33d99af616a63dbd387f16562d4c104489728fff1",
+      "run_manifest_sha256": "d134f857ebe1b0d5c2089c66cc1548194503659cc09f692ee359880914f102db",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 23,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-023-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "852ab5b25afd318b4a360541597342e584500d6c48c129cd102795e3ac71f455",
+      "report_sha256": "0ff7d250bc94c56953f4924591a884dad4f582b07abb364f454187f2f298cc7c",
+      "run_manifest_sha256": "7763a379eb404d7ead864e7ee4444a8292f9caf2f411e4ee71b8258934e9f97a",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 23,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-024-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "71eabee43ad4cc215dcb8d683cecc4654240cfbb6fa81f04797ed94bdd5ab628",
+      "report_sha256": "feb81d81792efa22d41af5dd912dbb2fb1e2b912ec6cf8c4c122a25c2bd2a5b3",
+      "run_manifest_sha256": "ad7e9957a3c00342c7a0c60988ba07dc95c043514ea280bffc1363a2ece015ad",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 24,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-024-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "0dd22211f21565c706e8ff511c8d5d9c398ca1f9bff4a3b24e8ce24970621693",
+      "report_sha256": "49f66e8211d38678ff4b6fef1ae3f29f6c3deb98d0a4c7f5af09a88a13f80044",
+      "run_manifest_sha256": "75f059b97d283d64f63de330509eb4d6eb5f53bc7344c56c9fbb2d065cf12ace",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 24,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-025-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "7678e19b215cac9ec7e1b64e190604eb516384460317ed481db8fc8c86b9e8eb",
+      "report_sha256": "90b350449340caeaa91d100ad9747ab96265e60c65b1bb861f1feab83aba10cd",
+      "run_manifest_sha256": "b0cfa7996783af6a2676910158bc9be05d5dd2493e03085391557cce02b7cdad",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 25,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-025-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "354f03385b1a90eb5e4c4ba098e3bfe8e90d80f2dd9c9f128cce774721ac95b6",
+      "report_sha256": "b2139dfd6622f535b9c131e593352125354081d36ffa05fa5e5ab7d6dd03be98",
+      "run_manifest_sha256": "ccb74fa2f7566f9dc461f18e06bc939e36f666856deb3767c343bc6a8bc4f250",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 25,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-026-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "49609177ad16867fd8575e4ccf0fe7e2be9ab24c1f18234252a0cdbfb725feb8",
+      "report_sha256": "1cd808d2f5ebb19ce37867b66c2c6808889dcf885fe6988f6e323da408d6d657",
+      "run_manifest_sha256": "9c8a3c6b340275f66e4af17c82b39156097d21abbfe91049928dcacb8da75fb2",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 26,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-026-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "fdb69815275d5a52005380213c02db9bd5540825f71fc364e1faa716e1ae1f87",
+      "report_sha256": "d148f0d0c914c2e3acd6e24672e3ba030de030572b876e5a1a9e91b4031ba1e2",
+      "run_manifest_sha256": "c096c857c7c12d43b9129cd14fc3ced30ce45bfd90f374a886d75b84c23ab040",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 26,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-027-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "49a36e892fffd615121106d5a062fa760321790f5f8c621a9dc91f31303509dd",
+      "report_sha256": "d93ce1d154e1adf93f1d465e68a5935fab5712107270e1495e43d6d02c41e13c",
+      "run_manifest_sha256": "a748ed67495d5324f7ee0bfe6563485bfd3a129bb14cf644ba3de8fac28cd9e3",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 27,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-027-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "eb8a273f06ce1e5a47ade7c96f3825d332bc43a6f2fba30e31727d1febbc8b88",
+      "report_sha256": "db5386cd69097439d883d31a89ab27727910e3b86685a8d8429b4ec4ac7fd25b",
+      "run_manifest_sha256": "f13612c22d247cddea945607198d195992f00a6aa76b0a2172d159a18de4982f",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 27,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-028-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "41d0260212f807e926b30c617d21574485a6faef1973e8fa0a243170da61a1f0",
+      "report_sha256": "fcd2009e2ec94ec20058b64cf45f6efe489bcbc002d65bd01887c6823b2c8e68",
+      "run_manifest_sha256": "6894c1921b3bf172ec9848c341eb87d0bdd7a5bb35fe441aa0586eb23aad29cb",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 28,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-028-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "6c25e9c147dd573a7a7e1ac10d319eefd0f960b5fd867c9b12acfc5694cb17e6",
+      "report_sha256": "2ab279b7269585b12fd036e33cff780e6e7cc27a1932ad26222dae25ba669247",
+      "run_manifest_sha256": "ab6e099132e03b84fb316283c942d7fcc24f1772e7293222dde84aabfa2cc847",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 28,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-029-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "205d6256d201765aa9cd830c73f5aeec6711cdc8f471f18daf0100b16c399b36",
+      "report_sha256": "9fcb5c7d375e819cff28ece7eb61bdbbf2f889c394239ba994d4ed735e34ba90",
+      "run_manifest_sha256": "ef422f7db27db279b45bf240193ad37ec01415ce14d61e39ad3a1d58ad514852",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 29,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-029-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "2d42745b3da5c2e919bc73bb935ccfba943ab8320bd1196d0bc77c4474a0be09",
+      "report_sha256": "6ac6d73e4055d491446d5565badf263dc24e43298a5c19b389e4745a9b2f34c9",
+      "run_manifest_sha256": "530aa2bb0a52d2d5b3e28679a8a9d974a608c501cf467337a58756f6f8f1ee70",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 29,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-030-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "252389403a6fafac8f44f7b38b54b5503746048c2a29c3233558ec1a5b66ec7d",
+      "report_sha256": "f17619849864379258efefed989b1a7a05ba9e73c3159648f4db9a3e73ab5c1b",
+      "run_manifest_sha256": "5df7952ca46a2e7fd034e57d915ffaac464d3e1202f4f81fc61142714fc77784",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 30,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-030-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "c074af8236a8655008b04c665a8bdc9101a06ee0b304bed097cb9eadb60984ee",
+      "report_sha256": "fcf45eb9ac8aac89ccbff716981375af545da1adb98cd44b66facba7a0d067b3",
+      "run_manifest_sha256": "727441ab339797619083a0fc2cab4e534acd63173bc5d40760a657a1aaafda1b",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 30,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-031-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "24c4be736f4febee60d2d8d5aa3251831936ff330fec8cbf83c96e25c7d86f9e",
+      "report_sha256": "6be9e12760b5513d2b3f33f7a014fb09db4acccac4a8cec8c6f587c68413e0b8",
+      "run_manifest_sha256": "43b4ec1f9a26369f3836824f91f08c918420dbc4b40e43c54c804649c3eda464",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 31,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-031-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "427578b2ecd723df59aead5a496a3710addcc0fe4e4fb8b48eaf2a3c5abd59e4",
+      "report_sha256": "6b1a3f79afe6ac6d845c6bcc9caed1718e060c9fa69f65dd77980d4a8278bc4f",
+      "run_manifest_sha256": "fe460faf9bf0238e58f5efa6b7303f1fd889c29b9a070d6f461564dcca7ca0a3",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 31,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-032-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "0a48090204b2e794796efe921e21be96f52f059c5783db9306a007ae049812c9",
+      "report_sha256": "f28b2da8a48e7733676e8646161251f449c7be9c8ca065770e9bedf1dde1cad2",
+      "run_manifest_sha256": "517a94714a1ec77f419887cdac494c6f7525655672f1ef2584c1eefe9eba1424",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 32,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-032-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "a302476fecb57cc21185974cdba8796d2fe5b58b6f6b315647afd651b2285366",
+      "report_sha256": "d3f92e3a750fb068b8c55c4de0db37ed1ef4aaf9a4d8dd476852caa3c3add805",
+      "run_manifest_sha256": "41db9d7163a2e9ddcc1071619751df6ac0590dd71d56c8d1ae371fffd77fb9b2",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 32,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-033-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "8e29a4c68db7d8c5fb1d22c010aa251df943d553886b466549cf2ef6f2ead2e3",
+      "report_sha256": "5d0d506d94bbee0313ab784f2fb5eef24f6bfeb42a2fc549e282e9d9232df88d",
+      "run_manifest_sha256": "284b2d0d477012f68e3d39e46406ef072a4ac40e3064021a8ff6af9dbdb89308",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 33,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-033-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "113891212c4d06b0e9f48bf668cd8304bf43846cd203d514807ed5e235f691fc",
+      "report_sha256": "5c187f4eca0fd3574a38e91ea364c9620fc43b43a22353abe1a97270c1e98b44",
+      "run_manifest_sha256": "c4398ab401c95e15501d3b2fbc463c041c4b49f92bd944e7d7faad5eff626e55",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 33,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-034-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "f76b6492d3159cbd693b21bebbbf42f4673bb6dc2a190ae98676d95d9475138d",
+      "report_sha256": "3a49bdeb67358f8f0ca52cc576c74016b87e319f3a291bce0c383741f4ff3411",
+      "run_manifest_sha256": "f9c4985451ccd1f272d7eb25bd41f947d2097cac3033c3434b96ffe8e787f799",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 34,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-034-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "7a2833ec2a996ab287340dea83a81ed063f653e89c731c9a2a99b34f8d9a3861",
+      "report_sha256": "b032d7080b7169e5c1c0399619ad9f1ef4b50c85d0de1050d8d0b3558bdd1e69",
+      "run_manifest_sha256": "b839220ebf3f7f8ba70616a977e03ddf440e491dc7bf41162b53586ff6e3106d",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 34,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-035-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "9bc5cc82c6af485c86fbc74e6049dcb4e75c46f1b6b8e07fde8b83c7deb7e5f8",
+      "report_sha256": "7a60ba3fe8f9eb09c64bca1237300011d622b250312b44111e9c47b723d34126",
+      "run_manifest_sha256": "f30448b8071e5394fa908be984748aef195bb619670cdf9636b8b979ac6688bd",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 35,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-035-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "799a0cb57f5196aaf400907c2258ab85c58b9336d397be19d91eba772b80e765",
+      "report_sha256": "781c1464dac55c113345972b80c3b3ab7677ef6d5063ecb3dcef0678719b6c13",
+      "run_manifest_sha256": "a09ee5f9c44708d0e94b0c342c859b7698030a537f455eefbe648940160e7cb1",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 35,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-036-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "4cdd0b44105948d16608035f928b239676a3947b9d2a5bd137cfa0316fbc063e",
+      "report_sha256": "c9802837bc7685336ac252b39c00dc6585348a2bf05b878771c349d0645ba2b4",
+      "run_manifest_sha256": "69c103dcaac1eb028e61e34becdbf3af8ca7eddc1fad159294a3eb5ebdbcfe88",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 36,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-036-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "1a0737f058506706cddfb78f68adb7d857664f4142980ead37194c9d75428eb2",
+      "report_sha256": "2ec6cbdace67b056a5131a17a51e8c996d628f111cb5ea2210d24902fab0edce",
+      "run_manifest_sha256": "e1e0a103fc2b71153329386f99d5188c986f6f1968e43af3c6b23be9dac9032e",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 36,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-037-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "1aef07bac9f4c837b9b2de6d0af0561d3605230c15d915fceee3efab98a765a0",
+      "report_sha256": "b1c20b825e23729597ef467f68b43a84772e6552757e23bb4949110e4e2188fb",
+      "run_manifest_sha256": "c33e8a9ecfd6ccbe2cddfe86ab14ecdbc5454c018bc5d78c600affba3f7ad6f6",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 37,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-037-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "8406f3533aba98b039ed28ddb3d2940358556a9f7f4be90d06e9370e5e9b145a",
+      "report_sha256": "c4242826249bb164e68ebadf992f99d8b019e270d48228f9b5e1ef3cf1600e79",
+      "run_manifest_sha256": "967133549eba5678604de6c9652cb1c773e7f4ee828a5c04ea15383bd7f3cbe2",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 37,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-038-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "3ce9b92e086b7545e096b55ca86fa5fba291add18610877ba735eaeb1e678237",
+      "report_sha256": "ea51e1d4247f6925246e0546ecee67f45301cc5bdb1948fea42e0293a50c7cf1",
+      "run_manifest_sha256": "ce496b6d1162ec2e752deb6c2add46e0ef6d1a1fba63cb771fbbd88766c72f36",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 38,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-038-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "caaa6cfb2e6dc1d817d897dacd7735216801362a6f5c73a59eacb937f1f0300b",
+      "report_sha256": "d491df12336d435785f46d5c294f9c13a4b34deb9e61622379a1f1a74f636d26",
+      "run_manifest_sha256": "76d867fa39f681316659d1a7f421e4a0a0b0bc6b05ccb343c351bf131fa88f2b",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 38,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-039-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "1080642603588b7a6982dc37eafcfb7753466a6c3bd5c34ed123e9ceb46f7cee",
+      "report_sha256": "fa73a03ccdc1c0a335da52718f82d0bafac0aeeb6a9e6978bf41dd2cb81af384",
+      "run_manifest_sha256": "0a046d1b57937420cfad8883163e61cb3905b72169b0563dfa1bfbe02f5e3a26",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 39,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-039-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "e35fa79fa815054cb36e750ea847fcfb13e21f1949209e2eee05c4357406cc86",
+      "report_sha256": "75d548d02a4d250e3824e2cb473bdc4e7cba9ed02ece88af579addc52f541fb5",
+      "run_manifest_sha256": "5a7c8e37e982565b7fe18df1385fe88e92f7bcc8d7caeadab0a2ea9e60fe14ea",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 39,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-040-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "5f3fcbca09713589af57413e0079317685784b78dbe70a9b5467966f2392457b",
+      "report_sha256": "8e41dab765626114a80bb1c9eb6884a49d71991227d9c4962e09485cf4bacba2",
+      "run_manifest_sha256": "1c54b9a3a92572b586d10a1820052ef53a17a7a6989bcd4fd6acc85182387e66",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 40,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-040-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "ab721c65dda9d9c21f519309fc90d192e4a509f3d79bcf65743a155f365d5e59",
+      "report_sha256": "eca0ecbdbfd8a40720a323e31a669cc88e308b6b6ddf3fe79c2ede438b8bab2d",
+      "run_manifest_sha256": "4f9e68cb0f5a6b99b490f2d9dd2256bc914ff12b01e9864fd5a2880d1df6de80",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 40,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-041-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "3cf238984b3ac76eb25412d2e5ad27678daf6960dd47dcfb564c31b375816392",
+      "report_sha256": "20c2e773e66775638c84d5a49431ffc66a3331e6c5c300e1b209c1e3afb45c45",
+      "run_manifest_sha256": "e9baa699e5d9abcf7baf2422d19d0e1a6eb619062213ecced5df4f81e4c39ffc",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 41,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-041-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "a084e52d39d1dcd78e1c74e9546df8b78ff7011e8a860bb510c454e75c6cb10e",
+      "report_sha256": "57f309d7714732cd6f178310cb7208387befc544e3e2e57b86eb3658058d9931",
+      "run_manifest_sha256": "691b0622a61fd9db1a5c7ed1de49b4cc07aeb0e3a0ccdc9674b0c8debfd5627f",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 41,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-042-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "1878298232b84abcf1737a9a840cd1f797db2b1765d40b7c9908c7f8fc22f89a",
+      "report_sha256": "c46616be8aab09fa16c200fb68b4da6de1958590bf11133eeec312bf680a2286",
+      "run_manifest_sha256": "c5a61233fceea60180659cb03bb1312e9c0ef2ff258b61e8789042d45fc00197",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 42,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-042-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "902bea45d312eb541100be9cd2bfb978620926707fbf38524a722bb3c02f43e7",
+      "report_sha256": "7d78f01e51f21f2de4b2f8aa7e8aa3d2b4a1efcbdcf23ad4194f7c1efbc63aa8",
+      "run_manifest_sha256": "a10ccab55c552c49be19d388956e9cde5f854386d698625f27b46216f5549aec",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 42,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-043-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "cbd364e5222688417d9d9d425b29e8455dd56f15df1f610fc58f642e10ce87fe",
+      "report_sha256": "544d46260812eee2adaef885cb6da43bf44cc671e9cb3d9e56d6e1d9480f9e9d",
+      "run_manifest_sha256": "56c87602910bd3d1e86bc14f06fa62c9ab3a0cd21adfe9cfcc09714e8bdb555b",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 43,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-043-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "ded8fec21d0c5684040b1faa7b98d94e05a2d66abebe079b28d7bfdb7100beb5",
+      "report_sha256": "ef403b2bea3a92f1f1bc5f99080f6575ad20dd9bf12c96583c9761d3c888dfe4",
+      "run_manifest_sha256": "31b9d7d42d7f08e82efadae219d31284a64a28528cc1846dd776586cdc233e6d",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 43,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-044-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "154d26205c7b978883d120a142b0e8cbfe8d8a0e3246f4f35c3b2b604c4232ab",
+      "report_sha256": "b241b5fc12f057df35de4d1372b866da36d918584c37d58e6d5fda974aed1615",
+      "run_manifest_sha256": "6861b1a151040df47b0d6bd4477e959aeba3ba98db29a50dec44895bdbd4d2cd",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 44,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-044-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "b17ceb122cc9899e762e134801136c1ae3fd568663b39851333e3a20b0fca6a1",
+      "report_sha256": "dfa94c979b971519bf65ac9fc6efc98af4d00a50f6fba8479c5175c9d17225f4",
+      "run_manifest_sha256": "fc92c2119bc83326c49c08c64628ea889eb815fb71329fd06eb4743d1f23f05b",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 44,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-045-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "6f45b15c811c9be38fe13d86bf119711a467fa140f0d2b4e82abe3ed1eec5d41",
+      "report_sha256": "228dc1d29b3d056cf4d95c78adeca4741632e21f29bb87bd92a166d81a20faf7",
+      "run_manifest_sha256": "fe9781b3c14957c7bbca0b3b45fd99fec178eb9b960ff320ba9dc6b773a8a992",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 45,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-045-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "aed324ea00cb661d21c4a18821d73f2cb59da662dad3453cba046d0a21897daf",
+      "report_sha256": "45ab8ee8a608a3594e4cb3bba73f41fe69099d67ecfbd83a17937b6e25722535",
+      "run_manifest_sha256": "ecdba619f8c5c66ff7daf9ab48e3aa1460d7ca6d4303a699668556339d9f4353",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 45,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-046-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "f743976a25fe73f6628716e43f62aead654dea046913290899d694c0677a6075",
+      "report_sha256": "2ec766a1a0ada6071fc07eef859eb2ee474614ae2c6ac5ad0115f7f4f317df40",
+      "run_manifest_sha256": "b2d3029d6a90324c52188f0800e59fb122f2add11f63d6863e1380ea212db98a",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 46,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-046-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "403cfbb4bbfaaf1ba18b945b1d4ca69dbb153f8c7d3b2b78f1cf13222e9c6bd9",
+      "report_sha256": "4d04098a38664a97dfac6881e967378cedae360beef8d6aed4dc58566ba21bfd",
+      "run_manifest_sha256": "f61f166ad781b13b8ab36356e11cd633b7a2e919a0a655cdaaf604e1296861be",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 46,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-047-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "fa5b6fc70190f5f3c390c3779200fb7981419a81fa0eb178126bab29c74c2232",
+      "report_sha256": "69ad993be2ff819b65706895cd4165793c16cb4126b59ac707ded7712ce332d2",
+      "run_manifest_sha256": "681b1f420bb469c713dcfce8aa55549811cc7f06338f23d73fdb65a4f39b607d",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 47,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-047-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "018b90f7d4c5fd9b32b6cedb476650e52e394a00a2ad310bfa9417d0966f3dbf",
+      "report_sha256": "d7d34cdf8d68bedaa128638d199b991701a193e717e49e5bfca0a4709d5a7e6d",
+      "run_manifest_sha256": "5b4216db8ba958fb154194f3d4d45947cf94d8a0c6904e3eb820bfcebbcd37ca",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 47,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-048-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "1940d4f97af2a496573a155787dcbc160dcf2d8ca4cb2ea3849f89836e383a94",
+      "report_sha256": "052d664bbee215c6ea6c35835f3c024da18f4dcd47f758ba3dec69b9018ee526",
+      "run_manifest_sha256": "06643013a385d19b1eb241bdb25d9e9496bdd46a3043109f83c3dd9b04bb4162",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 48,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-048-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "aea697ad4a90f8d6a57e9474f8a7acb03a876dc2ab5b5c17096fb9af9fac2579",
+      "report_sha256": "1cb4fb6aa08a8f5adb82b475f45cb9fb57ffaada8611ab019f1391f514b856fd",
+      "run_manifest_sha256": "ad2d3a93e4681c64fd7f0ac81ab906c313628fe7fd55df266dc9a8611c2a0374",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 48,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-049-solver",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicted_verdict": "supported",
+      "reference_sha256": "ff48c3094a5aad7c7dd9ad2ee4af6d4f46093012ca767b46929e58f85529d048",
+      "report_sha256": "f7e9992688267d5866fefdc8ea5050a2793c1ff505c7a92aca75ba51e1142172",
+      "run_manifest_sha256": "80a160593552f06034de28feeb2562469234390c6312121ce22dde39cb8ca187",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 49,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "seed-049-no-op",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicted_verdict": "refuted",
+      "reference_sha256": "5e37bebdca70dea6afe7f5b385cde88b99c624c5b0e197898413016243bb8d02",
+      "report_sha256": "dfbbf8b7a906e03367a6bcc2e9414f1bd5cf76aa96e4cf81b7078e165fb17619",
+      "run_manifest_sha256": "1b1145dffd3916a3106a9825e42ca317c447c34267ca0abc63a288f9cf2f201f",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 49,
+      "unscored_predicates": [
+        "collision_free",
+        "cube_follows_tcp",
+        "cube_lifted",
+        "grasped",
+        "gripper_closed",
+        "left_finger_contact",
+        "right_finger_contact"
+      ]
+    }
+  ],
+  "entity_map_sha256": "0c09e3c33b3b497375afca5ef4c8ba606ad4754edd05efc84ba2fafe96595fd8",
+  "env_id": "PickCube-v1",
+  "environment": {
+    "adapter": "0.2.0",
+    "cuda_device": "NVIDIA GeForce RTX 4070",
+    "gymnasium": "1.3.0",
+    "mani_skill": "3.0.1",
+    "nvidia_smi": "NVIDIA GeForce RTX 4070, 591.86",
+    "os": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.11.14",
+    "sapien": "3.0.3",
+    "torch": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "torch_cuda_available": true
+  },
+  "episode_metrics": {
+    "accuracy": {
+      "count": 100,
+      "estimate": 1.0,
+      "lower_95": 0.9630065017930143,
+      "total": 100,
+      "upper_95": 1.0
+    },
+    "confirmed_success_false_positive_rate": {
+      "count": 0,
+      "estimate": 0.0,
+      "lower_95": 6.938893903907228e-18,
+      "total": 49,
+      "upper_95": 0.07269781922049637
+    },
+    "confirmed_success_precision": {
+      "count": 51,
+      "estimate": 1.0,
+      "lower_95": 0.9299533801014687,
+      "total": 51,
+      "upper_95": 1.0
+    },
+    "confusion_matrix": {
+      "conflicting": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 0,
+        "unknown": 0
+      },
+      "refuted": {
+        "conflicting": 0,
+        "refuted": 49,
+        "supported": 0,
+        "unknown": 0
+      },
+      "supported": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 51,
+        "unknown": 0
+      },
+      "unknown": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 0,
+        "unknown": 0
+      }
+    },
+    "count": 100,
+    "macro_f1": 1.0,
+    "per_label": {
+      "conflicting": {
+        "f1": null,
+        "precision": null,
+        "recall": null,
+        "support": 0
+      },
+      "refuted": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 49
+      },
+      "supported": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 51
+      },
+      "unknown": {
+        "f1": null,
+        "precision": null,
+        "recall": null,
+        "support": 0
+      }
+    }
+  },
+  "fixed_horizon": 100,
+  "generation": [
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 0,
+      "solver_action_count": 74
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 1,
+      "solver_action_count": 74
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 2,
+      "solver_action_count": 50
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 3,
+      "solver_action_count": 86
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 4,
+      "solver_action_count": 76
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 5,
+      "solver_action_count": 88
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 6,
+      "solver_action_count": 71
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 7,
+      "solver_action_count": 74
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 8,
+      "solver_action_count": 49
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 9,
+      "solver_action_count": 84
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 10,
+      "solver_action_count": 79
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 11,
+      "solver_action_count": 82
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 12,
+      "solver_action_count": 71
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 13,
+      "solver_action_count": 80
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 14,
+      "solver_action_count": 76
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 15,
+      "solver_action_count": 77
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 16,
+      "solver_action_count": 76
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 17,
+      "solver_action_count": 67
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 18,
+      "solver_action_count": 72
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 19,
+      "solver_action_count": 87
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 20,
+      "solver_action_count": 64
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 21,
+      "solver_action_count": 72
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 22,
+      "solver_action_count": 68
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 23,
+      "solver_action_count": 76
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 24,
+      "solver_action_count": 79
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 25,
+      "solver_action_count": 82
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 26,
+      "solver_action_count": 84
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 27,
+      "solver_action_count": 74
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 28,
+      "solver_action_count": 79
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 29,
+      "solver_action_count": 71
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 30,
+      "solver_action_count": 72
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 31,
+      "solver_action_count": 69
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 32,
+      "solver_action_count": 80
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 33,
+      "solver_action_count": 57
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 34,
+      "solver_action_count": 85
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 35,
+      "solver_action_count": 66
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 36,
+      "solver_action_count": 80
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 37,
+      "solver_action_count": 75
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 38,
+      "solver_action_count": 79
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 39,
+      "solver_action_count": 92
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 40,
+      "solver_action_count": 70
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 41,
+      "solver_action_count": 80
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 42,
+      "solver_action_count": 89
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 43,
+      "solver_action_count": 75
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 44,
+      "solver_action_count": 72
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 45,
+      "solver_action_count": 69
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 46,
+      "solver_action_count": 63
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 47,
+      "solver_action_count": 83
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 48,
+      "solver_action_count": 79
+    },
+    {
+      "controller_generation_error": null,
+      "outcome_read_during_generation": false,
+      "seed": 49,
+      "solver_action_count": 83
+    }
+  ],
+  "limitations": [
+    "Results are bounded to the pinned ManiSkill/SAPIEN simulation, raw captured channels, seeds, actions, thresholds, and horizon.",
+    "Unscored contact, grasp, following, lift, and collision diagnostics are not labeled by ManiSkill's official PickCube evaluator.",
+    "This benchmark does not establish real-world causation, authorization, hardware behavior, or safety."
+  ],
+  "oracle_isolation": {
+    "action_files_contain_only_actions": true,
+    "all_predictions_written_before_official_replay": true,
+    "capture_discarded_step_returns": true,
+    "references_outside_candidate_runs": true
+  },
+  "predicate_metrics": {
+    "accuracy": {
+      "count": 200,
+      "estimate": 1.0,
+      "lower_95": 0.9811546736227335,
+      "total": 200,
+      "upper_95": 1.0
+    },
+    "confirmed_success_false_positive_rate": {
+      "count": 0,
+      "estimate": 0.0,
+      "lower_95": 6.938893903907228e-18,
+      "total": 49,
+      "upper_95": 0.07269781922049637
+    },
+    "confirmed_success_precision": {
+      "count": 151,
+      "estimate": 1.0,
+      "lower_95": 0.9751910189302563,
+      "total": 151,
+      "upper_95": 1.0
+    },
+    "confusion_matrix": {
+      "conflicting": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 0,
+        "unknown": 0
+      },
+      "refuted": {
+        "conflicting": 0,
+        "refuted": 49,
+        "supported": 0,
+        "unknown": 0
+      },
+      "supported": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 151,
+        "unknown": 0
+      },
+      "unknown": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 0,
+        "unknown": 0
+      }
+    },
+    "count": 200,
+    "macro_f1": 1.0,
+    "per_label": {
+      "conflicting": {
+        "f1": null,
+        "precision": null,
+        "recall": null,
+        "support": 0
+      },
+      "refuted": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 49
+      },
+      "supported": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 151
+      },
+      "unknown": {
+        "f1": null,
+        "precision": null,
+        "recall": null,
+        "support": 0
+      }
+    }
+  },
+  "render_backend": "cpu",
+  "schema_version": "robot-spatial-maniskill-pickcube-benchmark.v1",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+  ],
+  "sim_backend": "physx_cpu",
+  "task_spec_sha256": "58e3f1b26e821ee60de7d5cc86d1a0b45e98cd448d445a47e3a43440c273a3b8"
+}

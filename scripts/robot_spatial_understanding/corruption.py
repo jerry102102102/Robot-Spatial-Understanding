@@ -17,6 +17,8 @@ from .util import load_json, sha256_file, sha256_json, write_deterministic_npz, 
 CORRUPTION_KINDS = frozenset(
     {
         "dropped-frame",
+        "conflicting-duplicate",
+        "missing-channel",
         "out-of-order",
         "wrong-id",
         "stale-tail",
@@ -75,6 +77,18 @@ def corrupt_run(
             if not isinstance(channel_record, dict) or channel_record.get("status") != "available":
                 raise SchemaError(f"corruption kind {kind!r} requires available channel {channel!r}")
             stream_path = target / channel_record["path"]
+            if kind == "missing-channel":
+                stream_path.unlink()
+                manifest["channels"][channel] = {
+                    "status": "unavailable",
+                    "reason": "removed by deterministic missing-channel negative control",
+                }
+                manifest["manifest_sha256"] = _manifest_digest(manifest)
+                write_json(target / "run.json", manifest)
+                completeness = evaluate_completeness(target, manifest)
+                write_json(target / "completeness.json", completeness)
+                SimulationRun.load(target)
+                return target
             with np.load(stream_path, allow_pickle=False) as archive:
                 arrays = {name: np.array(archive[name]) for name in archive.files}
             sample_count = len(arrays["time_s"])
@@ -96,6 +110,36 @@ def corrupt_run(
             elif kind == "out-of-order":
                 arrays["time_s"] = arrays["time_s"].copy()
                 arrays["time_s"][0], arrays["time_s"][1] = arrays["time_s"][1], arrays["time_s"][0]
+            elif kind == "conflicting-duplicate":
+                duplicate = sample_count // 2
+                for name in sample_arrays:
+                    arrays[name] = np.insert(arrays[name], duplicate + 1, arrays[name][duplicate], axis=0)
+                mutation_name = next(
+                    (
+                        name
+                        for name in (
+                            "position_m",
+                            "position",
+                            "velocity",
+                            "active",
+                            "normal_force_n",
+                            "quaternion_xyzw",
+                        )
+                        if name in arrays and name in sample_arrays
+                    ),
+                    None,
+                )
+                if mutation_name is None:
+                    raise SchemaError(f"channel {channel!r} has no value array to conflict")
+                values = arrays[mutation_name].copy()
+                target_value = values[duplicate + 1]
+                if np.issubdtype(values.dtype, np.bool_):
+                    values[duplicate + 1] = np.logical_not(target_value)
+                elif np.issubdtype(values.dtype, np.number):
+                    values[duplicate + 1].flat[0] = values[duplicate + 1].flat[0] + 0.001
+                else:
+                    raise SchemaError(f"channel {channel!r} conflict target is not numeric or boolean")
+                arrays[mutation_name] = values
             elif kind == "wrong-id":
                 identifier_array = next(
                     (name for name in ("entity_ids", "joint_ids", "sensor_ids", "body_a") if name in arrays),

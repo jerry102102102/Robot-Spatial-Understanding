@@ -43,6 +43,36 @@ The committed example is synthetic and tests the public adapter contract; it is 
 an upstream ManiSkill benchmark result. Real benchmark evidence requires pinned simulator/assets,
 seeds, raw state capture, and an isolated official reference result.
 
+Run a live ManiSkill PickCube replay from an action-only HDF5 trajectory:
+
+```bash
+python -m pip install -e '.[maniskill,dev]'
+robot-spatial capture --adapter maniskill \
+  --env-id PickCube-v1 --seed 2 --trajectory actions.h5 \
+  --entity-map examples/pickcube-live/pickcube-entities.yaml \
+  --sim-backend physx_cpu --fixed-horizon 100 \
+  --out work/pickcube-live/run
+robot-spatial evaluate work/pickcube-live/run \
+  --task examples/pickcube-live/task.yaml \
+  --out work/pickcube-live/result
+```
+
+The live path reads Panda qpos/qvel, TCP/finger/cube/goal poses, pairwise finger contact forces,
+and CPU scene collision pairs directly from `env.unwrapped`. It opens only `traj_N/actions` in the
+trajectory archive, discards every `step()` return, and never reads reward, success, `info`, or
+`evaluate()` during prediction. GPU capture retains pairwise contact evidence and marks complete
+collision enumeration unavailable.
+
+The [100-case PickCube record](benchmarks/records/maniskill-pickcube-v1-100.json) has 100/100
+episode agreement with the isolated official evaluator and 100% confirmed-success precision at a
+fixed 100-step horizon. All 50 official-planner cases are supported. Of the 50 no-op controls, 49
+are refuted and seed 8 is correctly supported because its cube starts inside the official goal
+tolerance. The resulting 51 supported and 49 refuted references satisfy the declared coverage
+gate without changing the official evaluator or using outcome-dependent termination.
+The [16-environment CUDA smoke record](benchmarks/records/maniskill-pickcube-v1-cuda-smoke.json)
+separately verifies one digest-bound run per sub-environment and `unknown` collision diagnostics
+when complete GPU collision enumeration is unavailable.
+
 Run a real MuJoCo episode with the optional Gymnasium Robotics adapter:
 
 ```bash
@@ -133,6 +163,7 @@ The layers intentionally remain separate:
 - Normalize ROS 2 `/joint_states`, `/tf`, `/tf_static`, and Action client captures with exact clocks, identities, times, and file digests.
 - Judge one action's readiness, protocol lifecycle, observed effects, inconsistencies, and unresolved evidence boundaries.
 - Normalize immutable ManiSkill/SAPIEN, MuJoCo, Gazebo/ROS 2, generic JSON, and partial deformable-state exports without importing their success labels.
+- Capture fixed-horizon ManiSkill/SAPIEN state and contacts live from action-only trajectories, with one digest-bound run per sub-environment.
 - Capture three-dimensional Gymnasium Robotics GoalEnv pose episodes directly from MuJoCo while discarding reward and official success output.
 - Evaluate AGV goal/corridor, arm pose/joint, sampled collision-free, sustained contact, lift, follow, grasp, release, region, and insertion predicates.
 - Detect missing, stale, gapped, out-of-order, conflicting, identity-corrupted, and digest-tampered evidence.

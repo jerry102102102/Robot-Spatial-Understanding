@@ -1,0 +1,791 @@
+{
+  "bindings": {
+    "adapter": {
+      "name": "maniskill",
+      "oracle_fields_accepted": false,
+      "version": "0.2.0"
+    },
+    "clock": {
+      "clock_id": "simulation/PickCube-v1/seed-2",
+      "domain": "simulated_monotonic"
+    },
+    "completeness_sha256": "4bcb7bf60b270f6b9e9a713624f9380cbec7edc18994eb5e9cbac721924e626e",
+    "interval": {
+      "end_s": 5.0,
+      "start_s": 0.0
+    },
+    "run_id": "maniskill/PickCube-v1/seed-2/physx_cpu",
+    "run_manifest_sha256": "608bcf9576be2719941c26c8f5eed826a8e47707872aff7aa6ef4a3dbaf3a258",
+    "simulator": {
+      "name": "ManiSkill/SAPIEN",
+      "version": "3.0.1"
+    },
+    "task_id": "PickCube-v1",
+    "task_spec_sha256": "58e3f1b26e821ee60de7d5cc86d1a0b45e98cd448d445a47e3a43440c273a3b8"
+  },
+  "boundaries": {
+    "authorization_established": false,
+    "causation_established": false,
+    "hardware_truth_established": false,
+    "official_oracle_used_for_prediction": false,
+    "safety_established": false,
+    "simulation_only": true
+  },
+  "completeness": {
+    "channel_statuses": {
+      "collision": "complete",
+      "contact": "complete",
+      "deformable": "unavailable",
+      "force_torque": "unavailable",
+      "joint_state": "complete",
+      "odometry": "unavailable",
+      "pose": "complete"
+    },
+    "status": "complete_for_available_channels"
+  },
+  "layers": {
+    "authorization": {
+      "status": "unknown",
+      "summary": "A simulation result does not establish organizational or dispatch authorization."
+    },
+    "causation": {
+      "status": "unknown",
+      "summary": "Temporal order alone does not establish causation; no bound counterfactual replay was supplied."
+    },
+    "controller_action_protocol": {
+      "latest_report": null,
+      "status": "unknown",
+      "summary": "No controller or action lifecycle report was supplied."
+    },
+    "model_geometry_validity": {
+      "status": "unknown",
+      "summary": "The run does not bind a verified model-validation artifact."
+    },
+    "observed_task_effects": {
+      "status": "refuted",
+      "summary": "Aggregated only from declared effect predicates and their evidence."
+    },
+    "safety": {
+      "status": "unknown",
+      "summary": "A sampled simulation episode is not a hardware safety certificate."
+    },
+    "simulation_bounded_physical_success": {
+      "status": "refuted",
+      "summary": "Bounded to the task spec, simulator, model/assets, recorded channels, sampling, thresholds, and interval."
+    },
+    "trajectory_execution": {
+      "status": "refuted",
+      "summary": "Aggregated only from declared trajectory, pose, path, and collision predicates."
+    }
+  },
+  "predicates": [
+    {
+      "evidence": [
+        {
+          "actual_position_m": [
+            0.02293824963271618,
+            -0.02379728853702545,
+            0.01999993622303009
+          ],
+          "channel": "pose",
+          "entity": "cube",
+          "position_error_m": 0.03126643031605433,
+          "position_tolerance_m": 0.025,
+          "sample_index": 100,
+          "source_sha256": "08bd5d1759f0edc785cd56165db42779781a4d09299517a2e6cff018765250d8",
+          "target": {
+            "entity": "goal",
+            "position_m": [
+              0.02380727231502533,
+              -0.011493466794490814,
+              0.04873058944940567
+            ]
+          },
+          "time_s": 5.0
+        }
+      ],
+      "evidence_sha256": "4a45ce9f1429cf119fafc55638f282df23aa9dc0ffaa76f4b50e67d3ecf3b22d",
+      "limitations": [
+        "This predicate is established only inside the declared simulator, streams, interval, and thresholds."
+      ],
+      "missing_evidence": [],
+      "predicate_id": "cube_at_goal",
+      "schema_version": "robot-spatial-simulation-predicate-evidence.v1",
+      "status": "refuted",
+      "summary": "Terminal position is outside the declared tolerance.",
+      "type": "frame_position_within_tolerance"
+    },
+    {
+      "evidence": [
+        {
+          "absolute_velocities": {
+            "panda_joint1": 0.0,
+            "panda_joint2": 0.0,
+            "panda_joint3": 0.0,
+            "panda_joint4": 0.0,
+            "panda_joint5": 0.0,
+            "panda_joint6": 0.0,
+            "panda_joint7": 0.0
+          },
+          "channel": "joint_state",
+          "maximum_allowed": 0.2,
+          "maximum_observed": 0.0,
+          "sample_index": 100,
+          "source_sha256": "af8aa0034b720db8b1ccc37b226f5c98503d91581fb32d701cd76a3b2e948d87",
+          "time_s": 5.0
+        }
+      ],
+      "evidence_sha256": "9f16c2a8df7041c620b9051a11fe26081fa398779d3832444fbf61aa2a4270c1",
+      "limitations": [
+        "This predicate is established only inside the declared simulator, streams, interval, and thresholds."
+      ],
+      "missing_evidence": [],
+      "predicate_id": "robot_static",
+      "schema_version": "robot-spatial-simulation-predicate-evidence.v1",
+      "status": "supported",
+      "summary": "Terminal joint velocity is within the declared maximum absolute velocity.",
+      "type": "joint_velocity_below_threshold"
+    },
+    {
+      "evidence": [
+        {
+          "channel": "contact",
+          "longest_duration_s": 0.0,
+          "minimum_duration_s": 0.2
+        }
+      ],
+      "evidence_sha256": "e363712e54e1360c553dcdf72c80f5810c2584391057fadaa00ddfe8f4a3c4a5",
+      "limitations": [
+        "This predicate is established only inside the declared simulator, streams, interval, and thresholds."
+      ],
+      "missing_evidence": [],
+      "predicate_id": "left_finger_contact",
+      "schema_version": "robot-spatial-simulation-predicate-evidence.v1",
+      "status": "refuted",
+      "summary": "Contact existed, but not for the declared sustained duration.",
+      "type": "contact_sustained"
+    },
+    {
+      "evidence": [
+        {
+          "channel": "contact",
+          "longest_duration_s": 0.0,
+          "minimum_duration_s": 0.2
+        }
+      ],
+      "evidence_sha256": "511524d653800e311ece670c02b6c2513d700a32f960b66c7d557b06876c3711",
+      "limitations": [
+        "This predicate is established only inside the declared simulator, streams, interval, and thresholds."
+      ],
+      "missing_evidence": [],
+      "predicate_id": "right_finger_contact",
+      "schema_version": "robot-spatial-simulation-predicate-evidence.v1",
+      "status": "refuted",
+      "summary": "Contact existed, but not for the declared sustained duration.",
+      "type": "contact_sustained"
+    },
+    {
+      "evidence": [
+        {
+          "channel": "joint_state",
+          "sample_index": 100,
+          "source_sha256": "af8aa0034b720db8b1ccc37b226f5c98503d91581fb32d701cd76a3b2e948d87",
+          "time_s": 5.0,
+          "values": {
+            "panda_finger_joint1": {
+              "actual": 0.03999999910593033,
+              "maximum": 0.035,
+              "minimum": 0.0,
+              "within": false
+            },
+            "panda_finger_joint2": {
+              "actual": 0.03999999910593033,
+              "maximum": 0.035,
+              "minimum": 0.0,
+              "within": false
+            }
+          }
+        }
+      ],
+      "evidence_sha256": "0ec903f692c2548763a3477408c2d675ad42f7761b8cf2b9588fee8443bc6801",
+      "limitations": [
+        "This predicate is established only inside the declared simulator, streams, interval, and thresholds."
+      ],
+      "missing_evidence": [],
+      "predicate_id": "gripper_closed",
+      "schema_version": "robot-spatial-simulation-predicate-evidence.v1",
+      "status": "refuted",
+      "summary": "Terminal joint positions are outside the declared ranges.",
+      "type": "joint_position_in_range"
+    },
+    {
+      "evidence": [
+        {
+          "channel": "pose",
+          "duration_s": 5.0,
+          "maximum_orientation_drift_rad": 1.4435618634689931e-05,
+          "maximum_position_drift_m": 8.003675885945222e-07,
+          "minimum_duration_s": 0.2,
+          "orientation_tolerance_rad": 0.05,
+          "position_tolerance_m": 0.01,
+          "reference": "tcp",
+          "relative_pose_expectation_source": "start of longest stable synchronized segment",
+          "sample_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ],
+          "source_sha256": "08bd5d1759f0edc785cd56165db42779781a4d09299517a2e6cff018765250d8",
+          "target": "cube"
+        }
+      ],
+      "evidence_sha256": "bd53fd8423368a2d2b5564bf239408d020f5646574aa6c44c62c76cce447baad",
+      "limitations": [
+        "This predicate is established only inside the declared simulator, streams, interval, and thresholds."
+      ],
+      "missing_evidence": [],
+      "predicate_id": "cube_follows_tcp",
+      "schema_version": "robot-spatial-simulation-predicate-evidence.v1",
+      "status": "supported",
+      "summary": "Target maintained the declared relative pose to the reference.",
+      "type": "object_follows_frame_for_duration"
+    },
+    {
+      "evidence": [
+        {
+          "axis": "z",
+          "channel": "pose",
+          "entity": "cube",
+          "initial_height_m": 0.019999999552965164,
+          "longest_duration_s": 0.0,
+          "minimum_delta_m": 0.02,
+          "minimum_duration_s": 0.0,
+          "minimum_m": 0.03999999955296517,
+          "sample_indices": [
+            100
+          ],
+          "source_sha256": "08bd5d1759f0edc785cd56165db42779781a4d09299517a2e6cff018765250d8",
+          "terminal_height_m": 0.01999993622303009
+        }
+      ],
+      "evidence_sha256": "70b2e5348b9de36d39e9ebe70bfed7e36efdd46cc5852b1be0380744163c28e8",
+      "limitations": [
+        "This predicate is established only inside the declared simulator, streams, interval, and thresholds."
+      ],
+      "missing_evidence": [],
+      "predicate_id": "cube_lifted",
+      "schema_version": "robot-spatial-simulation-predicate-evidence.v1",
+      "status": "refuted",
+      "summary": "Object height is not above the declared threshold for the required duration.",
+      "type": "object_above_height"
+    },
+    {
+      "evidence": [
+        {
+          "requirements": [
+            {
+              "evidence_sha256": "e363712e54e1360c553dcdf72c80f5810c2584391057fadaa00ddfe8f4a3c4a5",
+              "predicate_id": "left_finger_contact",
+              "status": "refuted"
+            },
+            {
+              "evidence_sha256": "511524d653800e311ece670c02b6c2513d700a32f960b66c7d557b06876c3711",
+              "predicate_id": "right_finger_contact",
+              "status": "refuted"
+            },
+            {
+              "evidence_sha256": "0ec903f692c2548763a3477408c2d675ad42f7761b8cf2b9588fee8443bc6801",
+              "predicate_id": "gripper_closed",
+              "status": "refuted"
+            },
+            {
+              "evidence_sha256": "bd53fd8423368a2d2b5564bf239408d020f5646574aa6c44c62c76cce447baad",
+              "predicate_id": "cube_follows_tcp",
+              "status": "supported"
+            },
+            {
+              "evidence_sha256": "70b2e5348b9de36d39e9ebe70bfed7e36efdd46cc5852b1be0380744163c28e8",
+              "predicate_id": "cube_lifted",
+              "status": "refuted"
+            }
+          ],
+          "type": "predicate_composition"
+        }
+      ],
+      "evidence_sha256": "6bd1245483d9bb400a9cbd239b3f2b4e960a6fd42f19ea5c14ebf38d6569a544",
+      "limitations": [
+        "A supported grasp is bounded to the declared simulator contact, joint, pose, lift, sampling, and tolerance evidence; it is not a real-world force-closure certificate."
+      ],
+      "missing_evidence": [],
+      "predicate_id": "grasped",
+      "schema_version": "robot-spatial-simulation-predicate-evidence.v1",
+      "status": "refuted",
+      "summary": "At least one required grasp condition was refuted; contact alone is not promoted to a grasp.",
+      "type": "object_grasped"
+    },
+    {
+      "evidence": [
+        {
+          "allowed_pairs": [
+            [
+              "cube",
+              "table"
+            ],
+            [
+              "left_finger",
+              "cube"
+            ],
+            [
+              "right_finger",
+              "cube"
+            ],
+            [
+              "cube",
+              "panda_hand"
+            ]
+          ],
+          "channel": "collision",
+          "exempt_active_sample_indices": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40,
+            42,
+            44,
+            46,
+            48,
+            50,
+            52,
+            54,
+            56,
+            58,
+            60,
+            62,
+            64,
+            66,
+            68,
+            70,
+            72,
+            74,
+            76,
+            78,
+            80,
+            82,
+            84,
+            86,
+            88,
+            90,
+            92,
+            94,
+            96,
+            98,
+            100,
+            102,
+            104,
+            106,
+            108,
+            110,
+            112,
+            114,
+            116,
+            118,
+            120,
+            122,
+            124,
+            126,
+            128,
+            130,
+            132,
+            134,
+            136,
+            138,
+            140,
+            142,
+            144,
+            146,
+            148,
+            150,
+            152,
+            154,
+            156,
+            158,
+            160,
+            162,
+            164,
+            166,
+            168,
+            170,
+            172,
+            174,
+            176,
+            178,
+            180,
+            182,
+            184,
+            186,
+            188,
+            190,
+            192,
+            194,
+            196,
+            198,
+            200
+          ],
+          "ignored_pairs": [
+            [
+              "left_finger",
+              "table"
+            ],
+            [
+              "right_finger",
+              "table"
+            ]
+          ],
+          "interval": {
+            "end_s": 5.0,
+            "start_s": 0.0
+          },
+          "pair_filter": null,
+          "sample_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200
+          ],
+          "source_sha256": "fe11a252fbbe2ee136b967156b671995ef49d45f10fd737aa742da06ca7f783d"
+        }
+      ],
+      "evidence_sha256": "f9383c27524d99efcde6528ce8b253a76625a4f9d4619baa6c0541f90ab8e235",
+      "limitations": [
+        "Collision freedom covers only the simulator collision channel, declared bodies, sampling rate, and interval; it is not continuous real-world safety proof."
+      ],
+      "missing_evidence": [],
+      "predicate_id": "collision_free",
+      "schema_version": "robot-spatial-simulation-predicate-evidence.v1",
+      "status": "supported",
+      "summary": "No active declared collision was recorded in the complete interval.",
+      "type": "collision_free_over_interval"
+    }
+  ],
+  "report_id": "report/maniskill/PickCube-v1/seed-2/physx_cpu/PickCube-v1",
+  "report_sha256": "02612f54ae111b442e8e87d598ab1820f51656670cf5172a837d63bd89f5063c",
+  "schema_version": "robot-spatial-simulation-assurance-report.v1",
+  "unknowns": [],
+  "verdict": {
+    "confirmed_success": false,
+    "failure_condition_status": "supported",
+    "goal_status": "refuted",
+    "simulation_bounded_physical_success": "refuted"
+  }
+}

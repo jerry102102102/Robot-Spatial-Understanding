@@ -12,6 +12,8 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).resolve().parents[1]
 REPO_ROOT = SCRIPT_DIR.parent
 EXAMPLE = REPO_ROOT / "examples" / "pickcube"
+LIVE_EXAMPLE = REPO_ROOT / "examples" / "pickcube-live"
+LIVE_FIXTURES = REPO_ROOT / "benchmarks" / "fixtures" / "maniskill-pickcube-v1"
 FIXTURES = Path(__file__).parent / "fixtures"
 sys.path.insert(0, str(SCRIPT_DIR))
 
@@ -34,6 +36,7 @@ from robot_spatial_understanding.errors import (  # noqa: E402
 from robot_spatial_understanding.report import AssuranceReport  # noqa: E402
 from robot_spatial_understanding.simulation import GENERIC_TRACE_SCHEMA, SimulationRun  # noqa: E402
 from robot_spatial_understanding.task import TASK_SCHEMA, TaskSpec  # noqa: E402
+from robot_spatial_understanding.util import sha256_json  # noqa: E402
 
 
 class SimulationEvidenceTests(unittest.TestCase):
@@ -137,6 +140,26 @@ class SimulationEvidenceTests(unittest.TestCase):
         predicates = {item["predicate_id"]: item["status"] for item in report.data["predicates"]}
         self.assertEqual(predicates["follows_tool"], "conflicting")
 
+    def test_conflicting_duplicate_stream_is_conflicting(self) -> None:
+        run = self.import_trace()
+        corrupted = corrupt_run(run.root, self.root / "conflicting-duplicate", kind="conflicting-duplicate", channel="pose")
+        conflicting = SimulationRun.load(corrupted)
+        issue_types = {item["type"] for item in conflicting.channel_completeness("pose")["issues"]}
+        self.assertIn("conflicting_duplicate", issue_types)
+        report = AssuranceReport.evaluate(conflicting, self.task())
+        predicates = {item["predicate_id"]: item["status"] for item in report.data["predicates"]}
+        self.assertEqual(predicates["follows_tool"], "conflicting")
+
+    def test_missing_channel_control_marks_dependent_predicates_unknown(self) -> None:
+        run = self.import_trace()
+        corrupted = corrupt_run(run.root, self.root / "missing-contact", kind="missing-channel", channel="contact")
+        missing = SimulationRun.load(corrupted)
+        self.assertEqual(missing.channel_completeness("contact")["status"], "unavailable")
+        report = AssuranceReport.evaluate(missing, self.task())
+        predicates = {item["predicate_id"]: item["status"] for item in report.data["predicates"]}
+        self.assertEqual(predicates["grasp_contact"], "unknown")
+        self.assertEqual(predicates["grasped"], "unknown")
+
     def test_digest_tamper_is_rejected_before_predicate_evaluation(self) -> None:
         run = self.import_trace()
         corrupted = corrupt_run(run.root, self.root / "tampered", kind="digest-tamper", channel="pose")
@@ -148,6 +171,145 @@ class SimulationEvidenceTests(unittest.TestCase):
         ManiSkillAdapter().import_source(path, self.root / "maniskill")
         with self.assertRaises(AdapterError):
             GazeboRos2Adapter().import_source(path, self.root / "gazebo")
+
+    def test_live_pickcube_fixtures_verify_and_reproduce_reports(self) -> None:
+        task = TaskSpec.load(LIVE_EXAMPLE / "task.yaml")
+        expected = {
+            "success-seed-002": "supported",
+            "failure-seed-002-no-op": "refuted",
+        }
+        for fixture, verdict in expected.items():
+            with self.subTest(fixture=fixture):
+                root = LIVE_FIXTURES / fixture
+                run = SimulationRun.load(root / "run")
+                recorded = json.loads((root / "result" / "report.json").read_text(encoding="utf-8"))
+                reproduced = AssuranceReport.evaluate(run, task)
+                self.assertEqual(reproduced.digest, recorded["report_sha256"])
+                self.assertEqual(reproduced.data["verdict"]["simulation_bounded_physical_success"], verdict)
+
+    def test_committed_live_pickcube_records_are_digest_bound(self) -> None:
+        records = REPO_ROOT / "benchmarks" / "records"
+        expected = {
+            "maniskill-pickcube-v1-100.json": ("benchmark_sha256", 100, 100),
+            "maniskill-pickcube-v1-negatives.json": ("matrix_sha256", 8, 8),
+            "maniskill-pickcube-v1-corruption.json": ("matrix_sha256", 9, 9),
+            "maniskill-pickcube-v1-cuda-smoke.json": ("record_sha256", 16, 16),
+        }
+        for name, (digest_key, case_count, passed_count) in expected.items():
+            with self.subTest(record=name):
+                record = json.loads((records / name).read_text(encoding="utf-8"))
+                recorded_digest = record.pop(digest_key)
+                self.assertEqual(sha256_json(record), recorded_digest)
+                self.assertEqual(record["case_count"], case_count)
+                if "passed_count" in record:
+                    self.assertEqual(record["passed_count"], passed_count)
+                else:
+                    self.assertEqual(sum(bool(case["agreement"]) for case in record["cases"]), passed_count)
+                if name == "maniskill-pickcube-v1-100.json":
+                    self.assertEqual(record["fixed_horizon"], 100)
+                    self.assertTrue(record["acceptance"]["passed"])
+                    self.assertEqual(record["acceptance"]["minimum_supported_references"], 25)
+                    self.assertEqual(record["acceptance"]["minimum_refuted_references"], 25)
+                    matrix = record["episode_metrics"]["confusion_matrix"]
+                    self.assertEqual(matrix["supported"]["supported"], 51)
+                    self.assertEqual(matrix["refuted"]["refuted"], 49)
+
+    def test_pickcube_position_velocity_range_and_relative_lift_predicates(self) -> None:
+        trace = copy.deepcopy(self.trace)
+        trace["task_id"] = "PickCube-v1"
+        for sample in trace["samples"]["joint_state"]:
+            sample["positions"].update({"arm_a": 0.1, "arm_b": -0.2, "finger_b": 0.01})
+            sample["velocities"] = {"arm_a": 0.1, "arm_b": -0.19}
+        for sample in trace["samples"]["pose"]:
+            sample["entities"]["goal"] = {
+                "position_m": [0.5, 0.0, 0.2],
+                "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0],
+            }
+        task_data = {
+            "schema_version": TASK_SCHEMA,
+            "task_id": "PickCube-v1",
+            "entities": {"cube": "cube", "goal": "goal", "arm_a": "arm_a", "arm_b": "arm_b", "finger": "finger_joint", "finger_b": "finger_b"},
+            "requirements": {"channels": ["joint_state", "pose"]},
+            "predicates": [
+                {"predicate_id": "placed", "type": "frame_position_within_tolerance", "parameters": {"entity": "cube", "target": {"entity": "goal"}, "position_tolerance_m": 0.025}},
+                {"predicate_id": "static", "type": "joint_velocity_below_threshold", "parameters": {"joints": ["arm_a", "arm_b"], "maximum_abs_velocity": 0.2}},
+                {"predicate_id": "closed", "type": "joint_position_in_range", "parameters": {"ranges": {"finger": [0.0, 0.02], "finger_b": {"minimum": 0.0, "maximum": 0.02}}}},
+                {"predicate_id": "lifted_delta", "type": "object_above_height", "parameters": {"entity": "cube", "minimum_delta_m": 0.02}},
+            ],
+            "goal": {"all": ["placed", "static"]},
+        }
+        report = AssuranceReport.evaluate(
+            self.import_trace(trace, "official-predicates"),
+            TaskSpec.load(self.write_json(self.root / "official-task.json", task_data)),
+        )
+        predicates = {item["predicate_id"]: item for item in report.data["predicates"]}
+        self.assertEqual({item["status"] for item in predicates.values()}, {"supported"})
+        self.assertAlmostEqual(predicates["placed"]["evidence"][0]["position_error_m"], 0.0)
+        self.assertAlmostEqual(predicates["static"]["evidence"][0]["maximum_observed"], 0.19)
+        self.assertAlmostEqual(predicates["lifted_delta"]["evidence"][0]["initial_height_m"], 0.02)
+
+    def test_dual_contact_rows_are_not_conflicting_and_both_are_required_for_grasp(self) -> None:
+        trace = copy.deepcopy(self.trace)
+        contact_rows = []
+        for row in trace["samples"]["contact"]:
+            for finger in ("left_finger", "right_finger"):
+                contact_rows.append({**row, "body_a": finger})
+        trace["samples"]["contact"] = contact_rows
+        task_data = {
+            "schema_version": TASK_SCHEMA,
+            "task_id": trace["task_id"],
+            "entities": {"left": "left_finger", "right": "right_finger", "cube": "cube", "gripper": "finger_joint", "tcp": "tcp"},
+            "requirements": {"channels": ["joint_state", "pose", "contact"]},
+            "predicates": [
+                {"predicate_id": "left", "type": "contact_sustained", "parameters": {"pair": ["left", "cube"], "minimum_duration_s": 0.6, "minimum_normal_force_n": 0.5}},
+                {"predicate_id": "right", "type": "contact_sustained", "parameters": {"pair": ["right", "cube"], "minimum_duration_s": 0.6, "minimum_normal_force_n": 0.5}},
+                {"predicate_id": "closed", "type": "joint_position_in_range", "parameters": {"ranges": {"gripper": [0.0, 0.01]}}},
+                {"predicate_id": "follows", "type": "object_follows_frame_for_duration", "parameters": {"reference": "tcp", "target": "cube", "minimum_duration_s": 0.6, "position_tolerance_m": 0.01, "orientation_tolerance_rad": 0.01}},
+                {"predicate_id": "lifted", "type": "object_above_height", "parameters": {"entity": "cube", "minimum_delta_m": 0.02}},
+                {"predicate_id": "grasped", "type": "object_grasped", "parameters": {"contact_predicates": ["left", "right"], "gripper_predicate": "closed", "follows_predicate": "follows", "lift_predicate": "lifted"}},
+            ],
+            "goal": {"predicate": "grasped"},
+        }
+        run = self.import_trace(trace, "dual-contact")
+        self.assertEqual(run.channel_completeness("contact")["status"], "complete")
+        report = AssuranceReport.evaluate(run, TaskSpec.load(self.write_json(self.root / "dual-contact-task.json", task_data)))
+        self.assertEqual(report.data["verdict"]["goal_status"], "supported")
+        missing_right = copy.deepcopy(trace)
+        missing_right["samples"]["contact"] = [row for row in contact_rows if row["body_a"] != "right_finger"]
+        missing_report = AssuranceReport.evaluate(
+            self.import_trace(missing_right, "missing-right"),
+            TaskSpec.load(self.root / "dual-contact-task.json"),
+        )
+        statuses = {item["predicate_id"]: item["status"] for item in missing_report.data["predicates"]}
+        self.assertEqual(statuses["right"], "refuted")
+        self.assertEqual(statuses["grasped"], "refuted")
+
+    def test_collision_allowed_pairs_do_not_hide_unlisted_collision(self) -> None:
+        trace = copy.deepcopy(self.trace)
+        trace["samples"]["collision"] = []
+        for time_s in (0.0, 0.2, 0.4, 0.6, 0.8, 1.0):
+            trace["samples"]["collision"].extend(
+                [
+                    {"time_s": time_s, "body_a": "cube", "body_b": "table", "active": True},
+                    {"time_s": time_s, "body_a": "robot", "body_b": "wall", "active": time_s == 0.6},
+                ]
+            )
+        task_data = {
+            "schema_version": TASK_SCHEMA,
+            "task_id": trace["task_id"],
+            "entities": {"cube": "cube", "table": "table"},
+            "requirements": {"channels": ["collision"]},
+            "predicates": [{"predicate_id": "clear", "type": "collision_free_over_interval", "parameters": {"allowed_pairs": [["cube", "table"]]}}],
+            "goal": {"predicate": "clear"},
+        }
+        task = TaskSpec.load(self.write_json(self.root / "allowed-collision-task.json", task_data))
+        report = AssuranceReport.evaluate(self.import_trace(trace, "allowed-collision"), task)
+        self.assertEqual(report.data["predicates"][0]["status"], "refuted")
+        for row in trace["samples"]["collision"]:
+            if {row["body_a"], row["body_b"]} == {"robot", "wall"}:
+                row["active"] = False
+        clear_report = AssuranceReport.evaluate(self.import_trace(trace, "only-allowed"), task)
+        self.assertEqual(clear_report.data["predicates"][0]["status"], "supported")
 
     def test_pose_target_can_reference_an_observed_entity_without_embedding_goal_coordinates(self) -> None:
         trace = copy.deepcopy(self.trace)

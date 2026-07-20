@@ -1,0 +1,106 @@
+{
+  "baseline_report_sha256": "73dda74d1e76f4510ff14013ef14b0b18aa14acc95ec99e0ecefcec7315a521c",
+  "case_count": 9,
+  "cases": [
+    {
+      "actual": "unknown",
+      "case_id": "dropped-pose",
+      "channel": "pose",
+      "corruption": "dropped-frame",
+      "expected": "unknown",
+      "passed": true,
+      "predicate_id": "cube_follows_tcp",
+      "report_sha256": "e7eceef61f2b60094c0478c7f9be721151e11839a52ceb6a9d8eb7ac6d5d4271",
+      "run_manifest_sha256": "d07a58b8a6c49f23ccc7ef1106a0571b0230ce075d05dcab90c9a287fb916573"
+    },
+    {
+      "actual": "unknown",
+      "case_id": "stale-pose",
+      "channel": "pose",
+      "corruption": "stale-tail",
+      "expected": "unknown",
+      "passed": true,
+      "predicate_id": "cube_at_goal",
+      "report_sha256": "99ee69be6cadc3b069c45a24e5049b1a1b1b93da03b889ca86230c1990c2a701",
+      "run_manifest_sha256": "34ef2cd32053517849cb8cb0b4b375147017c358660253fd151f57b6e361fa76"
+    },
+    {
+      "actual": "conflicting",
+      "case_id": "out-of-order-pose",
+      "channel": "pose",
+      "corruption": "out-of-order",
+      "expected": "conflicting",
+      "passed": true,
+      "predicate_id": "cube_at_goal",
+      "report_sha256": "5660929a9564f478d732362a63fbf94be24c990d95a7f689a5a4d2c0b3ad3513",
+      "run_manifest_sha256": "f06bad12b6dd67f102ca2f5f58b02b10f65af3b47f3888c5b00054e78160e6d9"
+    },
+    {
+      "actual": "conflicting",
+      "case_id": "conflicting-pose",
+      "channel": "pose",
+      "corruption": "conflicting-duplicate",
+      "expected": "conflicting",
+      "passed": true,
+      "predicate_id": "cube_at_goal",
+      "report_sha256": "d35f024c5aeb9682050617111c50d07a407a0afc80498a5c8f068f83197f1d55",
+      "run_manifest_sha256": "272c0613b083870be7a0b13af4cba14912503a17218dc38dc4e480cc3ecfeb00"
+    },
+    {
+      "actual": "unknown",
+      "case_id": "wrong-pose-identity",
+      "channel": "pose",
+      "corruption": "wrong-id",
+      "expected": "unknown",
+      "passed": true,
+      "predicate_id": "cube_at_goal",
+      "report_sha256": "06f4585c36dc8f3c3fe6c2aedbbd05f33cc49a539f211b347eda30caa8d618ff",
+      "run_manifest_sha256": "0b000618974db5747503cccff0fbc88611ded04dcbebaa9e53a34737a91de24e"
+    },
+    {
+      "actual": "unknown",
+      "case_id": "missing-contact",
+      "channel": "contact",
+      "corruption": "missing-channel",
+      "expected": "unknown",
+      "passed": true,
+      "predicate_id": "grasped",
+      "report_sha256": "01b0714f2c1d3edfea0a8e44e56462ba8a915289ccbeb317c4c0d454f1182655",
+      "run_manifest_sha256": "3e7c45ed865a61249d4290f8557dd43f66537c944f5bb9dada981f633d901d45"
+    },
+    {
+      "actual": "unknown",
+      "case_id": "missing-collision",
+      "channel": "collision",
+      "corruption": "missing-channel",
+      "expected": "unknown",
+      "passed": true,
+      "predicate_id": "collision_free",
+      "report_sha256": "a3d8f294472a9048e6b5e5b1e7298c8b4b389d373ddc7c2844a3beb445877aa7",
+      "run_manifest_sha256": "0c1a63a3b37e9e25664e94ee3cccd3b2a2e1eea328fffec9440d9d12708229fe"
+    },
+    {
+      "actual": "supported",
+      "case_id": "terminal-status-tamper",
+      "corruption": "terminal-status-tamper",
+      "expected": "supported",
+      "passed": true,
+      "report_sha256": "8e9d65ac144619afef3dd7f04ee182b537b8df7623e170c18a7503a645f42580"
+    },
+    {
+      "actual": "rejected_before_evaluation",
+      "case_id": "digest-tamper",
+      "corruption": "digest-tamper",
+      "expected": "rejected_before_evaluation",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Corruptions are deterministic evidence-integrity controls over one real normalized simulator run; they are not additional physical episodes."
+  ],
+  "matrix_sha256": "3efba2c3e7ae7a048c2ef82e8f423772c3d44c89d310dbacd50d1ef0da8748b9",
+  "passed_count": 9,
+  "schema_version": "robot-spatial-maniskill-corruption-matrix.v1",
+  "source_run_manifest_sha256": "c298aa53634785ae0230dd15e6b0fd4c650cc511337416e5f7b455c411e9fc09",
+  "task_spec_sha256": "58e3f1b26e821ee60de7d5cc86d1a0b45e98cd448d445a47e3a43440c273a3b8"
+}

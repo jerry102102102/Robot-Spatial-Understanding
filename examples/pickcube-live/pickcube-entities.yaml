@@ -1,0 +1,23 @@
+schema_version: robot-spatial-maniskill-entity-map.v1
+env_id: PickCube-v1
+control_mode: pd_joint_pos
+joints:
+  panda_joint1: panda_joint1
+  panda_joint2: panda_joint2
+  panda_joint3: panda_joint3
+  panda_joint4: panda_joint4
+  panda_joint5: panda_joint5
+  panda_joint6: panda_joint6
+  panda_joint7: panda_joint7
+  panda_finger_joint1: panda_finger_joint1
+  panda_finger_joint2: panda_finger_joint2
+entities:
+  tcp: panda_hand_tcp
+  left_finger: panda_leftfinger
+  right_finger: panda_rightfinger
+  cube: cube
+  goal: goal_site
+collision_aliases:
+  table-workspace: table
+  panda_leftfinger_pad: left_finger_pad
+  panda_rightfinger_pad: right_finger_pad

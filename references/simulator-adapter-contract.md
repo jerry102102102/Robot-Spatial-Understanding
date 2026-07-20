@@ -33,11 +33,22 @@ An adapter must:
 
 All built-ins normalize immutable JSON exports. `gymnasium-robotics` additionally provides one
 optional live GoalEnv capture surface; its heavy runtime is isolated in the `mujoco` package extra.
-Live ManiSkill, Gazebo, ROS 2, and deformable capture belongs in optional plugins or simulator
-packages so the core package stays lightweight and offline-safe.
+`maniskill` provides an optional action-only live replay surface isolated in the pinned
+`maniskill` package extra. Live Gazebo, ROS 2, and deformable capture remains adapter/plugin work so
+the core package stays lightweight and offline-safe.
 
-The live GoalEnv path is fixed-horizon. It refuses outcome-dependent early termination because
-episode length would otherwise become a hidden success channel.
+Both live paths are fixed-horizon. They refuse outcome-dependent early termination because episode
+length would otherwise become a hidden success channel.
+
+The ManiSkill live path:
+
+- opens only `traj_N/actions` from its input HDF5 and rejects invalid action shapes;
+- maps every active joint and the TCP, fingers, cube, and goal through an explicit entity map;
+- captures qpos/qvel, world poses, pairwise finger contact vectors, actions, and lifecycle events;
+- enumerates complete scene collision pairs only for a single `physx_cpu` environment;
+- marks collision unavailable for `physx_cuda` instead of copying data from another replay;
+- creates an independently digest-bound run for every requested sub-environment;
+- discards all values returned by `step()` and never calls `evaluate()`.
 
 ## Plugin interface
 
@@ -61,6 +72,9 @@ pass `SimulationRun.load()` with digest verification.
 
 - ManiSkill: capture qpos, link/object poses, contacts, collisions, and action lifecycle separately;
   keep `evaluate()`, reward, termination success, and official labels in the reference scorer only.
+  Complete every candidate report before starting fresh same-seed/action official replays. An
+  official reference may score only the official placement/static predicates and must list every
+  contact/grasp/follow/lift/collision diagnostic under `unscored_predicates`.
 - Gazebo/ROS 2: bind `/joint_states`, TF, odometry, contact/collision plugins, controller/action
   lifecycle, ROS clock label, world/model digests, and publisher identity. Missing contact plugins
   make grasp or collision claims unknown.

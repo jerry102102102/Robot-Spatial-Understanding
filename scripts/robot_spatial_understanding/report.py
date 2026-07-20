@@ -56,7 +56,10 @@ class AssuranceReport:
             protocol_summary = f"The latest supplied controller/action report is {reported!r}; this is not physical-success evidence."
         trajectory_types = {
             "joint_within_tolerance",
+            "joint_position_in_range",
+            "joint_velocity_below_threshold",
             "frame_within_pose_tolerance",
+            "frame_position_within_tolerance",
             "base_reached_goal",
             "collision_free_over_interval",
             "path_stayed_within_corridor",

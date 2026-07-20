@@ -6,7 +6,7 @@ accepted independently.
 
 | Source | Intended use | Code license | Asset/data boundary |
 | --- | --- | --- | --- |
-| ManiSkill | Core manipulation benchmark and official task oracle | Apache-2.0 | Some assets are non-commercial; download from upstream and record the exact asset manifest. |
+| ManiSkill 3.0.1 / SAPIEN 3.0.3 | Live PickCube manipulation benchmark and isolated official task oracle | Apache-2.0 code | Some upstream assets are non-commercial. The repository fixtures contain only normalized numeric state/events and upstream file digests; no mesh, texture, URDF, video, or complete upstream asset is redistributed. |
 | Gymnasium Robotics / MuJoCo | Live FetchReach smoke and optional cross-engine capture | Install from upstream under their published package terms | No upstream model XML or assets are redistributed; the run stores only their digest. |
 | Meta-World | Lightweight MuJoCo smoke suite | MIT | Install from upstream; no task assets are vendored here. |
 | BARN | AGV navigation environments | Upstream terms must be reviewed before each release | Do not redistribute BARN worlds until an explicit redistribution grant is recorded. |

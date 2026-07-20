@@ -14,7 +14,10 @@ TASK_SCHEMA = "robot-spatial-task-spec.v1"
 PREDICATE_TYPES = frozenset(
     {
         "joint_within_tolerance",
+        "joint_position_in_range",
+        "joint_velocity_below_threshold",
         "frame_within_pose_tolerance",
+        "frame_position_within_tolerance",
         "base_reached_goal",
         "collision_free_over_interval",
         "path_stayed_within_corridor",

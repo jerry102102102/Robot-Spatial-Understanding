@@ -90,14 +90,17 @@ Import with:
 ```bash
 robot-spatial import --adapter generic-json trace.json --out run/
 robot-spatial capture --adapter maniskill --source state-export.json --out run/
+robot-spatial capture --adapter maniskill --env-id PickCube-v1 --seed 2 \
+  --trajectory actions.h5 --entity-map pickcube-entities.yaml \
+  --sim-backend physx_cpu --fixed-horizon 100 --out run/
 robot-spatial capture --adapter gymnasium-robotics --env-id FetchReach-v3 --seed 2 --out run/
 ```
 
 The core package remains offline by default. The optional `mujoco` extra adds a bounded live
-Gymnasium Robotics GoalEnv capture. That adapter records `achieved_goal` and `desired_goal` poses,
-actions, simulator/model digests, and versions while deliberately discarding reward and `info`.
-Other built-ins consume immutable exports; live Gazebo, ManiSkill, and deformable capture remain
-adapter/plugin work.
+Gymnasium Robotics GoalEnv capture. The optional `maniskill` extra adds fixed-horizon replay of an
+action-only trajectory. These adapters record raw state, actions, simulator/model digests, and
+versions while deliberately discarding outcome-bearing return values. Live Gazebo and deformable
+capture remain adapter/plugin work.
 
 ## 4. `task-spec.v1`
 
@@ -115,7 +118,10 @@ held-out benchmark may not add new success code.
 Core predicate types:
 
 - `joint_within_tolerance`
+- `joint_position_in_range`
+- `joint_velocity_below_threshold`
 - `frame_within_pose_tolerance`
+- `frame_position_within_tolerance`
 - `base_reached_goal`
 - `collision_free_over_interval`
 - `path_stayed_within_corridor`
@@ -129,8 +135,12 @@ Core predicate types:
 - `deformable_keypoints_in_region`
 - `deformable_shape_within_tolerance`
 
-`object_grasped` is a composite. It requires referenced contact, gripper-state, relative-following,
-and lift predicates. Contact alone cannot support a grasp.
+`object_grasped` is a composite. It requires every referenced contact predicate plus gripper-state,
+relative-following, and lift predicates. Contact alone cannot support a grasp.
+
+`object_above_height` accepts either an absolute `minimum_m` or a `minimum_delta_m` relative to the
+first observed pose in the evaluation window. `collision_free_over_interval` can exempt explicitly
+declared `allowed_pairs` and `ignored_pairs`; an unlisted active pair still refutes the predicate.
 
 `frame_within_pose_tolerance.target` may be either a fixed pose or `{entity: role}`. The latter
 compares two observed poses at the exact evaluated sample and lets a simulator-supplied goal remain
@@ -229,6 +239,9 @@ robot-spatial benchmark --suite suite.yaml --out benchmark-result/
 
 The report includes confusion matrices, per-label precision/recall/F1, macro-F1, Wilson 95%
 intervals, confirmed-success precision, false-positive rate, per-case results, and binding digests.
+References may score an exact subset of the candidate predicate inventory only when they also list
+the complementary IDs as `unscored_predicates`. Scored and unscored IDs must be disjoint and cover
+the candidate inventory exactly.
 
 ## 10. Failure handling
 

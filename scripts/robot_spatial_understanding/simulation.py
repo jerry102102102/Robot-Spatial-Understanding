@@ -105,15 +105,27 @@ def _channel_completeness(
                     "right_time_s": float(times[index]),
                 }
             )
-        elif float(times[index]) == float(times[index - 1]) and _rows_conflict(arrays, index - 1, index):
-            issues.append(
-                {
-                    "type": "conflicting_duplicate",
-                    "left_index": index - 1,
-                    "right_index": index,
-                    "time_s": float(times[index]),
+        elif float(times[index]) == float(times[index - 1]):
+            same_event_identity = True
+            if name in {"contact", "collision"}:
+                left_pair = {
+                    str(arrays["body_a"][index - 1]),
+                    str(arrays["body_b"][index - 1]),
                 }
-            )
+                right_pair = {
+                    str(arrays["body_a"][index]),
+                    str(arrays["body_b"][index]),
+                }
+                same_event_identity = left_pair == right_pair
+            if same_event_identity and _rows_conflict(arrays, index - 1, index):
+                issues.append(
+                    {
+                        "type": "conflicting_duplicate",
+                        "left_index": index - 1,
+                        "right_index": index,
+                        "time_s": float(times[index]),
+                    }
+                )
     if sample_count > 1 and max_gap_s > 0.0:
         gaps = np.diff(times)
         for index in np.flatnonzero(gaps > max_gap_s):
@@ -342,6 +354,8 @@ def _pair_event_arrays(samples: list[Any], label: str) -> dict[str, np.ndarray]:
     if label == "contact":
         arrays["normal_force_n"] = np.full(len(records), np.nan, dtype=np.float64)
         arrays["normal_force_present"] = np.zeros(len(records), dtype=np.bool_)
+        arrays["force_n"] = np.full((len(records), 3), np.nan, dtype=np.float64)
+        arrays["present"] = np.zeros(len(records), dtype=np.bool_)
     for row, record in enumerate(records):
         arrays["time_s"][row] = _as_time(record.get("time_s"), f"{label}[{row}].time_s")
         arrays["body_a"][row] = require_string(record.get("body_a"), f"{label}[{row}].body_a")
@@ -352,6 +366,9 @@ def _pair_event_arrays(samples: list[Any], label: str) -> dict[str, np.ndarray]:
         if label == "contact" and "normal_force_n" in record:
             arrays["normal_force_n"][row] = finite_number(record["normal_force_n"], f"contact[{row}].normal_force_n")
             arrays["normal_force_present"][row] = True
+        if label == "contact" and "force_n" in record:
+            arrays["force_n"][row] = _vector(record["force_n"], 3, f"contact[{row}].force_n")
+            arrays["present"][row] = True
     return arrays
 
 

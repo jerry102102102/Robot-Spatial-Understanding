@@ -170,7 +170,13 @@ class BenchmarkSuite:
                 predicted_report = prediction["report"].data
                 predicted_predicates = {value["predicate_id"]: value["status"] for value in predicted_report["predicates"]}
                 reference_predicates = require_mapping(reference.get("predicates"), f"reference {case.case_id}.predicates")
-                if set(reference_predicates) != set(predicted_predicates):
+                unscored_predicates = {
+                    require_string(value, f"reference {case.case_id}.unscored_predicates")
+                    for value in require_list(reference.get("unscored_predicates", []), f"reference {case.case_id}.unscored_predicates")
+                }
+                if set(reference_predicates) & unscored_predicates:
+                    raise IntegrityError(f"reference predicate cannot be both scored and unscored for {case.case_id!r}")
+                if set(reference_predicates) | unscored_predicates != set(predicted_predicates):
                     raise IntegrityError(f"reference predicate inventory mismatch for {case.case_id!r}")
                 for predicate_id in sorted(reference_predicates):
                     actual = require_string(reference_predicates[predicate_id], f"reference predicate {predicate_id}")
@@ -190,6 +196,8 @@ class BenchmarkSuite:
                         "reference_verdict": reference_verdict,
                         "predicted_verdict": predicted_verdict,
                         "verdict_agreement": reference_verdict == predicted_verdict,
+                        "scored_predicates": sorted(reference_predicates),
+                        "unscored_predicates": sorted(unscored_predicates),
                     }
                 )
             result: dict[str, Any] = {

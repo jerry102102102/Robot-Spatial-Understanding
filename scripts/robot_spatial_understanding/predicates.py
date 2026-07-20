@@ -208,7 +208,10 @@ class PredicateEngine:
     def _evaluate_one(self, predicate: dict[str, Any]) -> PredicateResult:
         handlers: dict[str, Callable[[dict[str, Any]], PredicateResult]] = {
             "joint_within_tolerance": self._joint_within_tolerance,
+            "joint_position_in_range": self._joint_position_in_range,
+            "joint_velocity_below_threshold": self._joint_velocity_below_threshold,
             "frame_within_pose_tolerance": self._frame_within_pose_tolerance,
+            "frame_position_within_tolerance": self._frame_position_within_tolerance,
             "base_reached_goal": self._frame_within_pose_tolerance,
             "collision_free_over_interval": self._collision_free,
             "path_stayed_within_corridor": self._path_stayed_within_corridor,
@@ -272,6 +275,128 @@ class PredicateEngine:
                     "source_sha256": self.run.manifest["channels"]["joint_state"]["sha256"],
                 }
             ],
+        )
+
+    def _terminal_joint_sample(
+        self,
+        predicate: dict[str, Any],
+        parameters: dict[str, Any],
+    ) -> tuple[dict[str, np.ndarray], int] | PredicateResult:
+        guard = self._guard(predicate, ["joint_state"], continuous=False)
+        if guard:
+            return guard
+        start, end = self._window(predicate)
+        stream = self.run.stream("joint_state")
+        rows = np.flatnonzero(np.logical_and(stream["time_s"] >= start, stream["time_s"] <= end))
+        if rows.size == 0:
+            return _result(
+                predicate,
+                "unknown",
+                "No joint sample exists in the evaluation window.",
+                missing=["joint_state sample in window"],
+            )
+        row = int(rows[-1])
+        age = end - float(stream["time_s"][row])
+        max_age = finite_number(
+            parameters.get("max_sample_age_s", self.run.manifest["timestep_s"] * 2.5),
+            "max_sample_age_s",
+        )
+        if age > max_age:
+            return _result(
+                predicate,
+                "unknown",
+                "The terminal joint sample is stale.",
+                missing=[f"terminal joint sample age {age:.9g}s exceeds {max_age:.9g}s"],
+            )
+        return stream, row
+
+    def _joint_position_in_range(self, predicate: dict[str, Any]) -> PredicateResult:
+        parameters = predicate["parameters"]
+        sample = self._terminal_joint_sample(predicate, parameters)
+        if isinstance(sample, PredicateResult):
+            return sample
+        stream, row = sample
+        ranges = require_mapping(parameters.get("ranges"), "joint_position_in_range.ranges")
+        if not ranges:
+            raise SchemaError("joint_position_in_range.ranges must not be empty")
+        joint_ids = [str(value) for value in stream["joint_ids"]]
+        values: dict[str, Any] = {}
+        passed = True
+        for role, raw_range in ranges.items():
+            joint = self._entity(role, f"joint range {role}")
+            if joint not in joint_ids:
+                return _result(predicate, "unknown", f"Joint {joint!r} is absent from the stream.", missing=[f"joint/{joint}"])
+            column = joint_ids.index(joint)
+            if not bool(stream["position_present"][row, column]):
+                return _result(predicate, "unknown", f"Joint {joint!r} has no terminal position.", missing=[f"joint/{joint}/position"])
+            if isinstance(raw_range, dict):
+                minimum = finite_number(raw_range.get("minimum"), f"range minimum for {joint}")
+                maximum = finite_number(raw_range.get("maximum"), f"range maximum for {joint}")
+            else:
+                bounds = require_list(raw_range, f"range for {joint}")
+                if len(bounds) != 2:
+                    raise SchemaError(f"range for {joint} must contain [minimum, maximum]")
+                minimum = finite_number(bounds[0], f"range minimum for {joint}")
+                maximum = finite_number(bounds[1], f"range maximum for {joint}")
+            if maximum < minimum:
+                raise SchemaError(f"range maximum for {joint} must be at least the minimum")
+            actual = float(stream["position"][row, column])
+            within = minimum <= actual <= maximum
+            values[joint] = {"actual": actual, "minimum": minimum, "maximum": maximum, "within": within}
+            passed = passed and within
+        return _result(
+            predicate,
+            "supported" if passed else "refuted",
+            f"Terminal joint positions are {'inside' if passed else 'outside'} the declared ranges.",
+            evidence=[{
+                "channel": "joint_state",
+                "sample_index": row,
+                "time_s": float(stream["time_s"][row]),
+                "values": values,
+                "source_sha256": self.run.manifest["channels"]["joint_state"]["sha256"],
+            }],
+        )
+
+    def _joint_velocity_below_threshold(self, predicate: dict[str, Any]) -> PredicateResult:
+        parameters = predicate["parameters"]
+        sample = self._terminal_joint_sample(predicate, parameters)
+        if isinstance(sample, PredicateResult):
+            return sample
+        stream, row = sample
+        roles = require_list(parameters.get("joints"), "joint_velocity_below_threshold.joints")
+        if not roles:
+            raise SchemaError("joint_velocity_below_threshold.joints must not be empty")
+        threshold = finite_number(
+            parameters.get("maximum_abs_velocity"),
+            "joint_velocity_below_threshold.maximum_abs_velocity",
+        )
+        if threshold < 0.0:
+            raise SchemaError("joint_velocity_below_threshold.maximum_abs_velocity must be non-negative")
+        joint_ids = [str(value) for value in stream["joint_ids"]]
+        values: dict[str, float] = {}
+        for role in roles:
+            joint = self._entity(role, f"velocity joint {role}")
+            if joint not in joint_ids:
+                return _result(predicate, "unknown", f"Joint {joint!r} is absent from the stream.", missing=[f"joint/{joint}"])
+            column = joint_ids.index(joint)
+            if not bool(stream["velocity_present"][row, column]):
+                return _result(predicate, "unknown", f"Joint {joint!r} has no terminal velocity.", missing=[f"joint/{joint}/velocity"])
+            values[joint] = abs(float(stream["velocity"][row, column]))
+        maximum = max(values.values())
+        passed = maximum <= threshold
+        return _result(
+            predicate,
+            "supported" if passed else "refuted",
+            f"Terminal joint velocity is {'within' if passed else 'above'} the declared maximum absolute velocity.",
+            evidence=[{
+                "channel": "joint_state",
+                "sample_index": row,
+                "time_s": float(stream["time_s"][row]),
+                "absolute_velocities": values,
+                "maximum_observed": maximum,
+                "maximum_allowed": threshold,
+                "source_sha256": self.run.manifest["channels"]["joint_state"]["sha256"],
+            }],
         )
 
     def _pose_rows(self, predicate: dict[str, Any], channel: str, entity: str) -> tuple[np.ndarray, np.ndarray, int]:
@@ -364,6 +489,62 @@ class PredicateEngine:
             ],
         )
 
+    def _frame_position_within_tolerance(self, predicate: dict[str, Any]) -> PredicateResult:
+        parameters = predicate["parameters"]
+        channel = str(parameters.get("channel", "pose"))
+        guard = self._guard(predicate, [channel], continuous=False)
+        if guard:
+            return guard
+        entity = self._entity(parameters.get("entity", parameters.get("frame")), "position predicate entity")
+        try:
+            times, rows, column = self._pose_rows(predicate, channel, entity)
+        except EvidenceError as error:
+            return _result(predicate, "unknown", str(error), missing=[f"{channel}/{entity}"])
+        if rows.size == 0:
+            return _result(predicate, "unknown", "No position sample exists for the entity in the evaluation window.", missing=[f"{channel}/{entity}/position"])
+        row = int(rows[-1])
+        _, end = self._window(predicate)
+        max_age = finite_number(parameters.get("max_sample_age_s", self.run.manifest["timestep_s"] * 2.5), "max_sample_age_s")
+        if end - float(times[row]) > max_age:
+            return _result(predicate, "unknown", "The terminal position sample is stale.", missing=[f"{channel}/{entity}/fresh_position"])
+        target = require_mapping(parameters.get("target"), "position target")
+        stream = self.run.stream(channel)
+        actual = [float(value) for value in stream["position_m"][row, column]]
+        if "entity" in target:
+            target_entity = self._entity(target["entity"], "position target entity")
+            entity_ids = [str(value) for value in stream["entity_ids"]]
+            if target_entity not in entity_ids:
+                return _result(predicate, "unknown", f"Target entity {target_entity!r} is absent from the pose stream.", missing=[f"{channel}/{target_entity}"])
+            target_column = entity_ids.index(target_entity)
+            if not bool(stream["present"][row, target_column]):
+                return _result(predicate, "unknown", f"Target entity {target_entity!r} has no position at the evaluated sample.", missing=[f"{channel}/{target_entity}/position at sample {row}"])
+            target_position = [float(value) for value in stream["position_m"][row, target_column]]
+            target_evidence: dict[str, Any] = {"entity": target_entity, "position_m": target_position}
+        else:
+            target_position = [finite_number(value, "position target component") for value in require_list(target.get("position_m"), "position target.position_m")]
+            if len(target_position) != 3:
+                raise SchemaError("position target.position_m must contain three values")
+            target_evidence = {"position_m": target_position}
+        error_m = euclidean(actual, target_position)
+        tolerance = finite_number(parameters.get("position_tolerance_m", 1e-3), "position_tolerance_m")
+        passed = error_m <= tolerance
+        return _result(
+            predicate,
+            "supported" if passed else "refuted",
+            f"Terminal position is {'within' if passed else 'outside'} the declared tolerance.",
+            evidence=[{
+                "channel": channel,
+                "entity": entity,
+                "sample_index": row,
+                "time_s": float(times[row]),
+                "actual_position_m": actual,
+                "target": target_evidence,
+                "position_error_m": error_m,
+                "position_tolerance_m": tolerance,
+                "source_sha256": self.run.manifest["channels"][channel]["sha256"],
+            }],
+        )
+
     def _pair_rows(self, predicate: dict[str, Any], channel: str, pair: list[Any]) -> tuple[dict[str, np.ndarray], np.ndarray]:
         stream = self.run.stream(channel)
         start, end = self._window(predicate)
@@ -378,6 +559,23 @@ class PredicateEngine:
     def _collision_free(self, predicate: dict[str, Any]) -> PredicateResult:
         parameters = predicate["parameters"]
         pair = parameters.get("pair")
+        allowed_raw = require_list(parameters.get("allowed_pairs", []), "collision_free_over_interval.allowed_pairs")
+        ignored_raw = require_list(parameters.get("ignored_pairs", []), "collision_free_over_interval.ignored_pairs")
+
+        def configured_pairs(raw_pairs: list[Any], label: str) -> list[list[str]]:
+            pairs: list[list[str]] = []
+            for raw_pair in raw_pairs:
+                values = require_list(raw_pair, label)
+                if len(values) != 2:
+                    raise SchemaError(f"{label} must contain exactly two entity roles")
+                pairs.append([
+                    self._entity(values[0], f"{label}[0]"),
+                    self._entity(values[1], f"{label}[1]"),
+                ])
+            return pairs
+
+        allowed_pairs = configured_pairs(allowed_raw, "allowed collision pair")
+        ignored_pairs = configured_pairs(ignored_raw, "ignored collision pair")
         guard = self._guard(predicate, ["collision"], continuous=False)
         if guard:
             return guard
@@ -395,6 +593,12 @@ class PredicateEngine:
                 continue
             rows.append(index)
         active_rows = [row for row in rows if bool(stream["active"][row])]
+        exempt_rows = [
+            row
+            for row in active_rows
+            if any(pair_matches(str(stream["body_a"][row]), str(stream["body_b"][row]), expected) for expected in allowed_pairs + ignored_pairs)
+        ]
+        active_rows = [row for row in active_rows if row not in exempt_rows]
         if active_rows:
             return _result(
                 predicate,
@@ -425,6 +629,9 @@ class PredicateEngine:
                     "sample_indices": rows,
                     "interval": {"start_s": start, "end_s": end},
                     "pair_filter": pair,
+                    "allowed_pairs": allowed_pairs,
+                    "ignored_pairs": ignored_pairs,
+                    "exempt_active_sample_indices": exempt_rows,
                     "source_sha256": self.run.manifest["channels"]["collision"]["sha256"],
                 }
             ],
@@ -520,7 +727,6 @@ class PredicateEngine:
         if axis_name not in {"x", "y", "z"}:
             raise SchemaError("object_above_height.axis must be x, y, or z")
         axis = {"x": 0, "y": 1, "z": 2}[axis_name]
-        threshold = finite_number(parameters.get("minimum_m"), "object_above_height.minimum_m")
         duration = finite_number(parameters.get("minimum_duration_s", 0.0), "minimum_duration_s")
         try:
             times, rows, column = self._pose_rows(predicate, "pose", entity)
@@ -528,7 +734,21 @@ class PredicateEngine:
             return _result(predicate, "unknown", str(error), missing=[f"pose/{entity}"])
         if rows.size == 0:
             return _result(predicate, "unknown", "No object pose exists in the evaluation window.", missing=[f"pose/{entity}"])
-        heights = self.run.stream("pose")["position_m"][rows, column, axis]
+        pose_stream = self.run.stream("pose")
+        heights = pose_stream["position_m"][rows, column, axis]
+        has_absolute = "minimum_m" in parameters
+        has_delta = "minimum_delta_m" in parameters
+        if has_absolute == has_delta:
+            raise SchemaError("object_above_height requires exactly one of minimum_m or minimum_delta_m")
+        initial_height: float | None = None
+        if has_delta:
+            initial_rows = np.flatnonzero(pose_stream["present"][:, column])
+            if initial_rows.size == 0:
+                return _result(predicate, "unknown", "No initial object pose is available.", missing=[f"pose/{entity}/initial"])
+            initial_height = float(pose_stream["position_m"][int(initial_rows[0]), column, axis])
+            threshold = initial_height + finite_number(parameters["minimum_delta_m"], "object_above_height.minimum_delta_m")
+        else:
+            threshold = finite_number(parameters["minimum_m"], "object_above_height.minimum_m")
         longest = 0.0
         start_time: float | None = None
         selected: list[int] = []
@@ -564,6 +784,8 @@ class PredicateEngine:
                     "axis": axis_name,
                     "terminal_height_m": float(heights[-1]),
                     "minimum_m": threshold,
+                    "initial_height_m": initial_height,
+                    "minimum_delta_m": parameters.get("minimum_delta_m"),
                     "longest_duration_s": longest,
                     "minimum_duration_s": duration,
                     "sample_indices": selected or [int(rows[-1])],
@@ -689,26 +911,60 @@ class PredicateEngine:
             relative_positions.append(position)
             relative_quaternions.append(quaternion)
         expected = parameters.get("expected_relative_pose")
-        if expected is None:
-            baseline_position = relative_positions[0]
-            baseline_quaternion = relative_quaternions[0]
-            expectation_source = "first synchronized sample"
-        else:
+        position_tolerance = finite_number(parameters.get("position_tolerance_m", 0.01), "position_tolerance_m")
+        orientation_tolerance = finite_number(parameters.get("orientation_tolerance_rad", math.radians(5.0)), "orientation_tolerance_rad")
+        minimum_duration = finite_number(parameters.get("minimum_duration_s", 0.0), "minimum_duration_s")
+        best_local_rows: list[int] = []
+        best_position_errors: list[float] = []
+        best_orientation_errors: list[float] = []
+        if expected is not None:
             expected_pose = require_mapping(expected, "expected_relative_pose")
             baseline_position = [float(value) for value in require_list(expected_pose.get("position_m"), "expected_relative_pose.position_m")]
             baseline_quaternion = [float(value) for value in require_list(expected_pose.get("quaternion_xyzw"), "expected_relative_pose.quaternion_xyzw")]
             expectation_source = "task spec"
-        position_errors = [euclidean(value, baseline_position) for value in relative_positions]
-        orientation_errors = [quaternion_angle(value, baseline_quaternion) for value in relative_quaternions]
-        position_tolerance = finite_number(parameters.get("position_tolerance_m", 0.01), "position_tolerance_m")
-        orientation_tolerance = finite_number(parameters.get("orientation_tolerance_rad", math.radians(5.0)), "orientation_tolerance_rad")
-        minimum_duration = finite_number(parameters.get("minimum_duration_s", 0.0), "minimum_duration_s")
-        duration = float(stream["time_s"][rows[-1]] - stream["time_s"][rows[0]])
-        passed = (
-            duration >= minimum_duration
-            and max(position_errors) <= position_tolerance
-            and max(orientation_errors) <= orientation_tolerance
+            position_errors = [euclidean(value, baseline_position) for value in relative_positions]
+            orientation_errors = [quaternion_angle(value, baseline_quaternion) for value in relative_quaternions]
+            valid = [
+                position <= position_tolerance and orientation <= orientation_tolerance
+                for position, orientation in zip(position_errors, orientation_errors)
+            ]
+            _, selected = self._longest_boolean_duration(stream["time_s"], rows, valid)
+            best_local_rows = [list(rows).index(row) for row in selected]
+            best_position_errors = [position_errors[index] for index in best_local_rows]
+            best_orientation_errors = [orientation_errors[index] for index in best_local_rows]
+        else:
+            expectation_source = "start of longest stable synchronized segment"
+            # A grasp can begin after reaching. Search for the longest consecutive segment whose
+            # relative pose remains within tolerance of that segment's first sample.
+            for start_index in range(len(rows)):
+                candidate_rows: list[int] = []
+                candidate_position_errors: list[float] = []
+                candidate_orientation_errors: list[float] = []
+                for end_index in range(start_index, len(rows)):
+                    position_error = euclidean(relative_positions[end_index], relative_positions[start_index])
+                    orientation_error = quaternion_angle(relative_quaternions[end_index], relative_quaternions[start_index])
+                    if position_error > position_tolerance or orientation_error > orientation_tolerance:
+                        break
+                    candidate_rows.append(end_index)
+                    candidate_position_errors.append(position_error)
+                    candidate_orientation_errors.append(orientation_error)
+                if not candidate_rows:
+                    continue
+                candidate_duration = float(
+                    stream["time_s"][rows[candidate_rows[-1]]] - stream["time_s"][rows[candidate_rows[0]]]
+                )
+                best_duration = 0.0 if not best_local_rows else float(
+                    stream["time_s"][rows[best_local_rows[-1]]] - stream["time_s"][rows[best_local_rows[0]]]
+                )
+                if candidate_duration >= best_duration:
+                    best_local_rows = candidate_rows
+                    best_position_errors = candidate_position_errors
+                    best_orientation_errors = candidate_orientation_errors
+        selected_rows = [int(rows[index]) for index in best_local_rows]
+        duration = 0.0 if len(selected_rows) < 2 else float(
+            stream["time_s"][selected_rows[-1]] - stream["time_s"][selected_rows[0]]
         )
+        passed = duration >= minimum_duration
         return _result(
             predicate,
             "supported" if passed else "refuted",
@@ -718,12 +974,12 @@ class PredicateEngine:
                     "channel": "pose",
                     "reference": reference,
                     "target": target,
-                    "sample_indices": [int(row) for row in rows],
+                    "sample_indices": selected_rows,
                     "duration_s": duration,
                     "minimum_duration_s": minimum_duration,
-                    "maximum_position_drift_m": max(position_errors),
+                    "maximum_position_drift_m": max(best_position_errors, default=None),
                     "position_tolerance_m": position_tolerance,
-                    "maximum_orientation_drift_rad": max(orientation_errors),
+                    "maximum_orientation_drift_rad": max(best_orientation_errors, default=None),
                     "orientation_tolerance_rad": orientation_tolerance,
                     "relative_pose_expectation_source": expectation_source,
                     "source_sha256": self.run.manifest["channels"]["pose"]["sha256"],
@@ -1006,12 +1262,20 @@ class PredicateEngine:
         return dependencies, None
 
     def _object_grasped(self, predicate: dict[str, Any]) -> PredicateResult:
-        dependencies, error = self._dependency_results(
-            predicate,
-            ("contact_predicate", "gripper_predicate", "follows_predicate", "lift_predicate"),
-        )
-        if error:
-            return error
+        parameters = predicate["parameters"]
+        contact_references = parameters.get("contact_predicates")
+        if contact_references is None:
+            contact_references = [parameters.get("contact_predicate")]
+        contact_references = require_list(contact_references, "object_grasped.contact_predicates")
+        references = contact_references + [
+            parameters.get("gripper_predicate"),
+            parameters.get("follows_predicate"),
+            parameters.get("lift_predicate"),
+        ]
+        missing = [str(reference) if reference is not None else "unspecified dependency" for reference in references if reference is None or reference not in self.results]
+        if missing:
+            return _result(predicate, "unknown", "Composite predicate dependencies are missing.", missing=[f"predicate/{item}" for item in missing])
+        dependencies = [self.results[str(reference)] for reference in references]
         statuses = [dependency.status for dependency in dependencies]
         if "conflicting" in statuses:
             status = "conflicting"

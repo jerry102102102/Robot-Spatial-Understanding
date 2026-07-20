@@ -1,0 +1,178 @@
+{
+  "adapter": {
+    "name": "maniskill",
+    "oracle_fields_accepted": false,
+    "version": "0.2.0"
+  },
+  "assets": [
+    {
+      "kind": "robot_urdf",
+      "name": "panda_v2.urdf",
+      "redistributed": false,
+      "sha256": "524c6986dbbabe244e05801f262862205e880834d01459b06ee273016d0579ba"
+    },
+    {
+      "kind": "task_source",
+      "name": "pick_cube.py",
+      "redistributed": false,
+      "sha256": "6f881f11151bd124a4ec6d1189e86e20b17d366aa1cbcc6e2f751f1f5bb03ed1"
+    },
+    {
+      "kind": "entity_map",
+      "name": "pickcube-entities.yaml",
+      "redistributed": true,
+      "sha256": "0c09e3c33b3b497375afca5ef4c8ba606ad4754edd05efc84ba2fafe96595fd8"
+    },
+    {
+      "kind": "action_trajectory",
+      "name": "seed-002-no-op.h5",
+      "redistributed": false,
+      "sha256": "bb6dd09a41dcb574681b5953a9c2d8013983242f01275244a7a33cd60bd9b02b"
+    }
+  ],
+  "boundaries": {
+    "causation_established": false,
+    "hardware_truth_established": false,
+    "official_reward_or_success_imported": false,
+    "safety_established": false,
+    "simulation_only": true
+  },
+  "channels": {
+    "collision": {
+      "arrays": [
+        "active",
+        "body_a",
+        "body_b",
+        "time_s"
+      ],
+      "max_gap_s": 0.07500000000000001,
+      "path": "streams/collision.npz",
+      "sha256": "fe11a252fbbe2ee136b967156b671995ef49d45f10fd737aa742da06ca7f783d",
+      "status": "available"
+    },
+    "contact": {
+      "arrays": [
+        "active",
+        "body_a",
+        "body_b",
+        "force_n",
+        "normal_force_n",
+        "normal_force_present",
+        "present",
+        "time_s"
+      ],
+      "max_gap_s": 0.07500000000000001,
+      "path": "streams/contact.npz",
+      "sha256": "66a119f17feb6a19ff12475e77fa63179abef7f8e3ce2a0a8d3283ec0d79e6cf",
+      "status": "available"
+    },
+    "deformable": {
+      "reason": "channel not supplied by source",
+      "status": "unavailable"
+    },
+    "force_torque": {
+      "reason": "channel not supplied by source",
+      "status": "unavailable"
+    },
+    "joint_state": {
+      "arrays": [
+        "effort",
+        "effort_present",
+        "joint_ids",
+        "position",
+        "position_present",
+        "time_s",
+        "velocity",
+        "velocity_present"
+      ],
+      "max_gap_s": 0.07500000000000001,
+      "path": "streams/joint_state.npz",
+      "sha256": "af8aa0034b720db8b1ccc37b226f5c98503d91581fb32d701cd76a3b2e948d87",
+      "status": "available"
+    },
+    "odometry": {
+      "reason": "channel not supplied by source",
+      "status": "unavailable"
+    },
+    "pose": {
+      "arrays": [
+        "entity_ids",
+        "position_m",
+        "present",
+        "quaternion_xyzw",
+        "time_s"
+      ],
+      "max_gap_s": 0.07500000000000001,
+      "path": "streams/pose.npz",
+      "sha256": "08bd5d1759f0edc785cd56165db42779781a4d09299517a2e6cff018765250d8",
+      "status": "available"
+    }
+  },
+  "clock": {
+    "clock_id": "simulation/PickCube-v1/seed-2",
+    "domain": "simulated_monotonic"
+  },
+  "conventions": {
+    "angle_unit": "rad",
+    "length_unit": "m",
+    "pose_direction": "world_from_entity",
+    "quaternion_order": "xyzw"
+  },
+  "events": {
+    "count": 203,
+    "path": "events.jsonl",
+    "sha256": "176b48e962277fff728a2449acfef024f4c4fde54a84c6f8be308e68ca509bed"
+  },
+  "interval": {
+    "end_s": 5.0,
+    "start_s": 0.0
+  },
+  "intervention": {
+    "action_count": 100,
+    "fixed_horizon": 100,
+    "initialization": null,
+    "padding": "repeat_final_action",
+    "source": "action_only_hdf5",
+    "trajectory_index": 0,
+    "trajectory_sha256": "bb6dd09a41dcb574681b5953a9c2d8013983242f01275244a7a33cd60bd9b02b",
+    "type": "action"
+  },
+  "manifest_sha256": "608bcf9576be2719941c26c8f5eed826a8e47707872aff7aa6ef4a3dbaf3a258",
+  "robot": {
+    "active_joint_ids": [
+      "panda_finger_joint1",
+      "panda_finger_joint2",
+      "panda_joint1",
+      "panda_joint2",
+      "panda_joint3",
+      "panda_joint4",
+      "panda_joint5",
+      "panda_joint6",
+      "panda_joint7"
+    ],
+    "model_sha256": "524c6986dbbabe244e05801f262862205e880834d01459b06ee273016d0579ba",
+    "robot_id": "panda",
+    "root_frame": "world"
+  },
+  "run_id": "maniskill/PickCube-v1/seed-2/physx_cpu",
+  "schema_version": "robot-spatial-simulation-run.v1",
+  "seed": 2,
+  "simulator": {
+    "name": "ManiSkill/SAPIEN",
+    "version": "3.0.1"
+  },
+  "source": {
+    "sha256": "ea1b822279f3ba4e4779fffa9469d2a39ba6f3a85df705abd18ed73f47809755",
+    "type": "robot-spatial-generic-trace.v1"
+  },
+  "task_id": "PickCube-v1",
+  "timestep_s": 0.05,
+  "world": {
+    "config_sha256": "d46b8f7ead24882c3cb21060ce730af58edcf8a808c94e1393e339f94f0e5e9b",
+    "entity_map_sha256": "0c09e3c33b3b497375afca5ef4c8ba606ad4754edd05efc84ba2fafe96595fd8",
+    "initial_state_sha256": "cdfcb259d312f10bb44d92dd2fd2ada2632523a38fa079fe2178d14c6e5ee09d",
+    "task_source_sha256": "6f881f11151bd124a4ec6d1189e86e20b17d366aa1cbcc6e2f751f1f5bb03ed1",
+    "world_id": "PickCube-v1/seed-2",
+    "world_sha256": "99fbc0c924f35a36e0271f3f26caf0c03da1f77bd32a87920341bc9df688fb9c"
+  }
+}

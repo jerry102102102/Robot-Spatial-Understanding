@@ -9,6 +9,6 @@ recursive-include references *.md
 recursive-include docs *.md
 recursive-include schemas *.json
 recursive-include examples *.md *.json *.yaml
-recursive-include benchmarks *.py *.yaml *.json
+recursive-include benchmarks *.py *.yaml *.json *.md *.jsonl *.npz
 recursive-include containers *.Dockerfile
 recursive-include scripts/tests *.py *.json *.urdf *.xacro *.sdf *.srdf *.xml *.stl *.obj

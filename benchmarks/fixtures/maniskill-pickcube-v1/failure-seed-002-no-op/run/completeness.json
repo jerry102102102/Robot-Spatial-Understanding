@@ -1,0 +1,95 @@
+{
+  "channels": {
+    "collision": {
+      "channel": "collision",
+      "issues": [],
+      "max_gap_s": 0.07500000000000001,
+      "observed_interval": {
+        "end_s": 5.0,
+        "start_s": 0.0
+      },
+      "sample_count": 201,
+      "status": "complete"
+    },
+    "contact": {
+      "channel": "contact",
+      "issues": [],
+      "max_gap_s": 0.07500000000000001,
+      "observed_interval": {
+        "end_s": 5.0,
+        "start_s": 0.0
+      },
+      "sample_count": 202,
+      "status": "complete"
+    },
+    "deformable": {
+      "channel": "deformable",
+      "issues": [
+        {
+          "reason": "channel not supplied by source",
+          "type": "unavailable"
+        }
+      ],
+      "max_gap_s": null,
+      "observed_interval": null,
+      "sample_count": 0,
+      "status": "unavailable"
+    },
+    "force_torque": {
+      "channel": "force_torque",
+      "issues": [
+        {
+          "reason": "channel not supplied by source",
+          "type": "unavailable"
+        }
+      ],
+      "max_gap_s": null,
+      "observed_interval": null,
+      "sample_count": 0,
+      "status": "unavailable"
+    },
+    "joint_state": {
+      "channel": "joint_state",
+      "issues": [],
+      "max_gap_s": 0.07500000000000001,
+      "observed_interval": {
+        "end_s": 5.0,
+        "start_s": 0.0
+      },
+      "sample_count": 101,
+      "status": "complete"
+    },
+    "odometry": {
+      "channel": "odometry",
+      "issues": [
+        {
+          "reason": "channel not supplied by source",
+          "type": "unavailable"
+        }
+      ],
+      "max_gap_s": null,
+      "observed_interval": null,
+      "sample_count": 0,
+      "status": "unavailable"
+    },
+    "pose": {
+      "channel": "pose",
+      "issues": [],
+      "max_gap_s": 0.07500000000000001,
+      "observed_interval": {
+        "end_s": 5.0,
+        "start_s": 0.0
+      },
+      "sample_count": 101,
+      "status": "complete"
+    }
+  },
+  "completeness_sha256": "4bcb7bf60b270f6b9e9a713624f9380cbec7edc18994eb5e9cbac721924e626e",
+  "limitations": [
+    "Completeness describes recorded channels and declared sampling only; it does not prove sensor truth, simulator correctness, or physical safety."
+  ],
+  "run_id": "maniskill/PickCube-v1/seed-2/physx_cpu",
+  "run_manifest_sha256": "608bcf9576be2719941c26c8f5eed826a8e47707872aff7aa6ef4a3dbaf3a258",
+  "schema_version": "robot-spatial-simulation-completeness.v1",
+  "status": "complete_for_available_channels"
+}

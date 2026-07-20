@@ -2,6 +2,26 @@
 
 All notable changes to Robot Spatial Understanding are recorded here.
 
+## Unreleased
+
+### Added
+
+- Live fixed-horizon ManiSkill 3.0.1 capture from action-only trajectories, including raw Panda
+  joint state, TCP/finger/object/goal poses, pairwise contact forces, CPU collision pairs, lifecycle
+  events, entity bindings, simulator versions, and model/task/config digests.
+- Generic terminal frame-position, joint-velocity, and joint-range predicates; relative lift,
+  multi-contact grasp, and allowed/ignored collision-pair semantics.
+- Oracle-isolated PickCube benchmark, semantic-negative generator, expanded corruption matrix,
+  two small normalized live fixtures, and CPU/GPU capture checks.
+
+### Validation status
+
+- At a fixed 100-step horizon, 100/100 primary PickCube cases agree with the isolated official
+  evaluator: 51 supported and 49 refuted references, including 50/50 official-planner successes.
+- Semantic negatives pass 8/8, corruption cases pass 9/9, and the 16-environment CUDA capture smoke
+  passes 16/16 with collision correctly unavailable. No `v0.3` release is claimed because the
+  Meta-World and unfamiliar-developer onboarding gates remain open.
+
 ## 0.2.0 - 2026-07-20
 
 ### Added

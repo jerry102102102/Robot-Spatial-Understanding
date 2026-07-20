@@ -1,0 +1,225 @@
+{
+  "case_count": 16,
+  "cases": [
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "d5e73be1e745aaf634af2a7400bd50d39db837bb17995b5d2ada808f7e64530a",
+      "run_manifest_sha256": "e12672c1482694bef0a591ae20c4a0b7cdefacf79293ba411deac5723a85e2c5",
+      "seed": 2,
+      "sub_environment_index": 0
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "a6b4927e7e691ceba1823ea844b750c38d377ca74526b5f3dd0864a953b81b05",
+      "run_manifest_sha256": "906bbb4518fe8617ab34adc228dcb9e9e33b7d63581999d79328cdbffd6130ec",
+      "seed": 3,
+      "sub_environment_index": 1
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "479e3c11a94a25784f6651525c94a77bcf9c7f0b2589bd670b4eb2caa3f82245",
+      "run_manifest_sha256": "5b1b634902e8965efcef5c0a0ec393190aeaf202346ad5c5f087338f3a03bee4",
+      "seed": 4,
+      "sub_environment_index": 2
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "154ce81eebd111a244139705dc1ad484803679bf64451cf04cd4745b5e53024d",
+      "run_manifest_sha256": "dda407d11536bbd200e8c7bff60ada768be10f452a6ab895c0192af0e0db65ad",
+      "seed": 5,
+      "sub_environment_index": 3
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "35498ac4f2f303c499fcd43e17397081426e32fb8d86b194ee4d4c49010626d7",
+      "run_manifest_sha256": "f7040f84033f4be1bfa3658b4e9c27d97afca103584fdc2742c8f9e5763bcb46",
+      "seed": 6,
+      "sub_environment_index": 4
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "5823e40b8274b050ba71eda05a81efcf2f0b45788489f703833d2f7197774e1c",
+      "run_manifest_sha256": "c0b7204fcb822effb0d59a9d9e3beff19b44e6166a3be6b7eca7946b42f1ca8a",
+      "seed": 7,
+      "sub_environment_index": 5
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "a978a5a06500f8de03fadda1f23aee68e75e374f8e091dc30e9a33d8348106cb",
+      "run_manifest_sha256": "4b11f8f0f170bba71a7eb9fb04b68fca4d8268aad5e84c40c8abeb0d2addda2e",
+      "seed": 8,
+      "sub_environment_index": 6
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "0e2fa8b640d1a084b691342648d0b48f4f7f58973880924968d1c8107b5a91bc",
+      "run_manifest_sha256": "63568ac9386c8939823621bcec278314151e818c741d55eddbc575157e352579",
+      "seed": 9,
+      "sub_environment_index": 7
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "9cfe09b5da75e40da416a4e263463b55e6a4111aa394820bf4eb17107e006381",
+      "run_manifest_sha256": "f17b14e16dd3000888fffa7dcd9270e81531bd9559c4b85922852174bc652193",
+      "seed": 10,
+      "sub_environment_index": 8
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "f0de3d86ee21a14648d10efb56ae19c7c79f08f809975611565769ed2b6fce50",
+      "run_manifest_sha256": "90d3058c63b543d39956957710469f37a8b6314ed50d57b2d2be6f39499e360a",
+      "seed": 11,
+      "sub_environment_index": 9
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "512d4a3c0a8609e2fd565415fbe9096014614f1cbb4006e5781d0dfcf551e0a5",
+      "run_manifest_sha256": "074da6f0160e886893215f5e39e69193f2e9d2b54ef1ceddbf19ef8f15aff4a9",
+      "seed": 12,
+      "sub_environment_index": 10
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "e79009761838f0675fed2f5e4c84f735cbf3497d521d910e0526f6694c5df1ba",
+      "run_manifest_sha256": "0523c2bb2ef91949c1164b9db7c9e89848abae2e968ae8b30a9be88f423a4531",
+      "seed": 13,
+      "sub_environment_index": 11
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "acea11c7009e10f8880a74a1a399438e6a1fc25577da869c972c935a1cb30a73",
+      "run_manifest_sha256": "3770f34d940d6b20f8d29ef4a62b9a74a4be4a451d5ea4d18793e64708d389d3",
+      "seed": 14,
+      "sub_environment_index": 12
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "eb344c2a48ca7cd454fc85d9bf3decba1b683d08c3b40cb4fbebb04c41a5af31",
+      "run_manifest_sha256": "ea239c3abf1eb11c4f1c660f142d9f7b783e9b41c93ff28a41fe8130e9a6f50a",
+      "seed": 15,
+      "sub_environment_index": 13
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "628242dcb41918bcfb89448f2310809b8de1ac5b73bab059b050de5ec14efce0",
+      "run_manifest_sha256": "5e6857bb810f3e45e21de4f4ab867b509b2fe5308f22b9e7aa8a2aea72139ee0",
+      "seed": 16,
+      "sub_environment_index": 14
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "collision_free": "unknown",
+      "passed": true,
+      "report_sha256": "35fbf0d6f68f70b2877f5837c2b0858d7e65d921484aeecde874c17cabc0db96",
+      "run_manifest_sha256": "9032234f41f743ef08e9e8beb4918c2841567d8992dbf0e1e1b1752348543567",
+      "seed": 17,
+      "sub_environment_index": 15
+    }
+  ],
+  "claim": "parallel capture and channel-availability smoke only; not a GPU-parallel motion-planner benchmark",
+  "env_id": "PickCube-v1",
+  "environment": {
+    "adapter": "0.2.0",
+    "cuda_device": "NVIDIA GeForce RTX 4070",
+    "gymnasium": "1.3.0",
+    "mani_skill": "3.0.1",
+    "nvidia_smi": "NVIDIA GeForce RTX 4070, 591.86",
+    "os": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.11.14",
+    "sapien": "3.0.3",
+    "torch": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "torch_cuda_available": true
+  },
+  "fixed_horizon": 100,
+  "limitations": [
+    "The same seed-2 CPU-planner action trajectory is broadcast to all CUDA sub-environments.",
+    "GPU collision enumeration is unavailable; no CPU replay data is substituted."
+  ],
+  "num_envs": 16,
+  "passed_count": 16,
+  "planner_backend": "physx_cpu",
+  "record_sha256": "7fb21f2890f3d15312e884c084f7574ce8f790596a66e1c19d4239d09d929371",
+  "schema_version": "robot-spatial-maniskill-cuda-parity-smoke.v1",
+  "sim_backend": "physx_cuda",
+  "trajectory_action_count": 50,
+  "trajectory_sha256": "91e806adcf61634cdb0524aed50e982230b7f3ba94f798c76e283aa7af1b2763"
+}

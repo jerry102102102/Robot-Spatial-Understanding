@@ -62,10 +62,18 @@ def build_parser() -> argparse.ArgumentParser:
     )
     capture.add_argument("--adapter", required=True)
     capture.add_argument("--source", type=Path, help="immutable raw state export without reward/success labels")
-    capture.add_argument("--env-id", help="live environment ID (currently supported by gymnasium-robotics)")
+    capture.add_argument("--env-id", help="live environment ID (ManiSkill or Gymnasium Robotics)")
     capture.add_argument("--seed", type=int, default=2)
     capture.add_argument("--max-steps", type=int, default=50)
+    capture.add_argument("--fixed-horizon", type=int, help="fixed live-simulator control horizon")
     capture.add_argument("--controller-gain", type=float, default=10.0)
+    capture.add_argument("--trajectory", type=Path, help="action-only HDF5 trajectory for live simulator replay")
+    capture.add_argument("--trajectory-index", type=int, default=0)
+    capture.add_argument("--entity-map", type=Path, help="simulator-to-evidence entity mapping")
+    capture.add_argument("--sim-backend", choices=["physx_cpu", "physx_cuda"], default="physx_cpu")
+    capture.add_argument("--render-backend", default="gpu")
+    capture.add_argument("--num-envs", type=int, default=1)
+    capture.add_argument("--initialization", choices=["goal_at_cube"])
     capture.add_argument("--out", type=Path, required=True)
     capture.set_defaults(handler=_capture)
 
@@ -143,29 +151,57 @@ def _import(args: argparse.Namespace) -> int:
 def _capture(args: argparse.Namespace) -> int:
     adapter = adapter_for(args.adapter)
     if args.env_id:
+        capture_episode = getattr(adapter, "capture_episode", None)
         capture_goal_episode = getattr(adapter, "capture_goal_episode", None)
-        if capture_goal_episode is None:
+        if capture_episode is not None:
+            if args.trajectory is None or args.entity_map is None:
+                raise RobotSpatialUnderstandingError(
+                    f"adapter {args.adapter!r} live capture requires --trajectory and --entity-map"
+                )
+            captured = capture_episode(
+                args.out,
+                env_id=args.env_id,
+                seed=args.seed,
+                trajectory=args.trajectory,
+                entity_map=args.entity_map,
+                sim_backend=args.sim_backend,
+                render_backend=args.render_backend,
+                num_envs=args.num_envs,
+                fixed_horizon=args.fixed_horizon or 100,
+                trajectory_index=args.trajectory_index,
+                initialization=args.initialization,
+            )
+        elif capture_goal_episode is not None:
+            captured = capture_goal_episode(
+                args.out,
+                env_id=args.env_id,
+                seed=args.seed,
+                max_steps=args.fixed_horizon or args.max_steps,
+                controller_gain=args.controller_gain,
+            )
+        else:
             raise RobotSpatialUnderstandingError(
                 f"adapter {args.adapter!r} does not implement live capture; provide --source instead"
             )
-        run = capture_goal_episode(
-            args.out,
-            env_id=args.env_id,
-            seed=args.seed,
-            max_steps=args.max_steps,
-            controller_gain=args.controller_gain,
-        )
     elif args.source:
-        run = adapter.import_source(args.source, args.out)
+        captured = adapter.import_source(args.source, args.out)
     else:
         raise RobotSpatialUnderstandingError("capture requires either --source or --env-id")
+    runs = captured if isinstance(captured, list) else [captured]
     _print(
         {
             "status": "captured_live" if args.env_id else "captured_from_immutable_export",
-            "run": str(run.root.resolve()),
-            "run_id": run.manifest["run_id"],
-            "adapter": run.manifest["adapter"],
-            "manifest_sha256": run.digest,
+            "run_count": len(runs),
+            "runs": [
+                {
+                    "run": str(run.root.resolve()),
+                    "run_id": run.manifest["run_id"],
+                    "adapter": run.manifest["adapter"],
+                    "manifest_sha256": run.digest,
+                    "completeness": run.completeness["status"],
+                }
+                for run in runs
+            ],
         }
     )
     return 0

@@ -1,0 +1,51 @@
+schema_version: robot-spatial-benchmark-registry.v1
+registry_id: release-matrix/2026-07
+policy:
+  prediction_must_exclude: [reward, success, official_evaluator, oracle_result]
+  references_loaded_after_all_predictions: true
+  preserve_versions_seeds_assets_and_adapter_digests: true
+suites:
+  - suite_id: metaworld/commit-smoke
+    adapter: mujoco
+    cadence: every-commit
+    task_count: 12
+    seeds_per_task: 5
+    role: adapter and outcome smoke test; not standalone generalization evidence
+  - suite_id: maniskill/core
+    adapter: maniskill
+    cadence: pull-request-and-release
+    tasks: [PickCube-v1, PushCube-v1, PegInsertionSide-v1, PokeCube-v1]
+    seeds_per_task: 100
+    role: rigid grasp, push-not-grasp, contact, following, insertion, and transport evidence
+  - suite_id: barn/navigation
+    adapter: gazebo-ros2
+    cadence: release
+    development_worlds: 30
+    release_worlds: 300
+    role: AGV goal, collision, timeout, corridor, stale odometry, and protocol/world disagreement
+  - suite_id: ur5e/gazebo
+    adapter: gazebo-ros2
+    cadence: release
+    scenario_types: 10
+    runs_per_scenario: 20
+    role: cobot joint/cartesian target, TCP mismatch, timeout, and swept collision evidence
+  - suite_id: scara/project-regression
+    adapter: gazebo-ros2
+    cadence: pull-request-and-release
+    fk_configurations: 100
+    limit_and_singularity_cases: 20
+    motion_episodes: 30
+    role: project-owned geometry/control regression; not an external labeled benchmark
+  - suite_id: robosuite/cross-engine
+    adapter: mujoco
+    cadence: release
+    tasks: [Lift, PickPlace, NutAssembly]
+    seeds_per_task: 100
+    role: independent MuJoCo manipulation oracle
+  - suite_id: behavior/rigid-and-deformable
+    adapter: deformable-json
+    cadence: nightly-and-release
+    rigid_tasks: 10
+    deformable_tasks: 10
+    seeds_per_task: 10
+    role: richer semantic and partial deformable-state stress test

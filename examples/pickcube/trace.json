@@ -1,0 +1,120 @@
+{
+  "schema_version": "robot-spatial-generic-trace.v1",
+  "run_id": "example/maniskill-pickcube/seed-7",
+  "simulator": {
+    "name": "ManiSkill/SAPIEN",
+    "version": "3-export-contract"
+  },
+  "seed": 7,
+  "timestep_s": 0.2,
+  "clock": {
+    "clock_id": "simulation/episode",
+    "domain": "simulated_monotonic"
+  },
+  "interval": {
+    "start_s": 0.0,
+    "end_s": 1.0
+  },
+  "task_id": "maniskill/PickCube-v1",
+  "intervention": {
+    "type": "action",
+    "action_id": "pickcube/7"
+  },
+  "robot": {
+    "robot_id": "panda",
+    "root_frame": "panda_link0",
+    "model_sha256": "example-not-an-upstream-asset"
+  },
+  "world": {
+    "world_id": "pickcube/example",
+    "world_sha256": "example-not-an-upstream-asset"
+  },
+  "conventions": {
+    "length_unit": "m",
+    "angle_unit": "rad",
+    "quaternion_order": "xyzw",
+    "pose_direction": "world_from_entity"
+  },
+  "channel_policies": {
+    "joint_state": {"max_gap_s": 0.3},
+    "pose": {"max_gap_s": 0.3},
+    "contact": {"max_gap_s": 0.3},
+    "collision": {"max_gap_s": 0.3}
+  },
+  "samples": {
+    "joint_state": [
+      {"time_s": 0.0, "positions": {"finger_joint": 0.04}},
+      {"time_s": 0.2, "positions": {"finger_joint": 0.0}},
+      {"time_s": 0.4, "positions": {"finger_joint": 0.0}},
+      {"time_s": 0.6, "positions": {"finger_joint": 0.0}},
+      {"time_s": 0.8, "positions": {"finger_joint": 0.0}},
+      {"time_s": 1.0, "positions": {"finger_joint": 0.0}}
+    ],
+    "pose": [
+      {
+        "time_s": 0.0,
+        "entities": {
+          "tcp": {"position_m": [0.0, 0.0, 0.1], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]},
+          "cube": {"position_m": [0.0, 0.0, 0.02], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]}
+        }
+      },
+      {
+        "time_s": 0.2,
+        "entities": {
+          "tcp": {"position_m": [0.0, 0.0, 0.1], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]},
+          "cube": {"position_m": [0.0, 0.0, 0.02], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]}
+        }
+      },
+      {
+        "time_s": 0.4,
+        "entities": {
+          "tcp": {"position_m": [0.1, 0.0, 0.15], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]},
+          "cube": {"position_m": [0.1, 0.0, 0.07], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]}
+        }
+      },
+      {
+        "time_s": 0.6,
+        "entities": {
+          "tcp": {"position_m": [0.3, 0.0, 0.23], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]},
+          "cube": {"position_m": [0.3, 0.0, 0.15], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]}
+        }
+      },
+      {
+        "time_s": 0.8,
+        "entities": {
+          "tcp": {"position_m": [0.5, 0.0, 0.28], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]},
+          "cube": {"position_m": [0.5, 0.0, 0.2], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]}
+        }
+      },
+      {
+        "time_s": 1.0,
+        "entities": {
+          "tcp": {"position_m": [0.5, 0.0, 0.28], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]},
+          "cube": {"position_m": [0.5, 0.0, 0.2], "quaternion_xyzw": [0.0, 0.0, 0.0, 1.0]}
+        }
+      }
+    ],
+    "contact": [
+      {"time_s": 0.0, "body_a": "tcp", "body_b": "cube", "active": false, "normal_force_n": 0.0},
+      {"time_s": 0.2, "body_a": "tcp", "body_b": "cube", "active": true, "normal_force_n": 4.0},
+      {"time_s": 0.4, "body_a": "tcp", "body_b": "cube", "active": true, "normal_force_n": 4.2},
+      {"time_s": 0.6, "body_a": "tcp", "body_b": "cube", "active": true, "normal_force_n": 4.1},
+      {"time_s": 0.8, "body_a": "tcp", "body_b": "cube", "active": true, "normal_force_n": 3.9},
+      {"time_s": 1.0, "body_a": "tcp", "body_b": "cube", "active": true, "normal_force_n": 4.0}
+    ],
+    "collision": [
+      {"time_s": 0.0, "body_a": "panda", "body_b": "environment", "active": false},
+      {"time_s": 0.2, "body_a": "panda", "body_b": "environment", "active": false},
+      {"time_s": 0.4, "body_a": "panda", "body_b": "environment", "active": false},
+      {"time_s": 0.6, "body_a": "panda", "body_b": "environment", "active": false},
+      {"time_s": 0.8, "body_a": "panda", "body_b": "environment", "active": false},
+      {"time_s": 1.0, "body_a": "panda", "body_b": "environment", "active": false}
+    ]
+  },
+  "events": [
+    {"time_s": 0.0, "type": "action_status", "status": "accepted", "action_id": "pickcube/7"},
+    {"time_s": 0.2, "type": "action_status", "status": "executing", "action_id": "pickcube/7"},
+    {"time_s": 1.0, "type": "action_status", "status": "succeeded", "action_id": "pickcube/7"}
+  ],
+  "assets": []
+}

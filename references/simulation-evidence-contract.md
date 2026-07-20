@@ -1,0 +1,242 @@
+# Simulation evidence contract
+
+## Contents
+
+1. Purpose and truth boundary
+2. `simulation-run.v1`
+3. Generic trace import
+4. `task-spec.v1`
+5. Predicate results
+6. Assurance report
+7. Action-assurance bridge
+8. Counterfactual replay
+9. Oracle isolation
+10. Failure handling
+
+## 1. Purpose and truth boundary
+
+The simulation evidence layer turns immutable simulator state, events, contacts, and collisions
+into typed claims. It does not import a benchmark reward or success label. It establishes results
+only for the declared simulator, versions, assets, seed, clock, streams, interval, task policy,
+and thresholds.
+
+Keep these claims separate:
+
+- a controller or ROS Action reported success;
+- the commanded trajectory reached a declared state;
+- a task effect was observed in simulator state;
+- the full task goal is supported;
+- a matched counterfactual supports contribution inside the simulator;
+- hardware truth, authorization, and safety remain unestablished.
+
+## 2. `simulation-run.v1`
+
+A run is a directory containing:
+
+```text
+run/
+├── run.json
+├── completeness.json
+├── events.jsonl
+└── streams/
+    ├── joint_state.npz
+    ├── pose.npz
+    ├── contact.npz
+    └── collision.npz
+```
+
+`run.json` uses schema `robot-spatial-simulation-run.v1`. It binds:
+
+- `run_id`, simulator name/version, adapter name/version, seed, timestep, and intervention;
+- one clock ID and domain;
+- exact episode interval and task ID;
+- robot/world declarations and model or asset digests supplied by the producer;
+- meter/radian/`xyzw`/`world_from_entity` conventions;
+- every standard channel as `available` with a relative path and digest, or `unavailable` with a
+  reason;
+- the immutable event log and source-trace digest;
+- explicit simulation, oracle, hardware, causation, and safety boundaries.
+
+The manifest contains a canonical `manifest_sha256`. Each NPZ is written deterministically with
+fixed ZIP metadata so the same normalized arrays have the same digest.
+
+Standard channels are:
+
+| Channel | Core arrays | Meaning |
+| --- | --- | --- |
+| `joint_state` | time, joint IDs, position/velocity/effort plus presence masks | normalized joint reports |
+| `pose` | time, entity IDs, position, quaternion, presence | world-from-entity rigid poses |
+| `odometry` | pose plus linear/angular velocity | mobile-base state |
+| `contact` | time, body pair, active, optional normal force | simulator contact reports |
+| `collision` | time, body pair, active | simulator collision reports |
+| `force_torque` | time, sensor IDs, force and torque | declared wrench reports |
+| `deformable` | time, entity IDs, keypoints and presence | partial deformable state, not a full surface proof |
+
+`completeness.json` detects out-of-order samples, conflicting duplicates, gaps, missing interval
+coverage, missing values, and invalid quaternions. Unavailable optional channels do not invalidate
+available channels. A predicate still declares its own required channels and continuity policy.
+
+## 3. Generic trace import
+
+`robot-spatial-generic-trace.v1` is the stable adapter input. It contains run metadata, conventions,
+channel policies, sample arrays expressed as JSON records, events, and optional asset declarations.
+
+The importer rejects any field named `reward`, `success`, `is_success`, `official_success`,
+`oracle`, `evaluator`, or equivalent. Adapters map simulator state fields and entity identities;
+they must never implement task-success logic.
+
+Import with:
+
+```bash
+robot-spatial import --adapter generic-json trace.json --out run/
+robot-spatial capture --adapter maniskill --source state-export.json --out run/
+robot-spatial capture --adapter gymnasium-robotics --env-id FetchReach-v3 --seed 2 --out run/
+```
+
+The core package remains offline by default. The optional `mujoco` extra adds a bounded live
+Gymnasium Robotics GoalEnv capture. That adapter records `achieved_goal` and `desired_goal` poses,
+actions, simulator/model digests, and versions while deliberately discarding reward and `info`.
+Other built-ins consume immutable exports; live Gazebo, ManiSkill, and deformable capture remain
+adapter/plugin work.
+
+## 4. `task-spec.v1`
+
+`robot-spatial-task-spec.v1` declares:
+
+- `task_id` and explicit role-to-entity bindings;
+- required evidence channels;
+- generic predicates with parameters and optional time windows;
+- goal and failure expressions using `all`, `any`, `not`, or `predicate`;
+- termination and claim boundaries.
+
+Task-specific Python evaluators are prohibited. A new task may supply a new declarative spec, but a
+held-out benchmark may not add new success code.
+
+Core predicate types:
+
+- `joint_within_tolerance`
+- `frame_within_pose_tolerance`
+- `base_reached_goal`
+- `collision_free_over_interval`
+- `path_stayed_within_corridor`
+- `contact_sustained`
+- `object_above_height`
+- `object_follows_frame_for_duration`
+- `object_inside_region`
+- `object_grasped`
+- `object_released_in_region`
+- `inserted_to_depth`
+- `deformable_keypoints_in_region`
+- `deformable_shape_within_tolerance`
+
+`object_grasped` is a composite. It requires referenced contact, gripper-state, relative-following,
+and lift predicates. Contact alone cannot support a grasp.
+
+`frame_within_pose_tolerance.target` may be either a fixed pose or `{entity: role}`. The latter
+compares two observed poses at the exact evaluated sample and lets a simulator-supplied goal remain
+state evidence instead of copying episode-specific coordinates into the task spec.
+
+## 5. Predicate results
+
+Every predicate returns exactly one status:
+
+- `supported`: declared evidence supports the predicate;
+- `refuted`: complete relevant evidence contradicts it;
+- `unknown`: required evidence is unavailable, stale, incomplete, or not observed;
+- `conflicting`: required evidence is internally inconsistent.
+
+Every result stores an evidence digest, source stream digest, sample indices or time interval,
+measured values, thresholds, missing evidence, and limitations. Results do not use a confidence
+score.
+
+Positive interval-wide claims require complete interval evidence. A directly observed collision
+can refute collision freedom even if another part of the interval is missing; the inverse claim
+cannot be supported without complete coverage.
+
+## 6. Assurance report
+
+`robot-spatial-simulation-assurance-report.v1` binds the run, completeness report, task spec, and
+all predicate evidence. It separately reports:
+
+1. model/geometry validation;
+2. controller or Action protocol reports;
+3. trajectory execution;
+4. observed task effects;
+5. simulation-bounded physical success;
+6. causation;
+7. authorization;
+8. safety;
+9. unknown or conflicting evidence.
+
+Use:
+
+```bash
+robot-spatial evaluate run/ --task task.yaml --out result/
+robot-spatial explain result/report.json --out result/report.md
+```
+
+The Markdown explanation cites predicate evidence digests. Natural-language answers must not
+replace these artifacts with an unsupported interpretation.
+
+## 7. Action-assurance bridge
+
+`robot-spatial-simulation-action-map.v1` explicitly maps a simulation predicate to one declared
+functional-model `effect/` ID, predicate, bindings, producer, and action instance. The bridge emits
+an exact `robot-spatial-action-evidence-source.v1` file:
+
+```bash
+robot-spatial action-evidence result/report.json \
+  --mapping action-map.json \
+  --out evidence/simulation-effects.json
+```
+
+`supported`, `refuted`, and insufficient predicate results become `true`, `false`, and `unknown`
+effect observations. The record retains the run, report, predicate, and mapping digests. Add the
+result as a digest-bound evidence source in the existing action-evidence bundle; do not bypass the
+existing action-assurance lifecycle compiler.
+
+## 8. Counterfactual replay
+
+Two runs can support a stronger, simulator-bounded contribution claim only when they share exact:
+
+- simulator/version, seed, timestep, clock, robot, world, and conventions;
+- normalized initial-state fingerprint;
+- task spec;
+- different declared interventions, where the control is `no_op` or `controlled_perturbation`.
+
+Use:
+
+```bash
+robot-spatial counterfactual \
+  --action-run action-run/ \
+  --control-run no-op-run/ \
+  --task task.yaml \
+  --out counterfactual.json
+```
+
+Only action-supported plus control-refuted yields
+`supported_under_controlled_simulation`. This remains weaker than real-world causal proof.
+
+## 9. Oracle isolation
+
+A `robot-spatial-benchmark-suite.v1` lists run, task, and reference-result paths. Reference files
+must be outside candidate run directories. The runner completes and writes every prediction before
+opening any `robot-spatial-reference-result.v1`.
+
+```bash
+robot-spatial benchmark --suite suite.yaml --out benchmark-result/
+```
+
+The report includes confusion matrices, per-label precision/recall/F1, macro-F1, Wilson 95%
+intervals, confirmed-success precision, false-positive rate, per-case results, and binding digests.
+
+## 10. Failure handling
+
+- Reject digest mismatches before evaluation.
+- Return `conflicting` for out-of-order, conflicting duplicate, or invalid quaternion evidence.
+- Return `unknown` for unavailable, stale, gapped, or incomplete evidence required by a claim.
+- Reject task/run ID mismatch.
+- Reject reference results inside a candidate run.
+- Never promote controller status, reward, feedback, result payload, or benchmark label into effect
+  evidence.
+- Never upgrade simulation output into hardware truth or a safety certificate.

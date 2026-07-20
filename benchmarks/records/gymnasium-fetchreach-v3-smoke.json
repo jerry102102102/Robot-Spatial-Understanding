@@ -1,0 +1,45 @@
+{
+  "agreement_count": 2,
+  "case_count": 2,
+  "cases": [
+    {
+      "agreement": true,
+      "official_reference": "supported",
+      "prediction": "supported",
+      "report_sha256": "b86e65ba63ad5f5a197134db93d391b1023d48a64bd00f211c44c05f26b99b84",
+      "run_manifest_sha256": "efc2435494e32845542199b76270e2fd5bb27e62f7bd6d4cf6e589ea68993403",
+      "seed": 2
+    },
+    {
+      "agreement": true,
+      "official_reference": "refuted",
+      "prediction": "refuted",
+      "report_sha256": "61cdb4171c7b3f1f07ac331e3df8e54f77c11230abcdb173da3ccad029871876",
+      "run_manifest_sha256": "adf66189c2c28c98dc358b6a98a49e875ccf5505bb5eaa9d2501021325b26e54",
+      "seed": 7
+    }
+  ],
+  "controller_gain": 10.0,
+  "environment": "FetchReach-v3",
+  "limitations": [
+    "This is a two-seed live simulator smoke check, not a statistical benchmark or hardware-safety claim.",
+    "The controller is only a deterministic episode generator and is outside the evaluator claim."
+  ],
+  "max_steps": 50,
+  "oracle_isolation": {
+    "all_predictions_completed_before_official_replay": true,
+    "capture_discarded_reward_and_info": true,
+    "official_reference_stored_outside_candidate_runs": true
+  },
+  "record_sha256": "a5e01289d7033953435e9c716edbda3493c2699e880d13549e2db3074a303813",
+  "schema_version": "robot-spatial-live-smoke-record.v1",
+  "seeds": [
+    2,
+    7
+  ],
+  "versions": {
+    "gymnasium": "1.1.1",
+    "gymnasium_robotics": "1.3.1",
+    "mujoco": "3.1.6"
+  }
+}

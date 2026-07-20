@@ -1,0 +1,28 @@
+{
+  "schema_version": "robot-spatial-simulation-action-map.v1",
+  "source_id": "evidence_source/simulation/pickcube",
+  "producer": {
+    "producer_id": "tool/robot-spatial-predicate-engine",
+    "producer_type": "simulation_runtime_observer"
+  },
+  "action_instance_id": "action_instance/pickcube-7",
+  "effects": [
+    {
+      "predicate_id": "grasped",
+      "effect_id": "effect/object_grasped",
+      "predicate": "object_grasped",
+      "bindings": {
+        "actor": "component/gripper",
+        "target": "object_instance/cube-7"
+      }
+    },
+    {
+      "predicate_id": "inside_goal",
+      "effect_id": "effect/object_inside_goal",
+      "predicate": "object_inside_goal",
+      "bindings": {
+        "target": "object_instance/cube-7"
+      }
+    }
+  ]
+}

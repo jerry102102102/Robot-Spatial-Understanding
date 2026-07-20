@@ -4,6 +4,76 @@ An evidence-grounded Codex Skill for understanding robot descriptions and judgin
 
 這是一個讓 Codex／AI 能以可驗證方式理解 URDF 與機器人空間結構的 Skill。它也能判讀一次模擬或 ROS 2 Action 的執行結果，同時保留「已知、未知、宣告、觀察與推論」之間的界線。
 
+## What is usable now
+
+The project now has two connected products:
+
+1. the original deterministic robot-description and ROS evidence toolchain;
+2. an installable simulation-evidence SDK/CLI that derives task predicates directly from raw
+   joint, pose, odometry, contact, collision, force, and partial deformable-state streams.
+
+The simulation path does **not** accept benchmark reward or success labels as prediction input.
+It produces `supported`, `refuted`, `unknown`, or `conflicting` results with sample indices,
+thresholds, source digests, and explicit non-guarantees.
+
+Install the developer package:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -e .
+.venv/bin/robot-spatial --version
+```
+
+Run the included PickCube-shaped state example:
+
+```bash
+robot-spatial import --adapter maniskill \
+  examples/pickcube/trace.json \
+  --out work/pickcube-run
+
+robot-spatial evaluate work/pickcube-run \
+  --task examples/pickcube/task.yaml \
+  --out work/pickcube-result
+
+robot-spatial explain work/pickcube-result/report.json \
+  --out work/pickcube-result/report.md
+```
+
+The committed example is synthetic and tests the public adapter contract; it is not presented as
+an upstream ManiSkill benchmark result. Real benchmark evidence requires pinned simulator/assets,
+seeds, raw state capture, and an isolated official reference result.
+
+Run a real MuJoCo episode with the optional Gymnasium Robotics adapter:
+
+```bash
+python -m pip install -e '.[mujoco]'
+robot-spatial capture --adapter gymnasium-robotics \
+  --env-id FetchReach-v3 --seed 2 --max-steps 50 \
+  --out work/fetch-reach-run
+robot-spatial evaluate work/fetch-reach-run \
+  --task examples/fetch-reach/task.yaml \
+  --out work/fetch-reach-result
+```
+
+`benchmarks/gymnasium_fetch_reach_smoke.py` is the reproducible oracle-isolation check. It first
+captures and evaluates seeds 2 and 7 without retaining reward or `info["is_success"]`, then starts
+separate same-seed official replays. The committed record contains one supported and one refuted
+case, both agreeing with the isolated official result. This is live simulator smoke evidence, not
+a statistical benchmark. See the exact [smoke record](benchmarks/records/gymnasium-fetchreach-v3-smoke.json).
+
+### Developer inputs
+
+For simulator-result evaluation, provide:
+
+- a robot/world identity and asset/model digests;
+- an immutable `robot-spatial-generic-trace.v1` export, or a supported adapter export;
+- a declarative `robot-spatial-task-spec.v1` defining entities, predicates, thresholds, time
+  windows, goal, and failure conditions;
+- optionally, a simulation-action map that binds derived predicates to an existing functional
+  model's `effect/` declarations;
+- for benchmark scoring, a separate reference-result artifact that is not visible during
+  prediction.
+
 ## Why this exists
 
 URDF is excellent for declaring links, joints, frames, geometry, inertials, and limits. It is not, by itself, a semantic explanation of:
@@ -28,6 +98,12 @@ flowchart TD
     D --> E["Bound action instance"]
     F["ROS 2 Action capture"] --> G["Normalized lifecycle evidence"]
     H["Condition and effect observations"] --> I["Time-qualified evidence bundle"]
+    L["Raw simulator state / contact / collision trace"] --> M["simulation-run.v1 + completeness"]
+    N["task-spec.v1"] --> O["Generic predicate engine"]
+    M --> O
+    O --> P["Simulation assurance report"]
+    P --> Q["Mapped effect evidence"]
+    Q --> I
     G --> I
     E --> I
     I --> J["Action assurance model"]
@@ -42,6 +118,8 @@ The layers intentionally remain separate:
 | Function model | project-declared function, capability, conditions, intended effects | runtime truth or physical executability |
 | ROS Action capture | goal response, status, feedback, result reports for one goal UUID | physical motion, effect, causation, or safety |
 | Effect evidence | an effect predicate was observed at a declared time | that the action caused the observation |
+| Simulation run | normalized samples, completeness, entity identities, and source digests | official task outcome, hardware truth, or omitted state |
+| Predicate engine | declared state/temporal predicates over the bound run | universal semantics, task success outside the task spec, or real-world causation |
 | Action assurance | evidence-qualified readiness, lifecycle, effects, discrepancies, unknowns | safety certification or real-world truth beyond supplied evidence |
 
 ## What the Skill can do
@@ -54,10 +132,27 @@ The layers intentionally remain separate:
 - Bind explicit project declarations for component function, capabilities, preconditions, intended effects, and affordances.
 - Normalize ROS 2 `/joint_states`, `/tf`, `/tf_static`, and Action client captures with exact clocks, identities, times, and file digests.
 - Judge one action's readiness, protocol lifecycle, observed effects, inconsistencies, and unresolved evidence boundaries.
+- Normalize immutable ManiSkill/SAPIEN, MuJoCo, Gazebo/ROS 2, generic JSON, and partial deformable-state exports without importing their success labels.
+- Capture three-dimensional Gymnasium Robotics GoalEnv pose episodes directly from MuJoCo while discarding reward and official success output.
+- Evaluate AGV goal/corridor, arm pose/joint, sampled collision-free, sustained contact, lift, follow, grasp, release, region, and insertion predicates.
+- Detect missing, stale, gapped, out-of-order, conflicting, identity-corrupted, and digest-tampered evidence.
+- Score predictions against separately loaded benchmark references with confusion matrices, F1, confirmed-success precision/FPR, and 95% Wilson intervals.
+- Compare matched action/no-op replays for simulation-bounded contribution evidence without calling it real-world causation.
 - Verify important generated artifacts by exact deterministic regeneration.
 - Guard supported URDF edits with project-owned invariants and independent evaluation tools.
 
 Read [SKILL.md](SKILL.md) for the complete Codex workflow and [references/](references/) for the artifact contracts.
+New users should start with the [developer quickstart](docs/developer-quickstart.md). The
+[delivery status](ROADMAP.md) distinguishes implemented code from external suites that remain to
+be run.
+
+The new contracts are documented in
+[simulation-evidence-contract.md](references/simulation-evidence-contract.md) and
+[simulator-adapter-contract.md](references/simulator-adapter-contract.md). Reviewable JSON Schema
+drafts live in [schemas/](schemas/). The planned public
+benchmark counts and execution cadence are machine-readable in
+[benchmarks/release-matrix.yaml](benchmarks/release-matrix.yaml); registry presence is not a claim
+that those external suites have already been executed.
 
 ## Judge an execution result
 
@@ -220,9 +315,10 @@ python3 scripts/crosscheck_ros_action_adapter.py \
   --out work/ros-action-crosscheck.json
 ```
 
-The release packaged here passed:
+The current source passed:
 
-- 166 unit tests;
+- 187 unit/integration tests (the frozen 166-test baseline plus 21 simulation-evidence tests);
+- a live Gymnasium Robotics/MuJoCo `FetchReach-v3` smoke replay with one supported and one refuted seed, both agreeing with an isolated official replay and reproducing exact digests;
 - 24 action-assurance cases with 240 independent assertions;
 - 32 ROS Action normalization cases with 176 independent assertions;
 - three raw-source forward evaluations, each scoring 44/44 without dispatching a goal.

@@ -1,0 +1,68 @@
+schema_version: robot-spatial-task-spec.v1
+task_id: maniskill/PickCube-v1
+entities:
+  gripper_joint: finger_joint
+  tool: tcp
+  target: cube
+requirements:
+  channels: [joint_state, pose, contact, collision]
+predicates:
+  - predicate_id: gripper_closed
+    type: joint_within_tolerance
+    parameters:
+      targets: {gripper_joint: 0.0}
+      tolerance: 0.005
+  - predicate_id: grasp_contact
+    type: contact_sustained
+    window: {start_s: 0.2, end_s: 1.0}
+    parameters:
+      pair: [tool, target]
+      minimum_duration_s: 0.6
+      minimum_normal_force_n: 1.0
+  - predicate_id: follows_tool
+    type: object_follows_frame_for_duration
+    window: {start_s: 0.2, end_s: 1.0}
+    parameters:
+      reference: tool
+      target: target
+      minimum_duration_s: 0.6
+      position_tolerance_m: 0.005
+      orientation_tolerance_rad: 0.01
+  - predicate_id: lifted
+    type: object_above_height
+    window: {start_s: 0.6, end_s: 1.0}
+    parameters:
+      entity: target
+      axis: z
+      minimum_m: 0.1
+      minimum_duration_s: 0.4
+  - predicate_id: grasped
+    type: object_grasped
+    parameters:
+      contact_predicate: grasp_contact
+      gripper_predicate: gripper_closed
+      follows_predicate: follows_tool
+      lift_predicate: lifted
+  - predicate_id: inside_goal
+    type: object_inside_region
+    parameters:
+      entity: target
+      region:
+        type: aabb
+        min_m: [0.45, -0.05, 0.15]
+        max_m: [0.55, 0.05, 0.25]
+  - predicate_id: collision_free
+    type: collision_free_over_interval
+    parameters: {}
+goal:
+  all: [grasped, inside_goal, collision_free]
+failure:
+  any:
+    - not: {predicate: collision_free}
+termination:
+  mode: episode_end
+claim_boundaries:
+  simulation_only: true
+  causation_requires_counterfactual: true
+  authorization_established: false
+  safety_established: false

@@ -1,6 +1,6 @@
 ---
 name: understand-robot-spatial
-description: Compile ROS workspaces, Xacro/URDF, supported SDF/MJCF, mechanism constraints, function/affordance declarations, ROS 2 Action captures, and JointState/TF observations into verified AI-readable articulation, concepts, functional models, action assurance, and spatial context. Judge whether a simulated or ROS action was ready, accepted, completed, and followed by declared effects while separating protocol success, observed effects, physical success, causation, authorization, and safety. Use when Codex must inspect, explain, validate, compare, query, evaluate, or safely edit robot structure; answer frame, motion, function, capability, lifecycle, effect, geometry, collision, and execution-result questions without guessing from names, syntax, meshes, images, stale samples, incomplete captures, or `SUCCEEDED` alone.
+description: Compile ROS workspaces, Xacro/URDF, supported SDF/MJCF, mechanism constraints, function/affordance declarations, simulator episodes, ROS 2 Action captures, and JointState/TF observations into verified AI-readable articulation, typed runtime evidence, functional models, action assurance, and spatial context. Evaluate AGV navigation, arm motion, contact, grasp, release, insertion, rigid-object, and partial deformable-state results while separating controller reports, observed effects, simulation-bounded physical success, causation, authorization, and safety. Use when Codex must inspect, explain, validate, compare, query, benchmark, evaluate, or safely edit robot structure or execution results without guessing from names, syntax, meshes, reward, stale samples, incomplete captures, or `SUCCEEDED` alone.
 ---
 
 # Understand Robot Spatial
@@ -34,6 +34,20 @@ Use this path when the user asks whether a simulated or ROS action ran, succeede
 
 For simulation, call the result established only within the declared simulator, model, clock, sensors, evidence sources, and sampled interval. Do not upgrade simulation evidence to real-hardware truth.
 
+## Fast path: evaluate one simulator episode
+
+Use this path when the user supplies raw or normalized simulator state rather than an existing action-assurance bundle.
+
+1. Read [references/simulation-evidence-contract.md](references/simulation-evidence-contract.md) and, when integrating a new engine, [references/simulator-adapter-contract.md](references/simulator-adapter-contract.md).
+2. Require an immutable state export and a declarative `robot-spatial-task-spec.v1`. Reject reward, success, evaluator, or oracle fields from the prediction input.
+3. Normalize the export with `robot-spatial import` or the matching offline adapter. For a user-authorized simulator-only smoke run, `gymnasium-robotics` may capture a Gymnasium GoalEnv directly; it must discard reward and `info` and must not treat the demo controller as evaluator evidence. Run `inspect-run`; do not repair out-of-order, stale, missing, or conflicting samples silently.
+4. Run `robot-spatial evaluate`, then `robot-spatial explain`. Read `report.json` before the Markdown explanation. Ground every conclusion in predicate evidence IDs and stream digests.
+5. Treat `object_grasped` as supported only when its declared contact, gripper-state, relative-following, and lift predicates are all supported. Contact alone is not a grasp.
+6. If the project already has a functional/action model, create an explicit simulation-action map and run `robot-spatial action-evidence`; add that source to the existing digest-bound action-evidence bundle instead of replacing action assurance.
+7. For benchmark claims, run `robot-spatial benchmark`. The official reference result must remain outside the candidate run and must be opened only after every prediction is written.
+8. For a causal-contribution claim, require matched action and no-op/controlled-perturbation runs with the same simulator, seed, model, world, conventions, and normalized initial-state digest; run `robot-spatial counterfactual`. Do not paraphrase this as real-world causation.
+9. Report controller/Action protocol, trajectory execution, effects, simulation-bounded physical success, causation, authorization, safety, missing evidence, and simulator scope separately.
+
 ## Workflow
 
 1. Resolve the authoring source. For a ROS source workspace or any project with `package.xml`, run `prepare` with the source entrypoint, workspace root, Xacro executable, and explicit variant mappings; then read `prepare.json` before the generated context. It discovers unambiguous source packages, logs Xacro package lookups, hashes the conservative used-package source closure, validates `resolved.urdf`, and exports one context. Read [references/project-preparation-contract.md](references/project-preparation-contract.md) before interpreting its provenance or runtime boundary. Use `expand-xacro` directly only when package resolution is already established. Never parse unexpanded Xacro as URDF.
@@ -59,6 +73,22 @@ For simulation, call the result established only within the declared simulator, 
 ## Commands
 
 Replace `<script>` with the absolute path to `scripts/robot_spatial.py` inside this skill.
+
+For simulation episodes, install the package and use the public console command:
+
+```bash
+python3 -m pip install -e .
+robot-spatial import --adapter generic-json trace.json --out work/run
+robot-spatial capture --adapter gymnasium-robotics --env-id FetchReach-v3 --seed 2 --max-steps 50 --out work/fetch-run
+robot-spatial inspect-run work/run
+robot-spatial evaluate work/run --task task.yaml --out work/result
+robot-spatial explain work/result/report.json --out work/result/report.md
+robot-spatial action-evidence work/result/report.json --mapping action-map.json --out work/effects.json
+robot-spatial benchmark --suite benchmark-suite.yaml --out work/benchmark
+robot-spatial counterfactual --action-run work/action --control-run work/no-op --task task.yaml --out work/counterfactual.json
+```
+
+The same `robot-spatial` executable forwards existing model commands such as `validate`, `export`, `transform`, and `action-assurance` to the legacy deterministic CLI.
 
 ```bash
 python3 <script> prepare workspace/src/robot_config/config/robot.urdf.xacro --workspace-root workspace/src --xacro-bin /opt/ros/bin/xacro --arg variant:=production --inspect-mesh-kind collision --out work/robot-prepared
@@ -250,6 +280,8 @@ Use these frame names:
 - Read [references/spatial-contract.md](references/spatial-contract.md) when modifying the schema, interpreting limitations, or integrating another geometry engine.
 
 ## Supported Boundary
+
+The simulation evidence layer accepts normalized joint position/velocity/effort, rigid pose, odometry, contact, collision, force/torque, and deformable-keypoint streams in `simulation-run.v1`. It evaluates only declared generic predicates over recorded samples and completeness policies. Its collision-free result is interval-sampled simulator evidence, its grasp result is a declared composite rather than force-closure proof, and its deformable summary covers observed keypoints rather than complete topology or material behavior. Built-in ManiSkill, MuJoCo, Gazebo/ROS 2, and deformable adapters normalize immutable exports and do not import official success labels. The optional Gymnasium Robotics adapter can start a three-dimensional GoalEnv and capture achieved/desired-goal poses; it discards reward and `info`, and its controller is only an episode generator. All other live simulator adapters and external benchmark names in the registry remain planned execution surfaces until a version/seed-bound run and isolated reference report are present.
 
 Use the full context pipeline for tree-structured URDF with fixed, revolute, continuous, and prismatic joints. Its articulation compiler additionally accepts the strict supported SDF and compiled canonical MJCF subsets in [references/cross-representation-contract.md](references/cross-representation-contract.md). Every grammar is digest-bound, standalone-executable, and carries source provenance plus a source-binding-free law identity. Cross-representation comparison requires exact mapped law equality and unseen all-frame execution. The supplemental layer in [references/constraint-graph-contract.md](references/constraint-graph-contract.md) adds digest-bound rigid attachments; fixed/revolute/continuous/prismatic pair residuals; point distance; linear coordinate coupling; pose-conditioned numerical rank/mobility; and local equality solving. The finite layer in [references/configuration-atlas-contract.md](references/configuration-atlas-contract.md) adds explicit one-parameter charts, multi-seed and continuation local solves, normalized solution merging, executable satisfying nodes, full/passive numerical rank diagnostics, proximity components, declared minimum coverage, and exact regeneration/node execution. The concept layer in [references/concept-language-contract.md](references/concept-language-contract.md) composes these into typed entities, proof-carrying clauses, maximal serial segments, structural causality, strict query ASTs, exact closed-world negatives, controlled-language text, and exact regeneration. It does not infer function, affordances, undeclared semantic roles, action plans, physical truth, or global configuration topology. The separate functional layer in [references/function-affordance-contract.md](references/function-affordance-contract.md) compiles explicit project components, functions, conditions, intended effects, capabilities, typed enabling requirements, relational affordances, scoped inventory completeness, strict queries, and recursive structural proof closures. It can establish exact requirement matches inside represented structure, but not runtime condition truth, physical executability, observed effects, hardware behavior, action success, impossibility, or safety. The broader export pipeline remains URDF-specific and also resolves mimic FK, Jacobians, sampled workspace, declared mass/statics, actuation, SRDF, geometry/collision, render/motion atlases, and world/observation layers without upgrading declarations or reports to physical truth.
 

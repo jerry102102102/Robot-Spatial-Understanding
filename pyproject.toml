@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robot-spatial-understanding"
+version = "0.2.0"
+description = "Evidence-grounded robot structure and simulation-result understanding"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+authors = [{name = "Robot Spatial Understanding contributors"}]
+keywords = ["robotics", "URDF", "simulation", "spatial-reasoning", "Codex"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.24",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+maniskill = ["mani-skill>=3.0"]
+mujoco = ["mujoco>=3.0,<3.2", "gymnasium-robotics>=1.3,<1.4"]
+dev = ["build>=1.2", "twine>=5.0", "jsonschema>=4.20"]
+
+[project.urls]
+Homepage = "https://github.com/jerry102102102/Robot-Spatial-Understanding"
+Repository = "https://github.com/jerry102102102/Robot-Spatial-Understanding"
+Issues = "https://github.com/jerry102102102/Robot-Spatial-Understanding/issues"
+
+[project.scripts]
+robot-spatial = "robot_spatial_understanding.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "scripts"}
+py-modules = [
+  "mesh_geometry",
+  "robot_spatial",
+  "ros_action_adapter",
+  "ros_observation_adapter",
+  "ros_workspace",
+  "spatial_action_assurance",
+  "spatial_articulation",
+  "spatial_concepts",
+  "spatial_configuration",
+  "spatial_constraints",
+  "spatial_context",
+  "spatial_edit_evaluation",
+  "spatial_edit_suite",
+  "spatial_evaluation",
+  "spatial_evaluation_suite",
+  "spatial_functional",
+  "spatial_graph_edit",
+  "spatial_invariants",
+  "spatial_kinematic_import",
+  "spatial_motion",
+  "spatial_render",
+  "srdf_semantics",
+  "temporal_observation",
+  "triangle_geometry",
+  "world_scene",
+]
+
+[tool.setuptools.packages.find]
+where = ["scripts"]
+include = ["robot_spatial_understanding*"]

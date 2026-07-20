@@ -1,0 +1,27 @@
+schema_version: robot-spatial-task-spec.v1
+task_id: FetchReach-v3
+entities:
+  end_effector: end_effector
+  goal: goal
+requirements:
+  channels: [pose]
+predicates:
+  - predicate_id: reached_goal
+    type: frame_within_pose_tolerance
+    parameters:
+      entity: end_effector
+      target: {entity: goal}
+      position_tolerance_m: 0.05
+      orientation_tolerance_rad: 0.001
+goal:
+  all: [reached_goal]
+failure:
+  any:
+    - not: {predicate: reached_goal}
+termination:
+  mode: episode_end
+claim_boundaries:
+  simulation_only: true
+  causation_requires_counterfactual: true
+  authorization_established: false
+  safety_established: false

@@ -204,6 +204,7 @@ def environment_record() -> dict[str, Any]:
         "mani_skill": metadata.version("mani-skill"),
         "sapien": metadata.version("sapien"),
         "gymnasium": metadata.version("gymnasium"),
+        "numpy": np.__version__,
         "adapter": ManiSkillAdapter.version,
     }
 

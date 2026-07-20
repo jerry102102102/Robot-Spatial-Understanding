@@ -243,6 +243,7 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
                 "sapien": metadata.version("sapien"),
                 "torch": torch.__version__,
                 "gymnasium": metadata.version("gymnasium"),
+                "numpy": np.__version__,
             }
             config_digest = sha256_json(
                 {
@@ -263,7 +264,11 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
                     {
                         "schema_version": "robot-spatial-generic-trace.v1",
                         "run_id": f"maniskill/{env_id}/seed-{run_seed}/{sim_backend}",
-                        "simulator": {"name": "ManiSkill/SAPIEN", "version": versions["mani_skill"]},
+                        "simulator": {
+                            "name": "ManiSkill/SAPIEN",
+                            "version": versions["mani_skill"],
+                            "runtime_versions": versions,
+                        },
                         "seed": run_seed,
                         "timestep_s": timestep_s,
                         "clock": {"clock_id": f"simulation/{env_id}/seed-{run_seed}", "domain": "simulated_monotonic"},

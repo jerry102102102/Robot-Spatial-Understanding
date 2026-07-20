@@ -17,8 +17,8 @@
         "robot_static": "supported"
       },
       "predicted_verdict": "refuted",
-      "report_sha256": "ddfdf524fe03aeda1ba578ee2a6c086897a2af18bf39ef48e871e0441d890263",
-      "run_manifest_sha256": "cf2eb3ee090de3dfd2391e096189417bd666d5c3f76adcb0a5ee87aa8df869c7"
+      "report_sha256": "1ae5cc3ffeded03ae8800e3b648484d5cb169758f2524331e205b8a0434a17b6",
+      "run_manifest_sha256": "29416174ef292b7dcf0460520a6d15a774fa0b49e6863df9e767cc432fba2f36"
     },
     {
       "case_id": "contact-only",
@@ -36,8 +36,8 @@
         "robot_static": "supported"
       },
       "predicted_verdict": "refuted",
-      "report_sha256": "65ec0116b53052cc9fde43325921f8e9d5b7c715f38308046d60d08ab7a255cc",
-      "run_manifest_sha256": "c4eaf32d410c36da5aafc48b40d2633d58cd0bb94c586b2055b80b28fd9e4966"
+      "report_sha256": "559613e4b8a24b4c508f49046aa3f44addc97be514e4865c6dfa02524a2d0d8b",
+      "run_manifest_sha256": "764092abe02194140d7315e823b018ec84561ae0c94f9b2eca6281e05f5a2e25"
     },
     {
       "case_id": "short-contact",
@@ -55,8 +55,8 @@
         "robot_static": "supported"
       },
       "predicted_verdict": "refuted",
-      "report_sha256": "f08e97eb351a85009f70a02c20cb7ea4a7409178a72ddabe8be6f558aae91428",
-      "run_manifest_sha256": "be75fae9633736655f1ad60f9f2f50138a5d0e898a6dfde806ea3a18f37a0aa4"
+      "report_sha256": "1ab695e0aaba9aaccfafa1d1f3a7a2bdc22f36ac081b1321204bc4815fc6ab8a",
+      "run_manifest_sha256": "e94050e0a230dc3cd2487adf9b26659d0ae3316ea12dd8beddd02fe3641bd347"
     },
     {
       "case_id": "push-only",
@@ -74,8 +74,8 @@
         "robot_static": "supported"
       },
       "predicted_verdict": "refuted",
-      "report_sha256": "0528b5c465cebf97c78e667d5aefc4bf9edd4459b46c1f7142eae4c9d181c4c0",
-      "run_manifest_sha256": "4c6b4b09096d056d02055b6f00081bff82cab860b0e6194c3340cccbd1cfc3dd"
+      "report_sha256": "a13223f451a66e8d02bb63b53850e9ca25dd6df678813c6e1fe0aeb90fa901d0",
+      "run_manifest_sha256": "e5e0520cdaea02c0d3ce0c6eaf4e98d54d5418dd6dd01744c745f5d0b97693a9"
     },
     {
       "case_id": "lift-and-drop",
@@ -93,8 +93,8 @@
         "robot_static": "supported"
       },
       "predicted_verdict": "refuted",
-      "report_sha256": "333250587619cdca1726d57a9bd0b5d188a6f56f0f3009c01d301575983e61c2",
-      "run_manifest_sha256": "f1d5e75370563a3a94e6e5c508d799a60fc12485cfb809a59e8b77248136eee5"
+      "report_sha256": "e68e839ca845ff0b3bd9c1aecf69cc7afbaf1f11c8cf7fcb2880f86e9d3636cb",
+      "run_manifest_sha256": "dd3ba252d41fbc0c49267f2f40920e329719ab30d2715d5a9c56795dc69b93ac"
     },
     {
       "case_id": "no-op",
@@ -112,8 +112,8 @@
         "robot_static": "supported"
       },
       "predicted_verdict": "refuted",
-      "report_sha256": "28ab8dd6b31606219cd4078299f7b16186de3e57f87ceb6234ddff12fdae532a",
-      "run_manifest_sha256": "5e3e8a571f87fc4c64e0ffc11edd5a7965e3e97e8a82b033c1c3fd878a92afa8"
+      "report_sha256": "9e0e3151f34e10fb00ec79b580f95a588f02da66d3aaf249005cecad5dbf97ea",
+      "run_manifest_sha256": "7733bae6ba8f3082a86940d1f6e55c6b2de64136bf5cf5091ca01972e65d07b5"
     },
     {
       "case_id": "goal-at-start",
@@ -131,8 +131,8 @@
         "robot_static": "supported"
       },
       "predicted_verdict": "supported",
-      "report_sha256": "3560b78e44f7d149f8dea0c292cee0af6563cc542a263a2b6a23e8951f30c6dd",
-      "run_manifest_sha256": "5a3a6dc2534a086bfae97e033017500d5c63438b0498b34ab544b52bcae68989"
+      "report_sha256": "7b2c99ba217a81dc908416b0a14a97904710b8315f8a9ed65df511f7bfa574f4",
+      "run_manifest_sha256": "4b2f79ce1504c65822d6d56f3591406a89f4a6beb3e02a506ce855fb98c8c9c2"
     },
     {
       "case_id": "goal-at-start-nonallowed-collision",
@@ -150,15 +150,15 @@
         "robot_static": "supported"
       },
       "predicted_verdict": "supported",
-      "report_sha256": "fda248bf97428ea8c1081833f3ba167668b0c372a3ecc7c7b0f7b97f248a92b4",
-      "source_run_manifest_sha256": "5a3a6dc2534a086bfae97e033017500d5c63438b0498b34ab544b52bcae68989"
+      "report_sha256": "85808fced2b926b3c4913cc12c71a72ea56fed0252800d056d7e9e8ffdcc7e19",
+      "source_run_manifest_sha256": "4b2f79ce1504c65822d6d56f3591406a89f4a6beb3e02a506ce855fb98c8c9c2"
     }
   ],
   "fixed_horizon": 100,
   "limitations": [
     "These are simulator-controlled action and initialization negatives, not real-hardware trials or causal proofs."
   ],
-  "matrix_sha256": "8cea2dcbc52d08ba429e383392a3ef5a17ca212a28eed2c5e200d0d22c08c639",
+  "matrix_sha256": "acfa8e1e96a6e44b67fc2db0e24e13f10fbe48d5a7b45b7965f16263e7411610",
   "oracle_isolation": {
     "all_predictions_written_before_official_replay": true
   },

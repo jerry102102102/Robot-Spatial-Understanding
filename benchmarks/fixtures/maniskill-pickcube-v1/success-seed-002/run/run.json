@@ -137,7 +137,7 @@
     "trajectory_sha256": "91e806adcf61634cdb0524aed50e982230b7f3ba94f798c76e283aa7af1b2763",
     "type": "action"
   },
-  "manifest_sha256": "c298aa53634785ae0230dd15e6b0fd4c650cc511337416e5f7b455c411e9fc09",
+  "manifest_sha256": "7aabe8e249ff9aa7d29452a5199c731868899a854e1a31df76775d0ee839c7fb",
   "robot": {
     "active_joint_ids": [
       "panda_finger_joint1",
@@ -159,10 +159,17 @@
   "seed": 2,
   "simulator": {
     "name": "ManiSkill/SAPIEN",
+    "runtime_versions": {
+      "gymnasium": "1.3.0",
+      "mani_skill": "3.0.1",
+      "numpy": "1.26.4",
+      "sapien": "3.0.3",
+      "torch": "2.13.0+cu130"
+    },
     "version": "3.0.1"
   },
   "source": {
-    "sha256": "cd2cb91ab3b27ced080e828ad3052584257bd57406b5bf834cf2bac434ed25f0",
+    "sha256": "91921b76766a85a5bf1b1f8eab59f8172d27c36f4f0c03dc051774615e29ef1a",
     "type": "robot-spatial-generic-trace.v1"
   },
   "task_id": "PickCube-v1",

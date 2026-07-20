@@ -7,7 +7,7 @@
     "requires_full_episode_agreement": true,
     "supported_references": 51
   },
-  "benchmark_sha256": "c5149a920cc0ea1bdc6d54e85339f29099f47533fff1927b6986c83c374e9c96",
+  "benchmark_sha256": "4c476432336c76db94b3132037e978f506e11e72a6a3c8b7904ddbb818b22736",
   "case_count": 100,
   "cases": [
     {
@@ -16,9 +16,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "bef0b870c97bcf5c08186f30971dd80ca7cd56eb17abc28720efbc09d1f3e68f",
-      "report_sha256": "f74c4b99828a9b91ab79c594cffb7f874a06b9665e8b76fb4ddbeb59c32eb462",
-      "run_manifest_sha256": "5a9321d7df3377d69a67f59d50aad75389122bbe6f6ad934023fde379355549c",
+      "reference_sha256": "f2b65ac2fc257371066fff24a4f8e5b6df6af79c4046c47483fa0a414990d0dd",
+      "report_sha256": "f2300a66924853cc975ee2c5dcba2e1a48fcf00643e7ed47246d0bf61c774e64",
+      "run_manifest_sha256": "96817c692b0a2831188c58842ba31c45c8e651228f6a5497c6de23b1158bbca4",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -40,9 +40,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "508c804c2e308f6527c4beb57aa2ba71fe5939aedf575535fd6e9fbdd364da6e",
-      "report_sha256": "2c53bacdf7c8a2cbfd1238a29a32f3fa6fb5fb7e1ba939979766eb186f0c6fba",
-      "run_manifest_sha256": "2b87cb2352c95b862c7ef3e36a68df12cf78e67e4210e83f1fa6bf8e65546500",
+      "reference_sha256": "dcde1dde6c62938e703f6ef66c94c8904e26bebd22d2a6bee965b8a497f9fce2",
+      "report_sha256": "2ce855ab4f05145553b7f54bb6a55cd0a16b884d5daee728cea993adef16ba62",
+      "run_manifest_sha256": "971b7df07d9ff59203ffd73d833a22148c12db6b22bb02f5c024b5933702c402",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -64,9 +64,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "29ea75c70edf6cbbc393a6874685a0cbd0332754637888fe115d82ca4b6d824d",
-      "report_sha256": "29f35a81384d63ef662045d69170e2cdedd39c09957ed743ffd988268f037f19",
-      "run_manifest_sha256": "5e035d700d73606fb48056e2e609b6cbed4358c560381f6f41eddc36e7adaf19",
+      "reference_sha256": "70c22f047573d72967506cff27a9b36b9af1a8fca5d0012b3663d265c1742c46",
+      "report_sha256": "457cb80a102f39e1712ffcdb0151de0a0282ac03f1ee7ff9a28c66d867c91817",
+      "run_manifest_sha256": "3ee89802112ce5c91e95d12cf601d6433bcc626436324d4aff51573cdd80995d",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -88,9 +88,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "702b3ada829ed7142cb324d7e988ef3b7f79abcfa7ec32549f890af79db9fe16",
-      "report_sha256": "cca19c2c4a6e3d3b701445768542e6a357962cdf6a16cb52e36c2e9a25e192db",
-      "run_manifest_sha256": "b23ae138c0d33fde72bccd66b9949d662f0e4b695bfa6e6ec20826f469acf288",
+      "reference_sha256": "7d5d1fb1481e6a86fa39a2d2eff1ccd844fdd72db388791035ee0b0199d529bd",
+      "report_sha256": "c1bb53d78871204af69e4ef80cfd81ec29b663d3416c85598272c6405a45edf0",
+      "run_manifest_sha256": "2063872040083685054882306783ef9d9d7b2156e6c57ed05fc23480d90848f6",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -112,9 +112,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "4997f57f30dfa129c58150161c3c692355d1fae7a08b0e458996b864bad51b1e",
-      "report_sha256": "73dda74d1e76f4510ff14013ef14b0b18aa14acc95ec99e0ecefcec7315a521c",
-      "run_manifest_sha256": "c298aa53634785ae0230dd15e6b0fd4c650cc511337416e5f7b455c411e9fc09",
+      "reference_sha256": "a3bf51374678376d3b53d45a173ba82c235d4f3dc8dd939b841a671492f47c65",
+      "report_sha256": "52ffea49c8a53aba7faa91def01ca10f87420882be1acfa5d733fea2c1b34382",
+      "run_manifest_sha256": "7aabe8e249ff9aa7d29452a5199c731868899a854e1a31df76775d0ee839c7fb",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -136,9 +136,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "59d5ba781d8eda896cfd48c04a29d05bb312cdee0ad8d2087f58e7850ce74240",
-      "report_sha256": "02612f54ae111b442e8e87d598ab1820f51656670cf5172a837d63bd89f5063c",
-      "run_manifest_sha256": "608bcf9576be2719941c26c8f5eed826a8e47707872aff7aa6ef4a3dbaf3a258",
+      "reference_sha256": "b6cfa1ee46760c063c490a9b19da1281f9adf1e22f500daedc0d94b511fd8b2c",
+      "report_sha256": "6e16b43c32603989817ebda24fe1960ac6fdc5e053081b0c206dad226cb8c93a",
+      "run_manifest_sha256": "d776d55c62b4d92a57c2f17041bee152523dc2ae733b27a28a7c125353c9fd21",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -160,9 +160,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "fed9f2e9beb6d5b07064f9e184deca4c412410d790abc2090979159c4484fc70",
-      "report_sha256": "5b3ffb4276e0b6bdd8c16bcc2dd60e4baf512c31bd06463fefea2dcf5ec23de0",
-      "run_manifest_sha256": "e8f8e14490ce4a35ec58f745f9636e2fb0bf015151a1e6f5070a52b05402039f",
+      "reference_sha256": "51b5be17744f5c417d6ca3f18279f3095029c98cc61012450d6c844c7e2fc928",
+      "report_sha256": "23b97075e2836a4fa711b0e96f621b52e8849dbe22ea6cab8e02a5cf4c265395",
+      "run_manifest_sha256": "090b201bcd1916f29b74a78b420f8de9b61744f933ac3e8bdad0d263add964ab",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -184,9 +184,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "d6e6b326d4d3e368e22342fa491e4c00f10da0a2212733eae1e62aab0008c413",
-      "report_sha256": "d1c58817f90c77e1fe5bcc63018fe7d0cc6b21cc2268c52584f39a0464b0c5a5",
-      "run_manifest_sha256": "f6d0ddf915633029ae352302be6c37da791dd99e8e374191833624eb345f08e5",
+      "reference_sha256": "614078827ca7f292f983e3959a6420934ef4d930bb43f2d5026ddd42888539fc",
+      "report_sha256": "3cc4616c1925a03210b893ca0a4d50f5f55d6673e42a488fc1e83a6609cf6048",
+      "run_manifest_sha256": "ceb49486072e2406ae382e1c771e0c9ebd5b058b5c4f629dca8a219811c6b9ec",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -208,9 +208,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "b7c025338a0f0ecb395742b78038eb2cb64f34a3f0aeb1f112a276a87d66519c",
-      "report_sha256": "b5a2662372af9e54633ab3ba53433c7f1ebd4b1dcf08ce84bb642de5daf430c8",
-      "run_manifest_sha256": "dedb04fe1c7d9cf366b04738a441b4b6ab1de5e0a5411c1c633b48b294226b19",
+      "reference_sha256": "bd27febaed83b79d85e4235f29212f4fed57dd45aeef2384b926ade450d1e274",
+      "report_sha256": "6ef2405546b61f5dc1f1ff93153325807ce886ce49497d9039a0eed271d63f7b",
+      "run_manifest_sha256": "612cee0acc0a7f3c75a3e14f396fda45dd737110db87db622f8a5bb8340cf3a6",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -232,9 +232,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "e31fd24ec909b99b8a161dd700e6f9d4928f72d2bf130ee0d6f42c989948a101",
-      "report_sha256": "17abf4d84a4e40b1acc907b1bb079110ccb2baf74e4388bd1945a07e071f73fb",
-      "run_manifest_sha256": "9516ee4fd4b6711408cc6f805b231fc04f2b187a47e54c897020bead9427ab10",
+      "reference_sha256": "5fdd7219d2e310f8047b7b6eb00b7c80ccc0bb017c8181a1e60e3b14b6053a16",
+      "report_sha256": "aaa6ce5f02b994d4520c06adf9c86f645fc5857dedab79ad139eca136bf26236",
+      "run_manifest_sha256": "40170406848ebceac65dc6204e446ea2221e12343e1463fd9fe0604914764c58",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -256,9 +256,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "f06935c686917830815ddd08d2f9c840971abdac4f7ca92e45626f886e8699b7",
-      "report_sha256": "fd1e6682a7c7d8c4d7ea71f3893c2bc053456ddaa38e24bbe20f4fe774cae977",
-      "run_manifest_sha256": "f1e3ae95d9184500b7d6cefa08f14f79c1ae380cd126f0dd27548ccacba4f856",
+      "reference_sha256": "22c9a8a310d0cf50507b4552c82ff197095e3cc6c1127d1ebcf80cbbc4d3dbf5",
+      "report_sha256": "279fccb45d515884dc2f901477a00a06a9beb5eb5a735b048145d2ee4635d96d",
+      "run_manifest_sha256": "1a029b7a2fd2d19b97acc4e1ea23f882285ee747f3bf6dea37a52ee4b09d482c",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -280,9 +280,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "837f77d45cb6ebbdb51473bd3e6e1909acecdba52d92770b1756ef746fd130fa",
-      "report_sha256": "9d9ac3bbe31be83ed586f97e79b7b744557ebef5e599b1f35b076fed273d913a",
-      "run_manifest_sha256": "2ca5fe728f1f20e5239edb22d2b894b86d3ede4b489864bfac9f36affac86724",
+      "reference_sha256": "35b9cbd712a814d186dfdd0ee6283460bd85db05627972c922a09425ade36640",
+      "report_sha256": "275edddf7cc00167fefada064b0e5b8501590835fecfedb8cbe6c0aa77293c69",
+      "run_manifest_sha256": "13bcbe86da37c4cce0df49223a5b36583f7c39f37c4a04faafc336b3a59fd4ca",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -304,9 +304,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "28e4f6c87a1ce9f7a729ec2208439d6570bb49afe034c7669a62bb6d04ff4fcc",
-      "report_sha256": "02996d06bd63a9e8fb4ef1a29c0a7e17256fa4bbc1d28a9a34e811b3624f0a0f",
-      "run_manifest_sha256": "5337e3824a9930a3aa0e0fe989c7e1f4653f3d8db7bdd9c7d6b9be17416a1dc4",
+      "reference_sha256": "59301456c0f0e345b5dcd8424d8aea71df11b498a310f6d1dc06857ed714d4fa",
+      "report_sha256": "00d6320c1792d1daccf43842ac4ad800c124cbf7b534fae550e1d31b715acd89",
+      "run_manifest_sha256": "04332b5445f4c7bdcc15c707025d6045058a2431f14eaf34479a2cb52f814c24",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -328,9 +328,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "1f1e930699133ecb279746b2f67ca00eeac9f56a2a0a0ad53574543f701024f7",
-      "report_sha256": "15662cf7275aae9a42cad11bd45b3338b3a6f04c21f2d1818c0f6559d2e1117a",
-      "run_manifest_sha256": "38948e3907b1ceda0d1d7389c81eab0706561e52cc836e2d84b3cf6fbbe8c2d2",
+      "reference_sha256": "3d04a63fd4cabf94881befe67181271f91e405f26e13028345dddcd587737c83",
+      "report_sha256": "2ced97a5ab918e3839aa2404c7e4da5b6ef2e86cca885bfa61077762f78b2e8a",
+      "run_manifest_sha256": "5cdb3bef4b16eed558e4d89103e1a847e350f98d1927bfbb0535813580de78c0",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -352,9 +352,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "cb7212298818cb95c23c737e0e28935ce0e97e680d0572126b39543068079098",
-      "report_sha256": "3f072827447da23ec76720a46622ad41816c52b49c2b5ca928650891065ba452",
-      "run_manifest_sha256": "1b5e59b79d803a5411b1db00b7cdeaa7a9cfc8efeb03fcf65d62f77eaf957822",
+      "reference_sha256": "630bfd79d03582442f8766a5361eab0028f10aac21f775ec84903b86e808b480",
+      "report_sha256": "b304f279d348aa5f060dc9d876aaabbe91e2338df7d1a48e7f22f6c468f4ad21",
+      "run_manifest_sha256": "09aaef6a1a39f13d5635ba34d7e26f33258242094856dd1fc3ef15425df9c59c",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -376,9 +376,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "fa391b3bf628ceadcdf3ae5e9af10a0d2e1a22f7dc7de4a357f3ebe4428159b2",
-      "report_sha256": "7cb90cb7ac25cd810ddd57b2c79747db7e024af3f032230cd5895bbe7dbfab0e",
-      "run_manifest_sha256": "c19625210fba7cec937522ce9f65ab96329e4fe4c8c9a55594e2dd10c67baadc",
+      "reference_sha256": "d24a62f1708831c793a7b6e569c70739a52bb92de29d13c8d6378d50b64fa724",
+      "report_sha256": "f733716be9a4a87fb199cc5b82a426d52759618cc163a505dfb0acde7c6b3456",
+      "run_manifest_sha256": "6c46e958da3a87a38e3f72d6f311f02ec0d73f58c2ce9709b3861a4fc3389b6f",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -400,9 +400,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "cd8cab98d87ac74eff90bb409ddbd4cd1f43ae4596063fa1621165fd97cc9cb6",
-      "report_sha256": "1a3a419868fb8e14519248f0f9e1caca58eb1dbc7ddf289f3745eba8ad925499",
-      "run_manifest_sha256": "e351ade13cb0e8c1cb48bc52923b5c7f13e155483dee867127b0237c81acb62d",
+      "reference_sha256": "08a494446b819b184ceec4d9972610f8a20cdb745b832d265ff92a281e00ccbd",
+      "report_sha256": "f0998585171660180e162329c7a63410dad0f1c4f71e7d2a8e1aa1fdd010c145",
+      "run_manifest_sha256": "f1b782b98428799517beafc11fbc9a247a45ef72674a6d06bed8a7e96d24a758",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -424,9 +424,9 @@
       "intervention": "no-op",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "2071ac813ae9f265816a96e106d1ba05456b7d2b6c9b1d12b8c1889f48364e60",
-      "report_sha256": "4728029bf388fda25526dca4e9879ca994ffde34f78c3543f74c20c45faefc4b",
-      "run_manifest_sha256": "3cb9c5e8aee2192aef26890dc5c356a25351a29c951377fb91577d41849ec50c",
+      "reference_sha256": "faf3aa4d4440d62e20bd3fa75867053b1aa33d7df0f687ade159846fd451bce0",
+      "report_sha256": "8d7df5477383f2d47c7e6d161e40dcb94bd0f0f0f547feeae91b7c294372cf3f",
+      "run_manifest_sha256": "13f155651adf5d1716e21a6c34e9e331723f6f43ce119eec2be23b8aa3ddbd58",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -448,9 +448,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "14752de6a99aba52f1774d28633187a731e936a1ce8ef9869c1752b3660f3544",
-      "report_sha256": "593b6a20764b29c714cc294b2b545ef811a0b9313c5206b3839084c12a638f26",
-      "run_manifest_sha256": "9e1ff30a06b87bc3f663ab2aee42a2ab566e934da70ddadcbcea95f23b4b272c",
+      "reference_sha256": "c216480aafb0fcf7060f4ca3c2490a96e91afbf509bdf3c0cded54a2b4d6464a",
+      "report_sha256": "ffa289a2d389683d1d8964e1dca98c8b4f4d632e0bec08e3510d384d28d141d0",
+      "run_manifest_sha256": "9698a1c4a7cac9eae4918dc8631e397da4bc1d20ea22ed6763f41d932f1f70b4",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -472,9 +472,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "15a7c40d6115c82e626cdb10dff01cfc615c9ea86c5b6076658c507e1d2a2c10",
-      "report_sha256": "8aaf82c45a622964f9cd80462a2e89f2d72c31d5d8f4eaa224777adb3539dd0b",
-      "run_manifest_sha256": "6f855a7b198cb71e4c1b2a2a4457b91c65bf31ac05e134fa94fdc9042116b8ed",
+      "reference_sha256": "dc1ee465cd365df0a90a494531b678e325b9313cd8393f64f0712527c5481af5",
+      "report_sha256": "adde492d38618423bb4ce3be2383883083802e409b66b8086c3b0c904740260d",
+      "run_manifest_sha256": "870adc46296f07fb57d9ca5dab75658395b6f83cc73f3dd58182763363649f49",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -496,9 +496,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "271feaab938edc15887dd082f931e36e67f1f1e12021582c34c79e59abda0566",
-      "report_sha256": "dfe1ca08bfa6e390f9f29e0fb69690d0d12cdfad2948ba8f347fe384f0cbc323",
-      "run_manifest_sha256": "7e4b36ab93e72413ffe53eef841c9798e124cac0df0e630fab9640d3ba3c0281",
+      "reference_sha256": "1996cf7726c2a395dcac29717329558e0e8884a280b07b59b8ec314ace990a3a",
+      "report_sha256": "65b104121cb4140b7adf4f8ca3e0206a7cf70d651671bd5cdf85ed376a1aed0c",
+      "run_manifest_sha256": "1631f50188d55238fe9d31b75d58c2633a5dcd6c70904fa049a331652c6788b0",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -520,9 +520,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "d3ff90f9baa27c62d4be97dfb4af9e8ef13434a09c2afeef6ef1f83fc6ac4659",
-      "report_sha256": "0938d16bc70f93c6f9364b8c7ba27a987d6c2daf9ac2ac30b9b9904d5b167c51",
-      "run_manifest_sha256": "d3631ab563740340b46a1c7d6fabed0db1f0616f45da1071e1bef583b302eaa8",
+      "reference_sha256": "8ea30b1532dd8fbd9f364368e514de72b082d3deb81f302ee48cece23b613c50",
+      "report_sha256": "e06da3596e6142cf335c237ffd40828c6b84169c47f3ff89000861a561fa68d0",
+      "run_manifest_sha256": "3b15a7293c1d6ee62e9c5f202d3e7811ea08bd4744772c6459e299d8d7b734ec",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -544,9 +544,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "ebb13a3fd98eca5bbf3d48fbe205fddf22b5ae374df06554a651611a552942f5",
-      "report_sha256": "1b0ebe18c1dea338001a35746220a3e278b5d736a83eb2919a259d0d093dfbde",
-      "run_manifest_sha256": "6e744aebfe95c52cde22a83c0901e653f784bc8d0fa3b05fd199e4418a12896c",
+      "reference_sha256": "8f18a8916642b77c49ecca0e5c3a2c7071a0e9e45e5574a1884a33b29ed8c575",
+      "report_sha256": "b5bdff02f9fb627e0814d65ca7a4ab33f80dcd387938d199a2a8e0f90cdf11d0",
+      "run_manifest_sha256": "0a3a78bed53b3a6542a1c817fce174435fdbd5c3d5bf429ccba157a6e6dd1e63",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -568,9 +568,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "752b78f359e921f87108acd33171cdcf11af7ec55edf17b49db8c09b49588159",
-      "report_sha256": "298f9d6f2297dbfb89a0c02cfa8b32448841facfbf5b04f1a9bf4080a56b5a65",
-      "run_manifest_sha256": "4a9344411e3672c8fe1cc5529dfb5b4ee446eb7bac6923b3a40f098d193413e0",
+      "reference_sha256": "f9a16945351c5dfd4fd27c32d6865f0774312f5a2af246113bb9d86dd579e463",
+      "report_sha256": "f64c5bc88b6a4fb4fd3725de94435bf5a006aa1913b5002c990536b075e54fd3",
+      "run_manifest_sha256": "08a1cb55514077f21741dbe836c6553e5398d245a258c954a2423a847fad8154",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -592,9 +592,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "290ec942cf2c678e8080d486b3ed94f1c688fee04927beeb397f2cc85b9d470c",
-      "report_sha256": "b2a0bf6efae9c2f09199a4aeaaf8a20fdff696403f4eb98dac6bfaac669bb7a6",
-      "run_manifest_sha256": "59bc8652dd1caa610f26c26ccfc7a34991fb41dc5b780dbccc38d87ffa41fb30",
+      "reference_sha256": "981b3de594aa934cf416567bc6881688b2fb32edbc0ea1a098b434bc834fd570",
+      "report_sha256": "b9a4634a8f63eed11811ebe0347a626bdc47352b308aa9e7c6ab7a1c754d7449",
+      "run_manifest_sha256": "ca9bacf58bf7caa25311f5b8af2e52f0ab7a87aece91c4d536fe6156f91312a8",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -616,9 +616,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "7b4edb2e0b88c898046aa700eebcfdabdf3dd4cbc7591640ec16e9b5d18c4905",
-      "report_sha256": "9f30055daa0e4adf34b60f232f3e3e9c304efdeeb7272c05755c41cd6d43cc31",
-      "run_manifest_sha256": "084c9b3cbfe1b2dc434c880abb3d584fab909fb4a6f4687999c00ced3cf1f745",
+      "reference_sha256": "1ff45772a65873d63c946dd63dc451959f6290d9bbce84559bb8d01b3322d076",
+      "report_sha256": "7fc0a059764ef1e7912f70a1b3f48eceb4e76f812578519e44e96aac7daed982",
+      "run_manifest_sha256": "f51759c46e6fc6150b600cbdb30bc4f05ca0d5055c02f3884b1b7e5f60594299",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -640,9 +640,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "05b1df101eb3a0dabe993cf7c19dba2a41ccac367300d10e02ebe5e96df4bdbb",
-      "report_sha256": "0a80166b85b5a7fcf6c630a25475e4d31921cab39186dbb9007ac2ea5126a459",
-      "run_manifest_sha256": "200c5560f29b62f874f07fe73f35c19088868dc0bed213983c13465fca321c47",
+      "reference_sha256": "e0ee4e74dc044d713c8fccfc35a146d8f3ce1a468caa00ebc514a3b2b0fe4005",
+      "report_sha256": "6c5ca5404727b5800e6858295bea603808fc63bc4ebcb8005680e91db8cca02f",
+      "run_manifest_sha256": "17c1c5ee88ec8fbe952863d9fb7d2febe0fb6e7465d82bba28a65bc8408ac197",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -664,9 +664,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "4e6212106afa5e47cbe3d8b565606ce194b687707e00a78cbd92572ad747ea8e",
-      "report_sha256": "b71f243abe48831b7f33ae66a26ffe67ce8f3010a5f516da2d656ffc4034b6bc",
-      "run_manifest_sha256": "f7c438fef10e6b03420669e353e2e72c75568576c2eeefeb14595bc1e025bae4",
+      "reference_sha256": "944e8413ddaa5596ef964f08c23720c87837f4971001ff6fff462200cd0dbd96",
+      "report_sha256": "cb2e5e72748f66a8c058d7216f13877368c019c0fcf3215e2e6dbb07ddce7e9b",
+      "run_manifest_sha256": "8bde0960e1c0ccead78085a12102a2bf749efde77803b5141e6b2e29e1f177a8",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -688,9 +688,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "ce7cb1d9aee8033c0359e0d8a4e970e3572dc52db89a3643da1f7525a99f2b9e",
-      "report_sha256": "35a2b0eabe1d556109b73ea9a4cd05f162948f2b0a2e6b7da2658a8073585a7c",
-      "run_manifest_sha256": "cd02b9a2a397a50867669805e7b4a3a5524dbea44688e23d808f2eca01f02044",
+      "reference_sha256": "7811230936ec153438bd20507cc63e349f0c5a12529ff13c85a8f1ce17a1bf22",
+      "report_sha256": "3cdb61b13fbda36745068a9c591154e2fa6ddbeb7ef90368d59e9c232c3d1cfc",
+      "run_manifest_sha256": "d98ec8387889ec8a69f19019feebe207b4a16d57f5b220f73040ad1e1696d80e",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -712,9 +712,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "5e25328afd95749c66f5c15f0eaf683c96fbb4855a4e6179f8e558c2cafc591d",
-      "report_sha256": "120f16acbc2a09f46b642179720cc9c68949173c21224f1d17f04cc501d8e029",
-      "run_manifest_sha256": "3bbc6abec72832a081b8b20baebca5e11d0019185690702f3e20bf199d57cdbb",
+      "reference_sha256": "7587795a316441ca1acffe6f90ce068a62209a438ee8235b6e6482b2f8e9067e",
+      "report_sha256": "1377b13d47a295293515d0c2f4908dc5fbdbd9b7ea17f52315305839a6f461ad",
+      "run_manifest_sha256": "e769447db553996c7017b971eaec07f89ebf7d5b3531d313e95bf55202480772",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -736,9 +736,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "11ddf9bcec817e15329dca38299c737dcd25e9261ee0dfcd62ebe0651f5c02e0",
-      "report_sha256": "074f68212cf21d61838eabeabb5429ae70feb12b3937bf8491a405f512ddb21d",
-      "run_manifest_sha256": "d5ed4a27f2cc4e032ba736ff687c2d056e58efb603996f7c394c634ddafe7705",
+      "reference_sha256": "e9c72dfd1a4535d631670138046be8f4f222ba83856e658cc44fe11dd677bcab",
+      "report_sha256": "03a338abd0943d260daf992daa499d9cd16ed9c794d83dd91b368ae47bca0a5c",
+      "run_manifest_sha256": "73c1a82444cba3a31ab3029cf32156495a50f8890926861f128b11f8634a0bf1",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -760,9 +760,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "68519a5f61ae3e91197c84371e5ac848537beb74f6c42049170da19c04e0b41a",
-      "report_sha256": "8ade810a704c7053e112f475a8319a445ae8de4a24480439111ba1cb96b2dc31",
-      "run_manifest_sha256": "78bc6867418edc4da7a3c00d59c1700e78d9f57ae2e3173018bbf4c2e51a33cd",
+      "reference_sha256": "860a4e48c50bc15f00e24f73ed24addde27ef5e2b4102f9080dc3242468762f2",
+      "report_sha256": "97d2680ef19fcee2ceb1696e2d98e6427beb5c639585d5b0b42dff2406e71d8d",
+      "run_manifest_sha256": "bb6630057b0041c3724a897ff8bfafac41605d302bdda5c5ba89ebfa248d3720",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -784,9 +784,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "02d0ce1d8b73dbd484d0baa38acdda4f3ca613cec9021c2df4b48dba2f78d929",
-      "report_sha256": "704100f9af279f7dbb92f4b622e952a901bd6a3bd893ca1fa387778be0bb08a8",
-      "run_manifest_sha256": "f5a3c1ca0f01984673ef5d449046bd93d0a8d213edcbe26a1f5da125df1c8bd1",
+      "reference_sha256": "ca262cc076b1a657264bcd13d03709e657112fd796d18e5723e3d288477e51de",
+      "report_sha256": "fdfa9713f2327f17433335c74e436f8c3d669d30c556a6ee3ba36331d8d557c3",
+      "run_manifest_sha256": "b125c8989e42a03e1568e88e6bcc5d0c82bf07c6d3ae3149968330b26aed4757",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -808,9 +808,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "3fbbc8f83d9eb5f1b6710ad44a1b3b66844440b69e0b6c3f1591904d17e00f2c",
-      "report_sha256": "a16e0facfc962d3c5265787af24e0f358d39095cdbcad249256cf0475b6b4f13",
-      "run_manifest_sha256": "ff264f1129b235d2b0cc2a02438b9d38f47ec3f70f100f62ac2187deb8fdc1e0",
+      "reference_sha256": "e86efde3d905c127c15ce798a4043dc09bb3c5f48a285e914cfb124524f66415",
+      "report_sha256": "16edc63ec3d80f424378faf99c302143921c88b8c75cf9e17a6f97148540ee4c",
+      "run_manifest_sha256": "eadf607c9c8600ca9784b1806041558c1b90a6de909017f809c4c1f3665af308",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -832,9 +832,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "133d9f728d2c98a28df1829762155bee30ded9116fa90343569f7bb94aa2dff3",
-      "report_sha256": "2bea0c439750b583d1edf066063e078e66655dc8dadb7f01851c68190f543ad4",
-      "run_manifest_sha256": "148e702ce8b8c99c4c62909689ba23ee822f1ffa713f0227d9fb10b70e23b67a",
+      "reference_sha256": "356fd3a2a65851fd542f9d0d95df3c1c7c4afd76abb32ec375fa41b4f065da48",
+      "report_sha256": "3a786f35beca9a735618a7517835c680a8626e8d642049f4531f5ba436db0ff8",
+      "run_manifest_sha256": "51f83f5c781fe2647001afa1271ce67234047e376e526f6d15f51ffdec2fe6a3",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -856,9 +856,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "d412e3be31fff4d3faddec3bb8393df8be24ae3c68e5f15a85dce73472f97d2a",
-      "report_sha256": "56dbb3800bb503f0074b79bcf62fbbdcbde16c47133806d558f4044a0e857759",
-      "run_manifest_sha256": "32467f8225db768104ba0b9f6d9f6506d5ab3dc9e49530d4df0debfb2075010a",
+      "reference_sha256": "e7b56936c63003a7eb156f222bf9325197b15d8a6be57a42d40b30d0f1e98262",
+      "report_sha256": "c3be31c2c6eff42e27411be2da4e51f2c5f90d0891c184d87aa45947aeb368f8",
+      "run_manifest_sha256": "14dbc1a166fd09c4275bb548ea58a73a322b65f06767b76abd0242a4bff0d5a2",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -880,9 +880,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "9878bc98f66d9f5f9e13c3c2fdf41512ad236431e6610375c31ec11adc1b33ec",
-      "report_sha256": "25433aa7aeb25ed722d9aa6237ba9313ebd379894629614b1ecae231e7664a61",
-      "run_manifest_sha256": "c67ac6c56d5df56c7b124d09eb269e5accdcc676de565052fa20eef28c251489",
+      "reference_sha256": "39e643f4584f298e5c57a77b0303a426de8caa9ad60aed87acf82d9c37d9d127",
+      "report_sha256": "dd83f9aeb738d8f769be19d86bb785eb72f4c8824331e767647ea53fd46c3d01",
+      "run_manifest_sha256": "c1f29bfb0a245c5825426f4d447536b450f1ba94312c3bc0711e7cafeab483c8",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -904,9 +904,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "8bae9c018c3e5e17eee61ce2b4861d87d5f26cd7acb1ac973ccae7670eebe4d6",
-      "report_sha256": "f507af156877322ce4d1db3237a7d2dc551bc5d2919676bcdc601acc0e522ba9",
-      "run_manifest_sha256": "8c6c5905264b380905aa2ce919126b0fe1b47e5c6e67ec4d3857e98dd6421ec1",
+      "reference_sha256": "a20a42b2f90c09cba064838bf65ca74e38af6d2371219df1b54eda240e634f7c",
+      "report_sha256": "ffbffe24e9e63a617be63847af79cc37d3cf7041bd4e9ac1bfe33f19a74cdcd3",
+      "run_manifest_sha256": "c48121670265d12575f8a8bcc19267482db40180488fb30b35abfa6b4e025e0f",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -928,9 +928,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "3b6e4089811ab205507707433c0d95c55972510dc6f4b9c31f8ebef14fae81ad",
-      "report_sha256": "a0b58a47fa403ec2b9de30207a947576d576d0a74a6b482c6fb026405fd2fe0d",
-      "run_manifest_sha256": "3536e4b4babe9e4f3446ad10b8d20e34f53fc49fa1117fa11ea309461640f8cd",
+      "reference_sha256": "9576e571e58c4a52c7f7d3a954d87b0f7922e5d1c771f52e5ab0f30c4bf59f41",
+      "report_sha256": "aaed8b6bb754bf847bcf0766d36c2df28b99186bfeb95e7d88bf1c008c2afaa8",
+      "run_manifest_sha256": "301c6cd3c50ed6d2d32a6bab82d848320cb9cab5f1f50035efcdb0dc3783558f",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -952,9 +952,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "b66271c4d0af05ec588720d471599c4658a14ab140a3bf32d292fc0e518feacc",
-      "report_sha256": "dd4b7c9593c9186fc29e4820beefba63fe9f5e3b87ef118f8797285a30450eb1",
-      "run_manifest_sha256": "15e938135ede9e188ea72581282f917b748071ab1f3ece87b7abe0d605489444",
+      "reference_sha256": "c33fcc2707b744d81fade3495da6c06f16c4e6efbe2726e1b2149ecd9525f768",
+      "report_sha256": "bb5d7ccfcdcc70fee62f914749690ee79db226a688a7d97272f0a6eeb2a86f9c",
+      "run_manifest_sha256": "2549737d47268d13449453bf8ca1c91517ac1353ca76e2c4fa60b34df8c477c6",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -976,9 +976,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "95c6e2a6d4664d32a11d18e187ed72e9644019538bada04ba5289507653a70f7",
-      "report_sha256": "dac417fea91a00fbe4fffaa174763dbbb3d573f4ade375c7e5770e21e91030b5",
-      "run_manifest_sha256": "d78306456ca2a9201fafe80c7e4a680ccfe6086bdec93f302e8d369cfdd4a2f8",
+      "reference_sha256": "de3ef831ca3b7641860b57bc6f7963357f6b1774e57335c5c4a5dce0c24409f1",
+      "report_sha256": "85ef362761d2127a7c55fcbd63be8e69da35e88a195be5f87c70638bee354646",
+      "run_manifest_sha256": "bca88b95113014d65b0e0d6c2cf13852fec35fdb908b35bc31c658e9104e2cc4",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1000,9 +1000,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "2ebb23c05e86455c2e00ad9e89ada1d2adfc7e1089177b50de6393c2d59a1620",
-      "report_sha256": "d3a74d01d889c20179fd69422c525c20e10af4027af3419a02b0283bc5831844",
-      "run_manifest_sha256": "e2e990a6237a8c1b34fddf77f277469ceb99c4344f38cb2ae52b1405e4c18bc2",
+      "reference_sha256": "d9c220a5ede7b4d6f6567b40dfa33960cd6d76e2b7bcff6ecd330db4bf657ec3",
+      "report_sha256": "9df5795867a6e552556e16f84ef293904dc55a5ec90f99b810434fde5b27f63d",
+      "run_manifest_sha256": "aefc58061bb6fbc8aa85c98183a2310df548d3759eddfd84f97c31f991521205",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1024,9 +1024,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "f9baed8835374fbfb825c16764094a7919594d145a17b3807a117bde5cfe96e3",
-      "report_sha256": "5a123e2125e1fb1785533c51d4e254506ff7628a91ab269d994dff839562c08a",
-      "run_manifest_sha256": "962e1d7a00ec7ee7802d2c6b339628f976394001231e32c0dc8fd97f72041308",
+      "reference_sha256": "e8abe9d629605a05293ababc5719dfd11afa61ba7af12bda021a8ace77a38aa1",
+      "report_sha256": "5c6127d25133a1c68cc02bc1455efca76607cf0e90f156137fa810a3ae9055f9",
+      "run_manifest_sha256": "65379d1563c743555898529e6a618a3416540f92de815e099a2f5ec5d2912f5a",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1048,9 +1048,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "4cad2bfc7e5f359c1de64204407754da61daae7f89c7bc6d420e5463ccf5cb15",
-      "report_sha256": "1ee4091f10edb1cb3a0b92244a5b2fb4851f4987d17e8850708b170091c6d903",
-      "run_manifest_sha256": "ea96cebcb88726bf86a1794179b89be35d8dfc3dcb57b6fc39c576f93848cab0",
+      "reference_sha256": "b8e41056cef32dfd1c0d139c17194bf6689c8abff766de55e6d576c42b916118",
+      "report_sha256": "5b627e855da8cbaaadb4abd1a61e12d71154f2a667288fe2376a96618c664e13",
+      "run_manifest_sha256": "bdcac134846e1dc01eed77bd5af024e117d97117a7f83e7765b327963321a3e7",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1072,9 +1072,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "938dec4dbffecdf43ddaf610a363b976ce1efcae7ab940668890a0766acffd10",
-      "report_sha256": "7e3aa62e70251f3916e155c8bec811c66064790033e7a02140f5620920ea878c",
-      "run_manifest_sha256": "c0ca430a5f284157f3a62bedd43d639b30da9047d1279a5b1a3f17d95dce4e0a",
+      "reference_sha256": "a46a6e76667d7703354a20c5849b85f5b4672e63172d1626ebe2ba07d1720c47",
+      "report_sha256": "f1837db1f655e85553e9c93c5e13b50259fb465516dd4ccdcbef79fb8cd9462b",
+      "run_manifest_sha256": "55d786f9ac9c723d69f67ac131f55dcb75865ced83c230a667c8c4a85845b55f",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1096,9 +1096,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "a1d4fd8c58c6386058120231aa63aee76cb4c20a5e716b7d0182bd605ebd8fc8",
-      "report_sha256": "57d7e22bcb5b7e41d16fd05d27ebc1fac609b05db0f171e62d0b0ea052a6f9d3",
-      "run_manifest_sha256": "fa0be5fa4453f820459091f394fda13cb868c1992300acd096aa599f676e01fd",
+      "reference_sha256": "e87bbb111c3171ae6993a492765a1922787c3736c323fd7d64efd8060632e4b6",
+      "report_sha256": "28ceaee3af40bb10b94398252a2bac4b1f6312f945dbe5ecb1b7763167e5fb05",
+      "run_manifest_sha256": "4f821b680556cb79c1c0b24e0d85e46dd17c71373e7a547a36b6a946e6328015",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1120,9 +1120,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "2d7a978926f197d60f43bdeeb361161780f94c3aec600341817f954b2d5daad4",
-      "report_sha256": "8f75e003d151ca1c52a334b33d99af616a63dbd387f16562d4c104489728fff1",
-      "run_manifest_sha256": "d134f857ebe1b0d5c2089c66cc1548194503659cc09f692ee359880914f102db",
+      "reference_sha256": "aa234e7c22813d3b19795a149980b146a2bd34013b4cb2883f59fde3a3e799db",
+      "report_sha256": "086f2db5fd487f3474dda454ccf508cabfbcaeaa5b1c1b38feaadfe48f827219",
+      "run_manifest_sha256": "90c651e723f0f5b61a4f24af2e6895614fbc7c338a00f1b59bbb77f1723b1d95",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1144,9 +1144,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "852ab5b25afd318b4a360541597342e584500d6c48c129cd102795e3ac71f455",
-      "report_sha256": "0ff7d250bc94c56953f4924591a884dad4f582b07abb364f454187f2f298cc7c",
-      "run_manifest_sha256": "7763a379eb404d7ead864e7ee4444a8292f9caf2f411e4ee71b8258934e9f97a",
+      "reference_sha256": "1cecb7f575812bc93b8b3a8e235794141dab3324f382a3ea795ecd27d40e9d2d",
+      "report_sha256": "e827bd620a1362d325f7ec0085a9a8693d6f4d16db71c3e76479ce49047ff4f7",
+      "run_manifest_sha256": "30dfb52bffe8a50aaeca523adab83e2cbb3006257b83fa35d7fc95f7d4205df4",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1168,9 +1168,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "71eabee43ad4cc215dcb8d683cecc4654240cfbb6fa81f04797ed94bdd5ab628",
-      "report_sha256": "feb81d81792efa22d41af5dd912dbb2fb1e2b912ec6cf8c4c122a25c2bd2a5b3",
-      "run_manifest_sha256": "ad7e9957a3c00342c7a0c60988ba07dc95c043514ea280bffc1363a2ece015ad",
+      "reference_sha256": "fd8b2203cdef7cbf0b34e952488294c18acdb64168e608fe306c0ee36a448158",
+      "report_sha256": "f00a097d37c6ebca6b936887356ed290ddc89d693949d6833230cba14a88a004",
+      "run_manifest_sha256": "a94be1641f3a3c61b3136cf0fec2d2bdc50ad7d16b5cf872822e67d6fddac398",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1192,9 +1192,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "0dd22211f21565c706e8ff511c8d5d9c398ca1f9bff4a3b24e8ce24970621693",
-      "report_sha256": "49f66e8211d38678ff4b6fef1ae3f29f6c3deb98d0a4c7f5af09a88a13f80044",
-      "run_manifest_sha256": "75f059b97d283d64f63de330509eb4d6eb5f53bc7344c56c9fbb2d065cf12ace",
+      "reference_sha256": "775d645a27ea9e4fcfbb7b469f018adfc402399fec83f1f96056ed4947edd894",
+      "report_sha256": "07feb36254392b718b5cb8e7b3a8adff955b90b61485d7472ca257179c330482",
+      "run_manifest_sha256": "15a90c5a2dbc46ff3c211cf1b0c2a74bbbf92a8f2cac6269e09c2494a300d812",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1216,9 +1216,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "7678e19b215cac9ec7e1b64e190604eb516384460317ed481db8fc8c86b9e8eb",
-      "report_sha256": "90b350449340caeaa91d100ad9747ab96265e60c65b1bb861f1feab83aba10cd",
-      "run_manifest_sha256": "b0cfa7996783af6a2676910158bc9be05d5dd2493e03085391557cce02b7cdad",
+      "reference_sha256": "7c4cbe47af04810d13e560bec323fc4068b17901a099be5cd3dd0b2db064ef00",
+      "report_sha256": "bd6a3bd53e9c5a08ea0094320bfae1af41c4659ede0ce1ecfedac4e111371489",
+      "run_manifest_sha256": "d2ec715d1eff0b74f19e7be4c4475eac67aacf85ae8d908d2ed50a0ea17a4d17",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1240,9 +1240,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "354f03385b1a90eb5e4c4ba098e3bfe8e90d80f2dd9c9f128cce774721ac95b6",
-      "report_sha256": "b2139dfd6622f535b9c131e593352125354081d36ffa05fa5e5ab7d6dd03be98",
-      "run_manifest_sha256": "ccb74fa2f7566f9dc461f18e06bc939e36f666856deb3767c343bc6a8bc4f250",
+      "reference_sha256": "a6cff905e5836c1446544e9a71cf2292a2e70957937b157ce6b630b01c223872",
+      "report_sha256": "a5857613e84845157412f7d6c14d6096160306e6f70ace3aac713d79db9cf603",
+      "run_manifest_sha256": "c320b5c50568fab8a14e5268d36cdc96fc28c74d5db7c23dc0c55cec97890cdc",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1264,9 +1264,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "49609177ad16867fd8575e4ccf0fe7e2be9ab24c1f18234252a0cdbfb725feb8",
-      "report_sha256": "1cd808d2f5ebb19ce37867b66c2c6808889dcf885fe6988f6e323da408d6d657",
-      "run_manifest_sha256": "9c8a3c6b340275f66e4af17c82b39156097d21abbfe91049928dcacb8da75fb2",
+      "reference_sha256": "17a7e31ae079ff859a3f9354a2e601ec00ff3ccbdfe58d899f6db0c856fb6089",
+      "report_sha256": "dfa514c7b4aa80ca5d7688629ccc801bb745d690b3f6e907be3da9943034ea19",
+      "run_manifest_sha256": "dc0465ddf5c082c38dbf00d8255b64ea50843ac87311a6dfbb4a04705eb95628",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1288,9 +1288,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "fdb69815275d5a52005380213c02db9bd5540825f71fc364e1faa716e1ae1f87",
-      "report_sha256": "d148f0d0c914c2e3acd6e24672e3ba030de030572b876e5a1a9e91b4031ba1e2",
-      "run_manifest_sha256": "c096c857c7c12d43b9129cd14fc3ced30ce45bfd90f374a886d75b84c23ab040",
+      "reference_sha256": "b6296ee5ae344f0b0a826d2d7f54fc0ab74637bb88cc99246b014748a5f6ecbb",
+      "report_sha256": "2e7e3fb47d1e0e5f59dd56f671604e3d8a227e3c491619cf2c1c270d65553176",
+      "run_manifest_sha256": "7ec2e1f4369c3f33baad484de39f0872bff0afc283dfc8ab8f168aa10e5cff6a",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1312,9 +1312,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "49a36e892fffd615121106d5a062fa760321790f5f8c621a9dc91f31303509dd",
-      "report_sha256": "d93ce1d154e1adf93f1d465e68a5935fab5712107270e1495e43d6d02c41e13c",
-      "run_manifest_sha256": "a748ed67495d5324f7ee0bfe6563485bfd3a129bb14cf644ba3de8fac28cd9e3",
+      "reference_sha256": "f1c55abe74a1fd3f5254d14dba54f9b26fe89f04bf0a95ec3133594cb8b7fe99",
+      "report_sha256": "109b1e3080a9cd24c10df19965cf012273dcab7c61f81b1eca7cd79d36c2091d",
+      "run_manifest_sha256": "715cc12395b0ca48fddbf649e6214ffffe65fdcaf6a5abf51a585ee89bb57b25",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1336,9 +1336,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "eb8a273f06ce1e5a47ade7c96f3825d332bc43a6f2fba30e31727d1febbc8b88",
-      "report_sha256": "db5386cd69097439d883d31a89ab27727910e3b86685a8d8429b4ec4ac7fd25b",
-      "run_manifest_sha256": "f13612c22d247cddea945607198d195992f00a6aa76b0a2172d159a18de4982f",
+      "reference_sha256": "5743d66b1f90932f780ee9c4261140d0fc0963980811c0223ea095d349b04a52",
+      "report_sha256": "9c47cb607ba6352f8652eb72a630a603af7dc1a56de8e39c3e6164042e292c1f",
+      "run_manifest_sha256": "2cb9d8115eb32d24ff2e0503339d731df59f3c4457feca9d8fa57a2c3987aa9b",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1360,9 +1360,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "41d0260212f807e926b30c617d21574485a6faef1973e8fa0a243170da61a1f0",
-      "report_sha256": "fcd2009e2ec94ec20058b64cf45f6efe489bcbc002d65bd01887c6823b2c8e68",
-      "run_manifest_sha256": "6894c1921b3bf172ec9848c341eb87d0bdd7a5bb35fe441aa0586eb23aad29cb",
+      "reference_sha256": "bdebb644c4b1dad0d2636101d5891f79282f2198ce40c9cec00162c64f6ba6bb",
+      "report_sha256": "8d2400f5b31f620fa0c95b48aedc74b953e54d05e7dccb731af331a6e6adcd50",
+      "run_manifest_sha256": "e33bf2309c6803bb1f6d14e21e2e204503c0492f8eb3093a9a4a7072ef8db628",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1384,9 +1384,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "6c25e9c147dd573a7a7e1ac10d319eefd0f960b5fd867c9b12acfc5694cb17e6",
-      "report_sha256": "2ab279b7269585b12fd036e33cff780e6e7cc27a1932ad26222dae25ba669247",
-      "run_manifest_sha256": "ab6e099132e03b84fb316283c942d7fcc24f1772e7293222dde84aabfa2cc847",
+      "reference_sha256": "aa155759d5cc8616c8dfab3a47f5c12f62709655f99c22b3af2111b65544c0eb",
+      "report_sha256": "d81fcb0fe4fa423aabaaf9ea69119bea98d30cd9577594045fa1ccf82fa2ea00",
+      "run_manifest_sha256": "ebf8917b0079b958f3cb89bb9044530d73706c05b8ca2fd8674731a42e83478e",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1408,9 +1408,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "205d6256d201765aa9cd830c73f5aeec6711cdc8f471f18daf0100b16c399b36",
-      "report_sha256": "9fcb5c7d375e819cff28ece7eb61bdbbf2f889c394239ba994d4ed735e34ba90",
-      "run_manifest_sha256": "ef422f7db27db279b45bf240193ad37ec01415ce14d61e39ad3a1d58ad514852",
+      "reference_sha256": "ad93bf2eb9f538e6b7c792c93cf523593f3c73e576cb047dc695a3afdd781251",
+      "report_sha256": "2114abde85b161d112b4917d9d15267ffcf3e5366df55b39741a1e7a7ee5130f",
+      "run_manifest_sha256": "31e8465cb3fc47232785c01f694c4b4af9534d83b862748d938af08e1d3afd80",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1432,9 +1432,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "2d42745b3da5c2e919bc73bb935ccfba943ab8320bd1196d0bc77c4474a0be09",
-      "report_sha256": "6ac6d73e4055d491446d5565badf263dc24e43298a5c19b389e4745a9b2f34c9",
-      "run_manifest_sha256": "530aa2bb0a52d2d5b3e28679a8a9d974a608c501cf467337a58756f6f8f1ee70",
+      "reference_sha256": "0ed12c85944eb282873f2ea7d14e523e05824ae6aac6c4079afea962af4301c7",
+      "report_sha256": "c59326944636ecae7319102684459618c7f5d4617fd800630956f64a806f2163",
+      "run_manifest_sha256": "85a8b5248225408bdb9c0334fe776c764daa89cdc99200a4a6e4ebd4ec41fe16",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1456,9 +1456,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "252389403a6fafac8f44f7b38b54b5503746048c2a29c3233558ec1a5b66ec7d",
-      "report_sha256": "f17619849864379258efefed989b1a7a05ba9e73c3159648f4db9a3e73ab5c1b",
-      "run_manifest_sha256": "5df7952ca46a2e7fd034e57d915ffaac464d3e1202f4f81fc61142714fc77784",
+      "reference_sha256": "38d4e31ceb8e98988a9bd64c527a7e137796f391b292d3bb9310ea592175de9b",
+      "report_sha256": "cd0a4ea299f8d2ba03398f42e535d73f07bad13faa7691ae033974cd125a2934",
+      "run_manifest_sha256": "43b992ab0625c8333c0f8b897d1484416741215ee0a81048442b9209108df25f",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1480,9 +1480,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "c074af8236a8655008b04c665a8bdc9101a06ee0b304bed097cb9eadb60984ee",
-      "report_sha256": "fcf45eb9ac8aac89ccbff716981375af545da1adb98cd44b66facba7a0d067b3",
-      "run_manifest_sha256": "727441ab339797619083a0fc2cab4e534acd63173bc5d40760a657a1aaafda1b",
+      "reference_sha256": "2fc40b4a2dd977e554cf6a693aec4d0fed6a0aeac90c40434925670f5e9b1ee2",
+      "report_sha256": "cdf9c523c8f813916526c5250967c5745dd5749d37d40231b31f715ca8d0c622",
+      "run_manifest_sha256": "be964f2546056a780d7ec0164081a4c33945a6f3d0ecc3c81296ba9ee3f681fb",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1504,9 +1504,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "24c4be736f4febee60d2d8d5aa3251831936ff330fec8cbf83c96e25c7d86f9e",
-      "report_sha256": "6be9e12760b5513d2b3f33f7a014fb09db4acccac4a8cec8c6f587c68413e0b8",
-      "run_manifest_sha256": "43b4ec1f9a26369f3836824f91f08c918420dbc4b40e43c54c804649c3eda464",
+      "reference_sha256": "5ffe8cffd52204683528339da3b03d522e1cd3f139df008b01976c62dc68aa64",
+      "report_sha256": "c694d7cb768772c404b1dc0e19ca44f3c85b1723426f5354ede21304108c152b",
+      "run_manifest_sha256": "c780dedb75df261dd1b74adc707b54be3682f4212d8595ecafa197fb88656b25",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1528,9 +1528,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "427578b2ecd723df59aead5a496a3710addcc0fe4e4fb8b48eaf2a3c5abd59e4",
-      "report_sha256": "6b1a3f79afe6ac6d845c6bcc9caed1718e060c9fa69f65dd77980d4a8278bc4f",
-      "run_manifest_sha256": "fe460faf9bf0238e58f5efa6b7303f1fd889c29b9a070d6f461564dcca7ca0a3",
+      "reference_sha256": "4a644e7073ee1c4e6c1c21e60b5e2b4a986cbad288236797b575d0931faf34f3",
+      "report_sha256": "c0698661ff114d46739ff007a47bf0d69e800cc0cabd24b7420e4e7510fce6d9",
+      "run_manifest_sha256": "7590c6fbfd3395953e7716a713362fdc75bdd055208219ab0b9fe23a481989d8",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1552,9 +1552,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "0a48090204b2e794796efe921e21be96f52f059c5783db9306a007ae049812c9",
-      "report_sha256": "f28b2da8a48e7733676e8646161251f449c7be9c8ca065770e9bedf1dde1cad2",
-      "run_manifest_sha256": "517a94714a1ec77f419887cdac494c6f7525655672f1ef2584c1eefe9eba1424",
+      "reference_sha256": "050eda46e837214422708c2ab5006ba5fca0c955735f00d242f3023acd4aa055",
+      "report_sha256": "9edd2dbb60652e0e912820d5311a179059c7b14724a3fc1140bfccbcc04630d3",
+      "run_manifest_sha256": "99f6d732998e0f751448436377bcdb25e05310087e6074cc37d9a846ba7e3947",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1576,9 +1576,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "a302476fecb57cc21185974cdba8796d2fe5b58b6f6b315647afd651b2285366",
-      "report_sha256": "d3f92e3a750fb068b8c55c4de0db37ed1ef4aaf9a4d8dd476852caa3c3add805",
-      "run_manifest_sha256": "41db9d7163a2e9ddcc1071619751df6ac0590dd71d56c8d1ae371fffd77fb9b2",
+      "reference_sha256": "920ee5f0cd6a22b1805d704d553082526e1abda54eb24aad93936304e81c326b",
+      "report_sha256": "1f6c2631742c7216a3631ebfa46c8a7bb8b31082c7e17726e02049ae01278056",
+      "run_manifest_sha256": "341258d44668fe85209e1b6d46d92972bb6017f1770a423085ac48fa2738b1b8",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1600,9 +1600,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "8e29a4c68db7d8c5fb1d22c010aa251df943d553886b466549cf2ef6f2ead2e3",
-      "report_sha256": "5d0d506d94bbee0313ab784f2fb5eef24f6bfeb42a2fc549e282e9d9232df88d",
-      "run_manifest_sha256": "284b2d0d477012f68e3d39e46406ef072a4ac40e3064021a8ff6af9dbdb89308",
+      "reference_sha256": "1ccdb843800f4daba77879fa3e10b3f793376f71bb49292f92028e982b287773",
+      "report_sha256": "e622edd0fbad27fa6ce041f041aaeefffcc23dc10d0e252adc4fea50542c85fd",
+      "run_manifest_sha256": "bcdab7932484245a68b8b8f1dd402b0c823bfb568a5db9b3f8cf90f6f298678a",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1624,9 +1624,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "113891212c4d06b0e9f48bf668cd8304bf43846cd203d514807ed5e235f691fc",
-      "report_sha256": "5c187f4eca0fd3574a38e91ea364c9620fc43b43a22353abe1a97270c1e98b44",
-      "run_manifest_sha256": "c4398ab401c95e15501d3b2fbc463c041c4b49f92bd944e7d7faad5eff626e55",
+      "reference_sha256": "b5f7c3c3718f62111c45a24efd2172da6fa72c5c9cdc617afb73840f6ce120c4",
+      "report_sha256": "2f3584a313fe492729bfaa175cac914dd1431f5cf7225f615de9f43941c6fd7a",
+      "run_manifest_sha256": "40ac07cfad1fb827c4131b5ce13bfc2d42ae7657aca241eb66359f008cf3a4eb",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1648,9 +1648,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "f76b6492d3159cbd693b21bebbbf42f4673bb6dc2a190ae98676d95d9475138d",
-      "report_sha256": "3a49bdeb67358f8f0ca52cc576c74016b87e319f3a291bce0c383741f4ff3411",
-      "run_manifest_sha256": "f9c4985451ccd1f272d7eb25bd41f947d2097cac3033c3434b96ffe8e787f799",
+      "reference_sha256": "138e413f76c0dca6602d1047363ecfee6ce22d24302586524a1da77a2756c7d5",
+      "report_sha256": "fe64c94b0b4d207fae146cae2f8f34dbd7d2ebbdf10fa20fd4e5497c30d92f21",
+      "run_manifest_sha256": "f28075a821becc004d745f3002d14adc12727f5226609e7f7b44319d3821a04c",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1672,9 +1672,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "7a2833ec2a996ab287340dea83a81ed063f653e89c731c9a2a99b34f8d9a3861",
-      "report_sha256": "b032d7080b7169e5c1c0399619ad9f1ef4b50c85d0de1050d8d0b3558bdd1e69",
-      "run_manifest_sha256": "b839220ebf3f7f8ba70616a977e03ddf440e491dc7bf41162b53586ff6e3106d",
+      "reference_sha256": "e79d686ba5989ea1f17222b6d1053efee4a2b26c2f3e85cb0298790ce6dcc22d",
+      "report_sha256": "d4c7827a5d38c207d63d81a24205442fcf34583c30dd214ac0a1e3c5c912da0c",
+      "run_manifest_sha256": "4002cb83c7a868025c89102c966ec4673f7eabc83233deffae03600d2b7b2c36",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1696,9 +1696,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "9bc5cc82c6af485c86fbc74e6049dcb4e75c46f1b6b8e07fde8b83c7deb7e5f8",
-      "report_sha256": "7a60ba3fe8f9eb09c64bca1237300011d622b250312b44111e9c47b723d34126",
-      "run_manifest_sha256": "f30448b8071e5394fa908be984748aef195bb619670cdf9636b8b979ac6688bd",
+      "reference_sha256": "a9efefb2c528d59667407e21bfd4eaf3268c7b51cfbaa0beaf7fd00ee7ec7e0c",
+      "report_sha256": "7eebe2e4d27a275ee244c48290f30be7180d3716e236f4c07a61824d7c375c84",
+      "run_manifest_sha256": "894e147b1a70baf007c947873c22dfd50099081a0b005dfa5f5cca887f04eb5f",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1720,9 +1720,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "799a0cb57f5196aaf400907c2258ab85c58b9336d397be19d91eba772b80e765",
-      "report_sha256": "781c1464dac55c113345972b80c3b3ab7677ef6d5063ecb3dcef0678719b6c13",
-      "run_manifest_sha256": "a09ee5f9c44708d0e94b0c342c859b7698030a537f455eefbe648940160e7cb1",
+      "reference_sha256": "12a540f4a1c807451eb0ceb0c22d47eacac3b9cc57e65999995207107bba5592",
+      "report_sha256": "ad970f3522f3b19bd745dda06bb9f0c58faa5434b86385513545bd8004b51f0a",
+      "run_manifest_sha256": "b0233a5a5f7ab772275c58dc26ac8e87a04a6241efe0f24bb2ca347e3f73de33",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1744,9 +1744,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "4cdd0b44105948d16608035f928b239676a3947b9d2a5bd137cfa0316fbc063e",
-      "report_sha256": "c9802837bc7685336ac252b39c00dc6585348a2bf05b878771c349d0645ba2b4",
-      "run_manifest_sha256": "69c103dcaac1eb028e61e34becdbf3af8ca7eddc1fad159294a3eb5ebdbcfe88",
+      "reference_sha256": "1d981e6129eacec688fe30321b598e7202285c00c04b4cf6e1bac1ed75e27859",
+      "report_sha256": "81e22ac25bda4b9c991079a973b312353ebbc31242bd430e2e02f1e93676821b",
+      "run_manifest_sha256": "f7ae46979b737258eae45de2b2a99df4e1b393c8da79018a3e1d493c9ddb95a9",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1768,9 +1768,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "1a0737f058506706cddfb78f68adb7d857664f4142980ead37194c9d75428eb2",
-      "report_sha256": "2ec6cbdace67b056a5131a17a51e8c996d628f111cb5ea2210d24902fab0edce",
-      "run_manifest_sha256": "e1e0a103fc2b71153329386f99d5188c986f6f1968e43af3c6b23be9dac9032e",
+      "reference_sha256": "214bae261ae46b4d7a4176804266ac64234524bdad676862e0939cf40c0b4ada",
+      "report_sha256": "9c1699338d74bccca4a26213eb1011f258ce39d912939f6c7932e7155f738542",
+      "run_manifest_sha256": "9198ca33293bbd170ef91efad4bd670df36cbe25fb0c9aa24515bd1ba0b35bb3",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1792,9 +1792,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "1aef07bac9f4c837b9b2de6d0af0561d3605230c15d915fceee3efab98a765a0",
-      "report_sha256": "b1c20b825e23729597ef467f68b43a84772e6552757e23bb4949110e4e2188fb",
-      "run_manifest_sha256": "c33e8a9ecfd6ccbe2cddfe86ab14ecdbc5454c018bc5d78c600affba3f7ad6f6",
+      "reference_sha256": "676479935a488ea908f0dc75883ea572079ab5d73b6e3d18ce850c120991abf0",
+      "report_sha256": "46021568a44f7244bdc86d4843fdb63aa2add897860b2c3171d90f3c55308ce3",
+      "run_manifest_sha256": "a451617da409b313bbdc2402c994106cd14bdb34cbd7f50a97bbf8890636008e",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1816,9 +1816,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "8406f3533aba98b039ed28ddb3d2940358556a9f7f4be90d06e9370e5e9b145a",
-      "report_sha256": "c4242826249bb164e68ebadf992f99d8b019e270d48228f9b5e1ef3cf1600e79",
-      "run_manifest_sha256": "967133549eba5678604de6c9652cb1c773e7f4ee828a5c04ea15383bd7f3cbe2",
+      "reference_sha256": "55bc6f1627e8f7b4cfe7f864f5f7436ba8604e3b6c6419ee94a6b5806df168ab",
+      "report_sha256": "f604f42ca1bd4c5d3f2502eaec6254c79678682117918c76658cb997c94c3ecf",
+      "run_manifest_sha256": "67f8eacf41444f93f7adcd9320ce536e8a3cf39ea3fb1f3f4aa406a156195596",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1840,9 +1840,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "3ce9b92e086b7545e096b55ca86fa5fba291add18610877ba735eaeb1e678237",
-      "report_sha256": "ea51e1d4247f6925246e0546ecee67f45301cc5bdb1948fea42e0293a50c7cf1",
-      "run_manifest_sha256": "ce496b6d1162ec2e752deb6c2add46e0ef6d1a1fba63cb771fbbd88766c72f36",
+      "reference_sha256": "2666132b693cab80eab4d1d90b9e6ce723949e73283ad212cc3a4cf892d40dd9",
+      "report_sha256": "1b5776a34880677eb49cedc60ef26e481e3eaf56ee9ca28717a093835dd7c2ee",
+      "run_manifest_sha256": "0c85fc2e80b6fb619231a5fda932432f4a698a9bbeec80605fce326adc1fd2d3",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1864,9 +1864,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "caaa6cfb2e6dc1d817d897dacd7735216801362a6f5c73a59eacb937f1f0300b",
-      "report_sha256": "d491df12336d435785f46d5c294f9c13a4b34deb9e61622379a1f1a74f636d26",
-      "run_manifest_sha256": "76d867fa39f681316659d1a7f421e4a0a0b0bc6b05ccb343c351bf131fa88f2b",
+      "reference_sha256": "5bd2ccb3dd4b48d77763b464374c45b5b4c01f6e3c4e6fdec38ad5bc299b6df4",
+      "report_sha256": "2a9cb001126709e4bba25a164db13fd5333739fb687dd38a689e3438b377537c",
+      "run_manifest_sha256": "a8374a6a35b21c5a658720169a2450e33a965eb04d98e7465bb18e5fbc478030",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1888,9 +1888,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "1080642603588b7a6982dc37eafcfb7753466a6c3bd5c34ed123e9ceb46f7cee",
-      "report_sha256": "fa73a03ccdc1c0a335da52718f82d0bafac0aeeb6a9e6978bf41dd2cb81af384",
-      "run_manifest_sha256": "0a046d1b57937420cfad8883163e61cb3905b72169b0563dfa1bfbe02f5e3a26",
+      "reference_sha256": "0af878241eb2d4ecb913349c0fd8471bed710052bf1a0cab6ba350a5132ac7fb",
+      "report_sha256": "7f850c962b85c33aa790e05952f5c23a887d0eb23d0d6bc4cbdf7837a27df079",
+      "run_manifest_sha256": "44ea522a64a9e2dd278cd560a6d696e0cc2dcd8255c826653c702cee025f6556",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1912,9 +1912,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "e35fa79fa815054cb36e750ea847fcfb13e21f1949209e2eee05c4357406cc86",
-      "report_sha256": "75d548d02a4d250e3824e2cb473bdc4e7cba9ed02ece88af579addc52f541fb5",
-      "run_manifest_sha256": "5a7c8e37e982565b7fe18df1385fe88e92f7bcc8d7caeadab0a2ea9e60fe14ea",
+      "reference_sha256": "4e566278655f77c7f90daad66225fe3cdb899648c78aaf563b115d9dd7fc2be4",
+      "report_sha256": "b15ea33054502bb40bb10c3df937ba1ea7ba03453bb7c7499c3e9a00b3cff535",
+      "run_manifest_sha256": "a7aedc64e4751702c78043b1f65147e732bf8e12ab7e8e9a42e9c17fc66c2061",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1936,9 +1936,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "5f3fcbca09713589af57413e0079317685784b78dbe70a9b5467966f2392457b",
-      "report_sha256": "8e41dab765626114a80bb1c9eb6884a49d71991227d9c4962e09485cf4bacba2",
-      "run_manifest_sha256": "1c54b9a3a92572b586d10a1820052ef53a17a7a6989bcd4fd6acc85182387e66",
+      "reference_sha256": "3a928a785d783cd0e117d8aff4c016b7d7c7039657364d66faf949f58b1f174e",
+      "report_sha256": "207f13e8ed83a055ef810844800b23ba6c7c5fe6bdbffef7bceb746a6c3de59a",
+      "run_manifest_sha256": "9087b69232761c697643f21a263e6bd6f1457e33b0eb9b4b076be8f6dacc5d86",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1960,9 +1960,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "ab721c65dda9d9c21f519309fc90d192e4a509f3d79bcf65743a155f365d5e59",
-      "report_sha256": "eca0ecbdbfd8a40720a323e31a669cc88e308b6b6ddf3fe79c2ede438b8bab2d",
-      "run_manifest_sha256": "4f9e68cb0f5a6b99b490f2d9dd2256bc914ff12b01e9864fd5a2880d1df6de80",
+      "reference_sha256": "c54689f4c117ae62cb8fd8e555c330148011353c1e33739e2ed3546b6b3f0643",
+      "report_sha256": "9841cbd0eee3402b677329f7b7e453c06e1c64cd305dcb0c98e1f8e40f808771",
+      "run_manifest_sha256": "e9209fa37799d414fc671a4d170c2539b6c99ae54df8bec02e8c5f83a04e01e3",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -1984,9 +1984,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "3cf238984b3ac76eb25412d2e5ad27678daf6960dd47dcfb564c31b375816392",
-      "report_sha256": "20c2e773e66775638c84d5a49431ffc66a3331e6c5c300e1b209c1e3afb45c45",
-      "run_manifest_sha256": "e9baa699e5d9abcf7baf2422d19d0e1a6eb619062213ecced5df4f81e4c39ffc",
+      "reference_sha256": "e7602632f6914e240f583784d1ae59259a2410d6dbcb53d943d5b56154f71ed9",
+      "report_sha256": "572bad81d16b4753ee828cb5af7671b1b9f88986516f0d3d549df01d7fae193e",
+      "run_manifest_sha256": "555551afb7a85412703032edb7c9f91d09403ed81d821ae1855a0eb7dc431587",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2008,9 +2008,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "a084e52d39d1dcd78e1c74e9546df8b78ff7011e8a860bb510c454e75c6cb10e",
-      "report_sha256": "57f309d7714732cd6f178310cb7208387befc544e3e2e57b86eb3658058d9931",
-      "run_manifest_sha256": "691b0622a61fd9db1a5c7ed1de49b4cc07aeb0e3a0ccdc9674b0c8debfd5627f",
+      "reference_sha256": "71c7a7286cff05403ea50de4c0d9da214f2672cc09116aea808d1470a29f2d6c",
+      "report_sha256": "09ac08f30a610027fff86274fabdc2330a0c92ac33d3ed8cf7372f3708b84713",
+      "run_manifest_sha256": "f2efd977bd37a21a7c0d366fa6204852d3452731e48a9ba1e3dc3f219d35cfba",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2032,9 +2032,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "1878298232b84abcf1737a9a840cd1f797db2b1765d40b7c9908c7f8fc22f89a",
-      "report_sha256": "c46616be8aab09fa16c200fb68b4da6de1958590bf11133eeec312bf680a2286",
-      "run_manifest_sha256": "c5a61233fceea60180659cb03bb1312e9c0ef2ff258b61e8789042d45fc00197",
+      "reference_sha256": "d8ad52f0ae6a96938cfa919bc6fbbb4678922d88a86d43b4c37702a80052a04d",
+      "report_sha256": "d4e48cf4c1c5cd09e1dd77cf249c03eda7552053c60b9069861940de65b3483d",
+      "run_manifest_sha256": "5f1acdd1740f2a268933283e8e865c7ac16e372de6fea7f8d2470bf3190b9eeb",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2056,9 +2056,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "902bea45d312eb541100be9cd2bfb978620926707fbf38524a722bb3c02f43e7",
-      "report_sha256": "7d78f01e51f21f2de4b2f8aa7e8aa3d2b4a1efcbdcf23ad4194f7c1efbc63aa8",
-      "run_manifest_sha256": "a10ccab55c552c49be19d388956e9cde5f854386d698625f27b46216f5549aec",
+      "reference_sha256": "9671f3df5d7d6ceb4300d28692c9cb86c88dc381204a5b3dd34429c9cc4225a9",
+      "report_sha256": "a1dcd06fc57642808d768641ca0fad7d727e22a2711328bad93cf0d0325acd0f",
+      "run_manifest_sha256": "48f5eaaeca478f37036bedfb67ff87b00f5484f71d757436672e0e8ba34548d1",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2080,9 +2080,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "cbd364e5222688417d9d9d425b29e8455dd56f15df1f610fc58f642e10ce87fe",
-      "report_sha256": "544d46260812eee2adaef885cb6da43bf44cc671e9cb3d9e56d6e1d9480f9e9d",
-      "run_manifest_sha256": "56c87602910bd3d1e86bc14f06fa62c9ab3a0cd21adfe9cfcc09714e8bdb555b",
+      "reference_sha256": "ed533f4ee7f08c4482238d86bfa6afbf466c6e8cdde3755aa79e250468cf37c1",
+      "report_sha256": "0d64252ebcfba1789858e042114154dad0cc5c758a056b18d07984c7acc27554",
+      "run_manifest_sha256": "cb8f9ed4afb1a4a67279ae46e4ca3bc67c5b7db28c1885c134d8291a81cd42aa",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2104,9 +2104,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "ded8fec21d0c5684040b1faa7b98d94e05a2d66abebe079b28d7bfdb7100beb5",
-      "report_sha256": "ef403b2bea3a92f1f1bc5f99080f6575ad20dd9bf12c96583c9761d3c888dfe4",
-      "run_manifest_sha256": "31b9d7d42d7f08e82efadae219d31284a64a28528cc1846dd776586cdc233e6d",
+      "reference_sha256": "7114598d86e1135be9e443244ba90274b7d693f0cbe78b8b6aa3c1cfb8efb91d",
+      "report_sha256": "93c2a54cfbea9d00007f0031daf6d01f461e4f9dfe6d754c7639b10d7f0d7293",
+      "run_manifest_sha256": "65c57195d12ab4442cd8d06b3f8953d08a21c30e5bf1788b4e712750a3f7fe4f",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2128,9 +2128,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "154d26205c7b978883d120a142b0e8cbfe8d8a0e3246f4f35c3b2b604c4232ab",
-      "report_sha256": "b241b5fc12f057df35de4d1372b866da36d918584c37d58e6d5fda974aed1615",
-      "run_manifest_sha256": "6861b1a151040df47b0d6bd4477e959aeba3ba98db29a50dec44895bdbd4d2cd",
+      "reference_sha256": "90c0fd0850e3e139d3e270561e4c8f8e3a0b65e446419a78a868d15da8423bfd",
+      "report_sha256": "8805fc8a19619ea686547d1bf9ed9d68ad6c9744f798ca8cbdca701ca317489b",
+      "run_manifest_sha256": "31d94c7072a281b13aed735bc5105978f88eaa2f08b54870c80dbf04a36b7792",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2152,9 +2152,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "b17ceb122cc9899e762e134801136c1ae3fd568663b39851333e3a20b0fca6a1",
-      "report_sha256": "dfa94c979b971519bf65ac9fc6efc98af4d00a50f6fba8479c5175c9d17225f4",
-      "run_manifest_sha256": "fc92c2119bc83326c49c08c64628ea889eb815fb71329fd06eb4743d1f23f05b",
+      "reference_sha256": "e71dbf11603c0fcb73efaaabb567136c6dd32a633f17fbd529560414c2bfe836",
+      "report_sha256": "190a31156b0936664a0860e053e879963703d3ac9a19affb60f7147abf2e6c9f",
+      "run_manifest_sha256": "113c84413fed3e0e5cb05d1db4eae648e66fcc78398a282079e4e23b3d093533",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2176,9 +2176,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "6f45b15c811c9be38fe13d86bf119711a467fa140f0d2b4e82abe3ed1eec5d41",
-      "report_sha256": "228dc1d29b3d056cf4d95c78adeca4741632e21f29bb87bd92a166d81a20faf7",
-      "run_manifest_sha256": "fe9781b3c14957c7bbca0b3b45fd99fec178eb9b960ff320ba9dc6b773a8a992",
+      "reference_sha256": "0c91cdcdd3aae64287b9736889d51ab668497fcc31b03b5a67977e271d4d7da7",
+      "report_sha256": "eb684d0e727f49a33e4c49ad2ff75b65a6eb8ef9dcbd16d2c22142929c44afa2",
+      "run_manifest_sha256": "96f11152a7424c1f269b64feb1398ee3977177ccee6387f54b14f1d2ad4cf8e2",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2200,9 +2200,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "aed324ea00cb661d21c4a18821d73f2cb59da662dad3453cba046d0a21897daf",
-      "report_sha256": "45ab8ee8a608a3594e4cb3bba73f41fe69099d67ecfbd83a17937b6e25722535",
-      "run_manifest_sha256": "ecdba619f8c5c66ff7daf9ab48e3aa1460d7ca6d4303a699668556339d9f4353",
+      "reference_sha256": "111b9cf7c1fdaf4912b9867bd8b4d62f61827f4f8e728185cb36634779b1523b",
+      "report_sha256": "eab17cbc3984c3df431a022f8cbabcf947a344bb204527c6f50b86a721852cfb",
+      "run_manifest_sha256": "a155e8e4967130865734fc17aa889ebc89b553e4de4c927a779feac61afd51f1",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2224,9 +2224,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "f743976a25fe73f6628716e43f62aead654dea046913290899d694c0677a6075",
-      "report_sha256": "2ec766a1a0ada6071fc07eef859eb2ee474614ae2c6ac5ad0115f7f4f317df40",
-      "run_manifest_sha256": "b2d3029d6a90324c52188f0800e59fb122f2add11f63d6863e1380ea212db98a",
+      "reference_sha256": "c75c03a242e5552c6087846c206dfa251d09adc2d9087d79343cf48c93624804",
+      "report_sha256": "a179a3c185e9a029f89e9f7926c00f54cc160ce7361202bde048d20de9bc0aca",
+      "run_manifest_sha256": "88a1edda2731a77b6be312fcc7c550460be1f138621a6faa80c01d79fc67b672",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2248,9 +2248,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "403cfbb4bbfaaf1ba18b945b1d4ca69dbb153f8c7d3b2b78f1cf13222e9c6bd9",
-      "report_sha256": "4d04098a38664a97dfac6881e967378cedae360beef8d6aed4dc58566ba21bfd",
-      "run_manifest_sha256": "f61f166ad781b13b8ab36356e11cd633b7a2e919a0a655cdaaf604e1296861be",
+      "reference_sha256": "3202aad8940505933fd2003d02407883f9887e9a661bfe21c4fb5bd7424b2bfa",
+      "report_sha256": "ddefa01de0dabe5bb665d093a638638da0059c7b3941449446962394fb86d7fb",
+      "run_manifest_sha256": "9f438933c326f8ce46bf76d18da8901d44eb14fd4dfb7fcadf0f1c702916ef73",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2272,9 +2272,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "fa5b6fc70190f5f3c390c3779200fb7981419a81fa0eb178126bab29c74c2232",
-      "report_sha256": "69ad993be2ff819b65706895cd4165793c16cb4126b59ac707ded7712ce332d2",
-      "run_manifest_sha256": "681b1f420bb469c713dcfce8aa55549811cc7f06338f23d73fdb65a4f39b607d",
+      "reference_sha256": "5c8aba01f11882d049f885b0f4db4fb997094588cda6e0ac4eb2d1ce11e32a48",
+      "report_sha256": "c673035ae9a746a5883489a95eff3664b39b066e3724aabcc802abe0c84d2ba9",
+      "run_manifest_sha256": "8d074fb32322ae1641eef3959b3cf491449b463ab7612f367ff1b2a1daf77d2d",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2296,9 +2296,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "018b90f7d4c5fd9b32b6cedb476650e52e394a00a2ad310bfa9417d0966f3dbf",
-      "report_sha256": "d7d34cdf8d68bedaa128638d199b991701a193e717e49e5bfca0a4709d5a7e6d",
-      "run_manifest_sha256": "5b4216db8ba958fb154194f3d4d45947cf94d8a0c6904e3eb820bfcebbcd37ca",
+      "reference_sha256": "72673976e62b18a15594257149643445e3863125a9f27b1363a769fec0433504",
+      "report_sha256": "00c1fcb2693dfd7a60733963cdf02075f5b704e94f259924fffda17c1cfc8f4e",
+      "run_manifest_sha256": "e1a6cc8aa0f8ec1c0a2aedb1ff02f168dcdcd985a94fc6accc45edbe233273fd",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2320,9 +2320,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "1940d4f97af2a496573a155787dcbc160dcf2d8ca4cb2ea3849f89836e383a94",
-      "report_sha256": "052d664bbee215c6ea6c35835f3c024da18f4dcd47f758ba3dec69b9018ee526",
-      "run_manifest_sha256": "06643013a385d19b1eb241bdb25d9e9496bdd46a3043109f83c3dd9b04bb4162",
+      "reference_sha256": "bd16998038cd731153c4e69306efd32bbaecb6c2b870392409ceda0d692eccb1",
+      "report_sha256": "c90f675bb83970afcf34357247305b6b5133f83222188aa2e6ab96014c20dc69",
+      "run_manifest_sha256": "a02015f990852962a7a42432bbdc9f6c0788bc5b7dcdec66bac84b40cb64b4d6",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2344,9 +2344,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "aea697ad4a90f8d6a57e9474f8a7acb03a876dc2ab5b5c17096fb9af9fac2579",
-      "report_sha256": "1cb4fb6aa08a8f5adb82b475f45cb9fb57ffaada8611ab019f1391f514b856fd",
-      "run_manifest_sha256": "ad2d3a93e4681c64fd7f0ac81ab906c313628fe7fd55df266dc9a8611c2a0374",
+      "reference_sha256": "3ea461a7826f4b0e35eef9568f1afc9669bc55b5f1f3fd8b6ffbf6c3220fc767",
+      "report_sha256": "33605d864ca0e50d5d39e084bd82b8c056318534b5c217023c10a757e25dda49",
+      "run_manifest_sha256": "6314eeae76228b345d706d9a3aee00f1aa0207681d0591e8ecd84d75b74cec47",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2368,9 +2368,9 @@
       "intervention": "solver",
       "official_verdict": "supported",
       "predicted_verdict": "supported",
-      "reference_sha256": "ff48c3094a5aad7c7dd9ad2ee4af6d4f46093012ca767b46929e58f85529d048",
-      "report_sha256": "f7e9992688267d5866fefdc8ea5050a2793c1ff505c7a92aca75ba51e1142172",
-      "run_manifest_sha256": "80a160593552f06034de28feeb2562469234390c6312121ce22dde39cb8ca187",
+      "reference_sha256": "d5fcdc63b4a0958122d09e531573434c0c90974b9a373817d9ca505904bdf513",
+      "report_sha256": "88095f40268e03ea2769aab13659312d768c5881f0f18930b102d5ac72a34096",
+      "run_manifest_sha256": "6df2779194cd72af7cbb16615ca08f8fbf44ecd8f0ecd5e2e0abb972f5e6fbba",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2392,9 +2392,9 @@
       "intervention": "no-op",
       "official_verdict": "refuted",
       "predicted_verdict": "refuted",
-      "reference_sha256": "5e37bebdca70dea6afe7f5b385cde88b99c624c5b0e197898413016243bb8d02",
-      "report_sha256": "dfbbf8b7a906e03367a6bcc2e9414f1bd5cf76aa96e4cf81b7078e165fb17619",
-      "run_manifest_sha256": "1b1145dffd3916a3106a9825e42ca317c447c34267ca0abc63a288f9cf2f201f",
+      "reference_sha256": "e5957458899520d098f77ce87c2039dac4420dbeeea524dd07cbdec5be85ecbf",
+      "report_sha256": "325ff441c82fed9132cd95add3c581028e7f433f0a4427ef86271d9d3c457cee",
+      "run_manifest_sha256": "47522348934f2aa917212148a8bec42b14dabada62a2223bfad8ef6b04ecda0b",
       "scored_predicates": [
         "cube_at_goal",
         "robot_static"
@@ -2418,6 +2418,7 @@
     "cuda_device": "NVIDIA GeForce RTX 4070",
     "gymnasium": "1.3.0",
     "mani_skill": "3.0.1",
+    "numpy": "1.26.4",
     "nvidia_smi": "NVIDIA GeForce RTX 4070, 591.86",
     "os": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
     "python": "3.11.14",

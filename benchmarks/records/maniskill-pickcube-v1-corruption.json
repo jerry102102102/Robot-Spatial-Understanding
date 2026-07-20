@@ -1,5 +1,5 @@
 {
-  "baseline_report_sha256": "73dda74d1e76f4510ff14013ef14b0b18aa14acc95ec99e0ecefcec7315a521c",
+  "baseline_report_sha256": "52ffea49c8a53aba7faa91def01ca10f87420882be1acfa5d733fea2c1b34382",
   "case_count": 9,
   "cases": [
     {
@@ -10,8 +10,8 @@
       "expected": "unknown",
       "passed": true,
       "predicate_id": "cube_follows_tcp",
-      "report_sha256": "e7eceef61f2b60094c0478c7f9be721151e11839a52ceb6a9d8eb7ac6d5d4271",
-      "run_manifest_sha256": "d07a58b8a6c49f23ccc7ef1106a0571b0230ce075d05dcab90c9a287fb916573"
+      "report_sha256": "b70e55ef111df978b48aa3bf3c466e95a4eb4eb6bec532580011d9fe05497e96",
+      "run_manifest_sha256": "b5591b295cbd3f8041dedc9c7157c6ca2c3021ace1086916008984205136fb42"
     },
     {
       "actual": "unknown",
@@ -21,8 +21,8 @@
       "expected": "unknown",
       "passed": true,
       "predicate_id": "cube_at_goal",
-      "report_sha256": "99ee69be6cadc3b069c45a24e5049b1a1b1b93da03b889ca86230c1990c2a701",
-      "run_manifest_sha256": "34ef2cd32053517849cb8cb0b4b375147017c358660253fd151f57b6e361fa76"
+      "report_sha256": "152166779916cd6cf828c9ccf764e1b3911f18033deeba057a38cae580e4bd25",
+      "run_manifest_sha256": "e4d7c1e1c534995fda29100972caf28e0b23c80ce7efc7f27bb9fe3f2c7b496a"
     },
     {
       "actual": "conflicting",
@@ -32,8 +32,8 @@
       "expected": "conflicting",
       "passed": true,
       "predicate_id": "cube_at_goal",
-      "report_sha256": "5660929a9564f478d732362a63fbf94be24c990d95a7f689a5a4d2c0b3ad3513",
-      "run_manifest_sha256": "f06bad12b6dd67f102ca2f5f58b02b10f65af3b47f3888c5b00054e78160e6d9"
+      "report_sha256": "47332a1e37c687658d85f7c3af071fd34f3baee909148e81ea500fa23ebe456f",
+      "run_manifest_sha256": "7c95f7636b4e2260dac0b86adc9f54868cba7d91a5e2e1a560ae948647297540"
     },
     {
       "actual": "conflicting",
@@ -43,8 +43,8 @@
       "expected": "conflicting",
       "passed": true,
       "predicate_id": "cube_at_goal",
-      "report_sha256": "d35f024c5aeb9682050617111c50d07a407a0afc80498a5c8f068f83197f1d55",
-      "run_manifest_sha256": "272c0613b083870be7a0b13af4cba14912503a17218dc38dc4e480cc3ecfeb00"
+      "report_sha256": "2c631886dc7c4c8194e64145dbe48cd164a731f222a70de263a8798991ac681d",
+      "run_manifest_sha256": "2ec06b0cb45e5a988cc5892dc829e6dae73c6dcccdcc27f8ecd4dcc050880f37"
     },
     {
       "actual": "unknown",
@@ -54,8 +54,8 @@
       "expected": "unknown",
       "passed": true,
       "predicate_id": "cube_at_goal",
-      "report_sha256": "06f4585c36dc8f3c3fe6c2aedbbd05f33cc49a539f211b347eda30caa8d618ff",
-      "run_manifest_sha256": "0b000618974db5747503cccff0fbc88611ded04dcbebaa9e53a34737a91de24e"
+      "report_sha256": "2922be855e0f3bf485f132cbf7b55073a6f24ef0812629e01fd3073d0020ddee",
+      "run_manifest_sha256": "0022e0841112561d387600ec557fa3131552a108766296df52193120d2c3fb15"
     },
     {
       "actual": "unknown",
@@ -65,8 +65,8 @@
       "expected": "unknown",
       "passed": true,
       "predicate_id": "grasped",
-      "report_sha256": "01b0714f2c1d3edfea0a8e44e56462ba8a915289ccbeb317c4c0d454f1182655",
-      "run_manifest_sha256": "3e7c45ed865a61249d4290f8557dd43f66537c944f5bb9dada981f633d901d45"
+      "report_sha256": "2394d260757ebe30010c295452724c3612cc864f089a016226ae48eb42835685",
+      "run_manifest_sha256": "f5c9163b842b5f2fa84f5326e80bf6c610fdc17ccfd72e83f091f5c84d4ac0f5"
     },
     {
       "actual": "unknown",
@@ -76,8 +76,8 @@
       "expected": "unknown",
       "passed": true,
       "predicate_id": "collision_free",
-      "report_sha256": "a3d8f294472a9048e6b5e5b1e7298c8b4b389d373ddc7c2844a3beb445877aa7",
-      "run_manifest_sha256": "0c1a63a3b37e9e25664e94ee3cccd3b2a2e1eea328fffec9440d9d12708229fe"
+      "report_sha256": "c49d1c0e0569c42ee99d8859f9962d55555a32da5800d9494dc69c724c0df2d7",
+      "run_manifest_sha256": "5e1ac558fe4ab3ef4641887f30a7520dc9b7ad0ab2ed2a8d13891887781387cc"
     },
     {
       "actual": "supported",
@@ -85,7 +85,7 @@
       "corruption": "terminal-status-tamper",
       "expected": "supported",
       "passed": true,
-      "report_sha256": "8e9d65ac144619afef3dd7f04ee182b537b8df7623e170c18a7503a645f42580"
+      "report_sha256": "374af62f973e1f92acbbb628a46f13b7f84fd077ab6a367b9921d7471c7f4625"
     },
     {
       "actual": "rejected_before_evaluation",
@@ -98,9 +98,9 @@
   "limitations": [
     "Corruptions are deterministic evidence-integrity controls over one real normalized simulator run; they are not additional physical episodes."
   ],
-  "matrix_sha256": "3efba2c3e7ae7a048c2ef82e8f423772c3d44c89d310dbacd50d1ef0da8748b9",
+  "matrix_sha256": "c9a602e5b022aa3b3aeb61aa0499f0813db0687a800b5263b6dfdb179abd4098",
   "passed_count": 9,
   "schema_version": "robot-spatial-maniskill-corruption-matrix.v1",
-  "source_run_manifest_sha256": "c298aa53634785ae0230dd15e6b0fd4c650cc511337416e5f7b455c411e9fc09",
+  "source_run_manifest_sha256": "7aabe8e249ff9aa7d29452a5199c731868899a854e1a31df76775d0ee839c7fb",
   "task_spec_sha256": "58e3f1b26e821ee60de7d5cc86d1a0b45e98cd448d445a47e3a43440c273a3b8"
 }

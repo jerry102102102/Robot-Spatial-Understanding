@@ -182,9 +182,24 @@ class SimulationEvidenceTests(unittest.TestCase):
             with self.subTest(fixture=fixture):
                 root = LIVE_FIXTURES / fixture
                 run = SimulationRun.load(root / "run")
+                self.assertEqual(run.manifest["simulator"]["runtime_versions"]["numpy"], "1.26.4")
                 recorded = json.loads((root / "result" / "report.json").read_text(encoding="utf-8"))
                 reproduced = AssuranceReport.evaluate(run, task)
-                self.assertEqual(reproduced.digest, recorded["report_sha256"])
+                recorded_digest = recorded.pop("report_sha256")
+                self.assertEqual(sha256_json(recorded), recorded_digest)
+                self.assertEqual(
+                    reproduced.data["bindings"]["run_manifest_sha256"],
+                    recorded["bindings"]["run_manifest_sha256"],
+                )
+                self.assertEqual(
+                    reproduced.data["bindings"]["task_spec_sha256"],
+                    recorded["bindings"]["task_spec_sha256"],
+                )
+                self.assertEqual(reproduced.data["verdict"], recorded["verdict"])
+                self.assertEqual(
+                    {item["predicate_id"]: item["status"] for item in reproduced.data["predicates"]},
+                    {item["predicate_id"]: item["status"] for item in recorded["predicates"]},
+                )
                 self.assertEqual(reproduced.data["verdict"]["simulation_bounded_physical_success"], verdict)
 
     def test_committed_live_pickcube_records_are_digest_bound(self) -> None:

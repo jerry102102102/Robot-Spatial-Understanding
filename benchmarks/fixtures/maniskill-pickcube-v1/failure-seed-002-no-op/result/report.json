@@ -9,15 +9,22 @@
       "clock_id": "simulation/PickCube-v1/seed-2",
       "domain": "simulated_monotonic"
     },
-    "completeness_sha256": "4bcb7bf60b270f6b9e9a713624f9380cbec7edc18994eb5e9cbac721924e626e",
+    "completeness_sha256": "093920d0b655b3789daac5427ce172068edc939e0356448a503e2c21117d3466",
     "interval": {
       "end_s": 5.0,
       "start_s": 0.0
     },
     "run_id": "maniskill/PickCube-v1/seed-2/physx_cpu",
-    "run_manifest_sha256": "608bcf9576be2719941c26c8f5eed826a8e47707872aff7aa6ef4a3dbaf3a258",
+    "run_manifest_sha256": "d776d55c62b4d92a57c2f17041bee152523dc2ae733b27a28a7c125353c9fd21",
     "simulator": {
       "name": "ManiSkill/SAPIEN",
+      "runtime_versions": {
+        "gymnasium": "1.3.0",
+        "mani_skill": "3.0.1",
+        "numpy": "1.26.4",
+        "sapien": "3.0.3",
+        "torch": "2.13.0+cu130"
+      },
       "version": "3.0.1"
     },
     "task_id": "PickCube-v1",
@@ -779,7 +786,7 @@
     }
   ],
   "report_id": "report/maniskill/PickCube-v1/seed-2/physx_cpu/PickCube-v1",
-  "report_sha256": "02612f54ae111b442e8e87d598ab1820f51656670cf5172a837d63bd89f5063c",
+  "report_sha256": "6e16b43c32603989817ebda24fe1960ac6fdc5e053081b0c206dad226cb8c93a",
   "schema_version": "robot-spatial-simulation-assurance-report.v1",
   "unknowns": [],
   "verdict": {

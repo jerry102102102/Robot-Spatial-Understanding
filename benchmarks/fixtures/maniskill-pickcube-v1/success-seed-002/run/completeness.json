@@ -84,12 +84,12 @@
       "status": "complete"
     }
   },
-  "completeness_sha256": "afc3826cac9fb2f52e1d4ee4cc4b2c8bd0cafb877f769367e3377dc7f4a1d45a",
+  "completeness_sha256": "6de6cde7062a59732488bf2698b0a5a6fec622c96ba1ff6f4fb82036f7617a24",
   "limitations": [
     "Completeness describes recorded channels and declared sampling only; it does not prove sensor truth, simulator correctness, or physical safety."
   ],
   "run_id": "maniskill/PickCube-v1/seed-2/physx_cpu",
-  "run_manifest_sha256": "c298aa53634785ae0230dd15e6b0fd4c650cc511337416e5f7b455c411e9fc09",
+  "run_manifest_sha256": "7aabe8e249ff9aa7d29452a5199c731868899a854e1a31df76775d0ee839c7fb",
   "schema_version": "robot-spatial-simulation-completeness.v1",
   "status": "complete_for_available_channels"
 }

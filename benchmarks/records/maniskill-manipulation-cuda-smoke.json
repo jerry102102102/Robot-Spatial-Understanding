@@ -1,0 +1,134 @@
+{
+  "case_count": 4,
+  "cases": [
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "digests_match": true,
+      "entity_map_sha256": "1c9dac089fe6421c9889cd95023c41254e4b4701b846d3380dbad8ab9629cccc",
+      "env_id": "PegInsertionSide-v1",
+      "fixed_horizon": 150,
+      "initial_state_sha256": "f3b9e5d44c06596327942b3ded62ba9df0d39306a5a52b3ccf3ff9864b279e7d",
+      "official_verdict": "refuted",
+      "passed": true,
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "peg-panda",
+      "report_sha256": "763a3066ea5d524006177c37fe40e84bb1791feeb681096bc2be9de63dc34f5d",
+      "robot_model_sha256": "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412",
+      "robot_uid": "panda_wristcam",
+      "run_manifest_sha256": "67d0e54f0ca2547d82992af2d9776a0d690e0a82356b5d08de00fbc9b723be67",
+      "seed": 4,
+      "task_source_sha256": "79761d7a7b17ebdbd974c58f7427abcd3a50ec115f0340f6ed5d282a0d48fc6e",
+      "task_spec_sha256": "271d27cdf78e88ea582d508df8c9fd7a78f57b078cc4c370032970c78c3fb15e",
+      "trajectory_sha256": "87dae489b0ae0d1ac203e1da8070c5f0d8ac7003a1f7bc6449b70ef998ed3c83",
+      "verdict_agreement": true
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "digests_match": true,
+      "entity_map_sha256": "49aa530707658605e98486304f7efd72cee8b6e45bb92b85191fea72c5aa8149",
+      "env_id": "PickCube-v1",
+      "fixed_horizon": 100,
+      "initial_state_sha256": "df0910659506d1da3a2bd262acba43f9e215055cd598b969276537f76eaea974",
+      "official_verdict": "refuted",
+      "passed": true,
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "pick-xarm",
+      "report_sha256": "125094ef82450954dd506b9da06877a040603ee2e6227f44deee5cedbf4f3cd7",
+      "robot_model_sha256": "1a1147c0a49a5c0764f7345836e3e4fb0cbe26a43e9cd48e27966fcdc46ff242",
+      "robot_uid": "xarm6_robotiq",
+      "run_manifest_sha256": "165faea49ce51b08a370552b7edc2572ab9334b8a34584f7ef32ec60e9d1177f",
+      "seed": 0,
+      "task_source_sha256": "6f881f11151bd124a4ec6d1189e86e20b17d366aa1cbcc6e2f751f1f5bb03ed1",
+      "task_spec_sha256": "9d18c775bca5ce3122a0e209143a393833960e7e593a3cf30bbff86eaff4f646",
+      "trajectory_sha256": "0858d957af400d28e257966ac4181f1c08e1b32ac2d601b11eae2eaa5b0d8eba",
+      "verdict_agreement": true
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "digests_match": true,
+      "entity_map_sha256": "6935fc2926435a3ad91e0f1af7c9662c81f4c89f350c94fa12d94d8aaf2d3528",
+      "env_id": "PushCube-v1",
+      "fixed_horizon": 100,
+      "initial_state_sha256": "c408a63d87838170e4b53f1da1f4067661bcf472746259f5c0cd57468f80a75e",
+      "official_verdict": "refuted",
+      "passed": true,
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "push-panda",
+      "report_sha256": "5eb017e37873e828cdc73388f86c7f927b6544b029ac0ba7c0ea4e23872978d9",
+      "robot_model_sha256": "524c6986dbbabe244e05801f262862205e880834d01459b06ee273016d0579ba",
+      "robot_uid": "panda",
+      "run_manifest_sha256": "4bd6cc6a10bef3732d4eb6617f19a6b3d2d80da9c396310e78babeb76ebe6ef8",
+      "seed": 0,
+      "task_source_sha256": "8ae1536c13fae2fe8f5c84be0c60ff40a6acd625e738dfafc056ec333a16e0d8",
+      "task_spec_sha256": "a6c91a77773dc234eba24bd5f70ad026780de9795bdd6a30f09d50bf06a00da0",
+      "trajectory_sha256": "f03ff20b4514384140e2372feab6df7938ef90849f7fb57de389e0e9cd0983f4",
+      "verdict_agreement": true
+    },
+    {
+      "collision_channel": {
+        "reason": "channel not supplied by source",
+        "status": "unavailable"
+      },
+      "digests_match": true,
+      "entity_map_sha256": "da6ef840ac3874bc7086f43f9f37410e05410cf311dde2cb648e96c945842fa2",
+      "env_id": "StackCube-v1",
+      "fixed_horizon": 150,
+      "initial_state_sha256": "0aee16c89a925e9aa6935bb0d049a6e3fad760687d29239c4c19bf7ac88568b1",
+      "official_verdict": "refuted",
+      "passed": true,
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "stack-panda",
+      "report_sha256": "80272f03ae1335a693df546eace1e855ef4fa49fcdbd9d197ad92001f2a86e8e",
+      "robot_model_sha256": "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412",
+      "robot_uid": "panda_wristcam",
+      "run_manifest_sha256": "d64371d88159ac279141c5ea2291e897d9a59f0421e065385b639627318afdb0",
+      "seed": 0,
+      "task_source_sha256": "ff14d7a4a1822da564f3bdbdbd95a7486cbc3832f722e8f18a80421a8fc8b697",
+      "task_spec_sha256": "b67a50b84fbcc24758e1c9b34410b8dc5a9672629f6140a3044ff8bcfe36a69b",
+      "trajectory_sha256": "647d75f5ee637264c755921058ca5e6deaa7f0e121fc27cff3f2fa3de8f5f01b",
+      "verdict_agreement": true
+    }
+  ],
+  "environment": {
+    "adapter": "0.3.0",
+    "cuda_device": "NVIDIA GeForce RTX 4070",
+    "gymnasium": "1.3.0",
+    "mani_skill": "3.0.1",
+    "numpy": "1.26.4",
+    "nvidia_smi": "NVIDIA GeForce RTX 4070, 591.86",
+    "os": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.11.14",
+    "sapien": "3.0.3",
+    "torch": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "torch_cuda_available": true
+  },
+  "limitations": [
+    "This gate validates CUDA replay/capture/evaluator parity, not CUDA motion planning throughput.",
+    "GPU scene-wide collision enumeration remains unavailable and is reported as unavailable rather than synthesized from CPU data."
+  ],
+  "oracle_isolation": {
+    "actions_reused_from_sealed_cpu_planner_inputs": true,
+    "all_predictions_written_before_official_replay": true,
+    "capture_discarded_step_returns": true
+  },
+  "passed_count": 4,
+  "planner_backend": "physx_cpu",
+  "record_sha256": "bd6ecd2da72d801fd9015b28ffbd1d6980b988d404655fc42e83c272851ac033",
+  "render_backend": "cpu",
+  "schema_version": "robot-spatial-maniskill-manipulation-cuda-smoke.v1",
+  "sim_backend": "physx_cuda"
+}

@@ -1,0 +1,30 @@
+schema_version: robot-spatial-task-spec.v1
+task_id: PegInsertionSide-v1
+entities:
+  peg_head: peg_head
+  hole: hole
+requirements:
+  channels: [pose]
+predicates:
+  - predicate_id: peg_head_inserted
+    type: frame_position_in_bounds
+    parameters:
+      entity: peg_head
+      reference: hole
+      coordinate_frame: reference
+      bounds:
+        x: {minimum_m: -0.015}
+        y:
+          minimum_m: {measurement: hole_radius_m, scale: -1}
+          maximum_m: {measurement: hole_radius_m}
+        z:
+          minimum_m: {measurement: hole_radius_m, scale: -1}
+          maximum_m: {measurement: hole_radius_m}
+goal: {predicate: peg_head_inserted}
+failure: {not: {predicate: peg_head_inserted}}
+termination: {mode: episode_end}
+claim_boundaries:
+  simulation_only: true
+  causation_requires_counterfactual: true
+  authorization_established: false
+  safety_established: false

@@ -5,6 +5,16 @@ policy:
   references_loaded_after_all_predictions: true
   preserve_versions_seeds_assets_and_adapter_digests: true
 suites:
+  - suite_id: maniskill/manipulation-evidence-smoke
+    adapter: maniskill
+    cadence: pull-request
+    profiles:
+      - {task: PushCube-v1, robot: panda, seeds: [0, 4]}
+      - {task: StackCube-v1, robot: panda_wristcam, seeds: [0, 4]}
+      - {task: PegInsertionSide-v1, robot: panda_wristcam, seeds: [0, 4]}
+      - {task: PickCube-v1, robot: xarm6_robotiq, seeds: [0, 4]}
+    matched_no_op: true
+    role: prediction-first cross-task/cross-robot semantics, corruption, determinism, and CUDA replay gate
   - suite_id: metaworld/commit-smoke
     adapter: mujoco
     cadence: every-commit

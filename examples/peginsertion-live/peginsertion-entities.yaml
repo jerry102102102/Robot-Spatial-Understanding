@@ -1,0 +1,31 @@
+schema_version: robot-spatial-maniskill-entity-map.v2
+env_id: PegInsertionSide-v1
+robot_uid: panda_wristcam
+control_mode: pd_joint_pos
+joints:
+  panda_joint1: panda_joint1
+  panda_joint2: panda_joint2
+  panda_joint3: panda_joint3
+  panda_joint4: panda_joint4
+  panda_joint5: panda_joint5
+  panda_joint6: panda_joint6
+  panda_joint7: panda_joint7
+  panda_finger_joint1: panda_finger_joint1
+  panda_finger_joint2: panda_finger_joint2
+entities:
+  tcp: {source_path: agent.tcp, expected_name: panda_hand_tcp}
+  left_finger: {source_path: agent.finger1_link, expected_name: panda_leftfinger}
+  right_finger: {source_path: agent.finger2_link, expected_name: panda_rightfinger}
+  peg: {source_path: peg, expected_name: peg, capture_velocity: true}
+  peg_head: {source_path: peg_head_pose}
+  box: {source_path: box, expected_name: box_with_hole}
+  hole: {source_path: box_hole_pose}
+contact_pairs:
+  - [left_finger, peg]
+  - [right_finger, peg]
+measurements:
+  hole_radius_m: {source_path: box_hole_radii}
+collision_aliases:
+  table-workspace: table
+  panda_leftfinger_pad: left_finger_pad
+  panda_rightfinger_pad: right_finger_pad

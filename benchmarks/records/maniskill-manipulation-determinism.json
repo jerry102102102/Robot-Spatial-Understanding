@@ -1,0 +1,21 @@
+{
+  "schema_version": "robot-spatial-maniskill-manipulation-determinism.v1",
+  "profiles": [
+    "peg-panda",
+    "pick-xarm",
+    "push-panda",
+    "stack-panda"
+  ],
+  "seeds": [0, 4],
+  "case_count_per_run": 16,
+  "file_count_per_run": 162,
+  "run_a_tree_sha256_comparison": "byte_identical_to_run_b",
+  "run_b_tree_sha256_comparison": "byte_identical_to_run_a",
+  "different_file_count": 0,
+  "benchmark_file_sha256": "64a78fcc906d92edb16524f8abdad8b37a5cb74c0b8f07b936b2c31042e9b9cc",
+  "canonical_benchmark_sha256": "6ed238fe1bc7adb1398a0f9afc70e9fdc6f9a9054eba4673035bc91b3c88ee43",
+  "passed": true,
+  "limitations": [
+    "This establishes byte-for-byte repeatability for the declared machine, versions, profiles, seeds, actions, horizons, and backends; it is not a cross-machine determinism proof."
+  ]
+}

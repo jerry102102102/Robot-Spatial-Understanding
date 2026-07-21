@@ -32,6 +32,28 @@ This optional adapter supports fixed-horizon three-dimensional Gymnasium GoalEnv
 discards rewards and `info`, refuses outcome-dependent early termination, and does not treat the
 demo controller as evaluation evidence.
 
+## Optional live ManiSkill task/robot map
+
+Install the pinned extra, then replay an action-only trajectory with a declarative v2 map:
+
+```bash
+.venv/bin/python -m pip install -e '.[maniskill]'
+.venv/bin/robot-spatial capture --adapter maniskill \
+  --env-id PushCube-v1 --seed 0 --trajectory actions.h5 \
+  --entity-map examples/pushcube-live/pushcube-entities.yaml \
+  --sim-backend physx_cpu --fixed-horizon 100 --out work/push-run
+.venv/bin/robot-spatial evaluate work/push-run \
+  --task examples/pushcube-live/task.yaml --out work/push-result
+```
+
+Use the same adapter for `stackcube-live`, `peginsertion-live`, and `pickcube-xarm-live`. The map
+must declare the robot, every active joint, public entity source paths, velocity-bearing actors,
+contact pairs, and any per-episode geometry used by task bounds. A computed frame such as a peg
+head or hole is resolved again at every sample. Keep `evaluate()`, reward, success, and `info`
+outside the candidate run and reveal them only after all cross-profile reports are sealed.
+Before using `pickcube-xarm-live`, install the official asset with
+`python -m mani_skill.utils.download_asset xarm6_robotiq -y`.
+
 ## 45 minutes: import your own episode
 
 1. Export one immutable JSON file using schema `robot-spatial-generic-trace.v1`. Start from

@@ -1,0 +1,714 @@
+{
+  "acceptance": {
+    "minimum_refuted_per_profile": 1,
+    "minimum_supported_per_profile": 1,
+    "passed": true,
+    "requires_full_episode_agreement": true,
+    "requires_full_scored_predicate_agreement": true
+  },
+  "benchmark_sha256": "6ed238fe1bc7adb1398a0f9afc70e9fdc6f9a9054eba4673035bc91b3c88ee43",
+  "case_count": 16,
+  "cases": [
+    {
+      "agreement": true,
+      "case_id": "peg-panda/seed-000-solver",
+      "env_id": "PegInsertionSide-v1",
+      "intervention": "solver",
+      "official_verdict": "refuted",
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "peg-panda",
+      "reference_sha256": "4dcceed5c48a4040a70a3147f78bf1a8baff01bb159e824c60ddb729b3e73c3d",
+      "report_sha256": "6a2f7912176f577b07be7a3cc33b5fb3df25927d701d10633831a5fcc86ddafe",
+      "robot_model_sha256": "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412",
+      "robot_uid": "panda_wristcam",
+      "run_manifest_sha256": "a9e0354989da3100557091ad8750a6006b4ef5707218d9649b1cac6703e03ca6",
+      "scored_predicates": [
+        "peg_head_inserted"
+      ],
+      "seed": 0,
+      "task_source_sha256": "79761d7a7b17ebdbd974c58f7427abcd3a50ec115f0340f6ed5d282a0d48fc6e",
+      "unscored_predicates": []
+    },
+    {
+      "agreement": true,
+      "case_id": "peg-panda/seed-000-no-op",
+      "env_id": "PegInsertionSide-v1",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "peg-panda",
+      "reference_sha256": "6c46e8130fe85b654ceae0b67fc6ffccd7686635260074a93cbffae33fe44fa6",
+      "report_sha256": "f827212380bdb5794d9961b733e1beb84a2fba019db18fa9369d4eb41e072647",
+      "robot_model_sha256": "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412",
+      "robot_uid": "panda_wristcam",
+      "run_manifest_sha256": "29a140fecf9d236355949ca801bc9f7cb1871d2dde841d7a7aa655bfaadfc632",
+      "scored_predicates": [
+        "peg_head_inserted"
+      ],
+      "seed": 0,
+      "task_source_sha256": "79761d7a7b17ebdbd974c58f7427abcd3a50ec115f0340f6ed5d282a0d48fc6e",
+      "unscored_predicates": []
+    },
+    {
+      "agreement": true,
+      "case_id": "peg-panda/seed-004-solver",
+      "env_id": "PegInsertionSide-v1",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicate_agreement": true,
+      "predicted_verdict": "supported",
+      "profile_id": "peg-panda",
+      "reference_sha256": "e162aa069d4db5da9c29654f727d19aeb8f31218ba5885d41bc67ccdb843325f",
+      "report_sha256": "674ff24e460581a30a3b241f19d584ef1d4245a1ea120aef4831622759f32f11",
+      "robot_model_sha256": "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412",
+      "robot_uid": "panda_wristcam",
+      "run_manifest_sha256": "2d4a944a6535e5c709e7feabdbfbe3d73f94882fa1ad6ae7f88bfab102cf7d69",
+      "scored_predicates": [
+        "peg_head_inserted"
+      ],
+      "seed": 4,
+      "task_source_sha256": "79761d7a7b17ebdbd974c58f7427abcd3a50ec115f0340f6ed5d282a0d48fc6e",
+      "unscored_predicates": []
+    },
+    {
+      "agreement": true,
+      "case_id": "peg-panda/seed-004-no-op",
+      "env_id": "PegInsertionSide-v1",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "peg-panda",
+      "reference_sha256": "e59785187d2e0ed2be8839d729a0a12c8d365d6c81cf05a3b029c303496e2f5d",
+      "report_sha256": "5942b4bb1944d233b96f4b903ce8c2fb40744a4e7d7d30cb79fbcffc547f0284",
+      "robot_model_sha256": "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412",
+      "robot_uid": "panda_wristcam",
+      "run_manifest_sha256": "79a773724faaff4087643d9b3481864020bb9ed1acf9990c83d1b2ea900d9704",
+      "scored_predicates": [
+        "peg_head_inserted"
+      ],
+      "seed": 4,
+      "task_source_sha256": "79761d7a7b17ebdbd974c58f7427abcd3a50ec115f0340f6ed5d282a0d48fc6e",
+      "unscored_predicates": []
+    },
+    {
+      "agreement": true,
+      "case_id": "pick-xarm/seed-000-solver",
+      "env_id": "PickCube-v1",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicate_agreement": true,
+      "predicted_verdict": "supported",
+      "profile_id": "pick-xarm",
+      "reference_sha256": "4b1f226fdf3aa93c133552355beeb6573d2d6bfa557ce46e77cb6aa6f3d811e5",
+      "report_sha256": "7abe861fda9984243783ea6c3e661c8bc48f5ba10273ce72bc2f436414c7ea0f",
+      "robot_model_sha256": "1a1147c0a49a5c0764f7345836e3e4fb0cbe26a43e9cd48e27966fcdc46ff242",
+      "robot_uid": "xarm6_robotiq",
+      "run_manifest_sha256": "9a8015156d78c526a35d15a3c9fc8762098a042780c880999983b4056fc885af",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 0,
+      "task_source_sha256": "6f881f11151bd124a4ec6d1189e86e20b17d366aa1cbcc6e2f751f1f5bb03ed1",
+      "unscored_predicates": []
+    },
+    {
+      "agreement": true,
+      "case_id": "pick-xarm/seed-000-no-op",
+      "env_id": "PickCube-v1",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "pick-xarm",
+      "reference_sha256": "924a36f15751f77b9e0aea59311dc884dadaabababe465abce463027e136bbf3",
+      "report_sha256": "c4a0ee022c02c6a315784ba40e8ef247a46d8ece7ad4b3e9a081ff966f0e31e5",
+      "robot_model_sha256": "1a1147c0a49a5c0764f7345836e3e4fb0cbe26a43e9cd48e27966fcdc46ff242",
+      "robot_uid": "xarm6_robotiq",
+      "run_manifest_sha256": "ffd385de1807594b03ae2f3b402c51aa4509bb9a6326e0d3e3e45a4460c09a19",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 0,
+      "task_source_sha256": "6f881f11151bd124a4ec6d1189e86e20b17d366aa1cbcc6e2f751f1f5bb03ed1",
+      "unscored_predicates": []
+    },
+    {
+      "agreement": true,
+      "case_id": "pick-xarm/seed-004-solver",
+      "env_id": "PickCube-v1",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicate_agreement": true,
+      "predicted_verdict": "supported",
+      "profile_id": "pick-xarm",
+      "reference_sha256": "40fad23079990d21c10dc0830b90071b47b724b6b5a44a310619875242699a5e",
+      "report_sha256": "4d4b0b0624c1c031cdb4fffa62053f7c7bdcba77f49e2db25d67f4f53cafe64a",
+      "robot_model_sha256": "1a1147c0a49a5c0764f7345836e3e4fb0cbe26a43e9cd48e27966fcdc46ff242",
+      "robot_uid": "xarm6_robotiq",
+      "run_manifest_sha256": "e19e5198854d0da7d9922847ea3e08fa4e806703a3de09512a8678884811be94",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 4,
+      "task_source_sha256": "6f881f11151bd124a4ec6d1189e86e20b17d366aa1cbcc6e2f751f1f5bb03ed1",
+      "unscored_predicates": []
+    },
+    {
+      "agreement": true,
+      "case_id": "pick-xarm/seed-004-no-op",
+      "env_id": "PickCube-v1",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "pick-xarm",
+      "reference_sha256": "e31b443b6dce665f7febfaa81da939897176d931bc16097bb73e62e8c56b5788",
+      "report_sha256": "7d119a25679321c22e29549e424fb7c18fe39e63798cb2a44f3c530b94907977",
+      "robot_model_sha256": "1a1147c0a49a5c0764f7345836e3e4fb0cbe26a43e9cd48e27966fcdc46ff242",
+      "robot_uid": "xarm6_robotiq",
+      "run_manifest_sha256": "79a487653ebc6175d7151209944e931ae417471e0abf465def7432eeb8b038ca",
+      "scored_predicates": [
+        "cube_at_goal",
+        "robot_static"
+      ],
+      "seed": 4,
+      "task_source_sha256": "6f881f11151bd124a4ec6d1189e86e20b17d366aa1cbcc6e2f751f1f5bb03ed1",
+      "unscored_predicates": []
+    },
+    {
+      "agreement": true,
+      "case_id": "push-panda/seed-000-solver",
+      "env_id": "PushCube-v1",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicate_agreement": true,
+      "predicted_verdict": "supported",
+      "profile_id": "push-panda",
+      "reference_sha256": "4475b8a87a7afdb9c79870acf4660781b236a9d31ae93d47a731f16b71537c5f",
+      "report_sha256": "7e1de08509d35dcab430455297fde72dcf4571f180da7a02a1a5b17acd2e9a16",
+      "robot_model_sha256": "524c6986dbbabe244e05801f262862205e880834d01459b06ee273016d0579ba",
+      "robot_uid": "panda",
+      "run_manifest_sha256": "fb196463d268432b3338b2867aa3dfaa64e70d06eba5285d44f684b85758698c",
+      "scored_predicates": [
+        "object_placed"
+      ],
+      "seed": 0,
+      "task_source_sha256": "8ae1536c13fae2fe8f5c84be0c60ff40a6acd625e738dfafc056ec333a16e0d8",
+      "unscored_predicates": [
+        "object_on_table",
+        "object_xy_at_goal"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "push-panda/seed-000-no-op",
+      "env_id": "PushCube-v1",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "push-panda",
+      "reference_sha256": "aa406069b9dda90742fb258d3bdf42db0936f89c09b65cf8ea8bfef1c98b6da7",
+      "report_sha256": "570eec3bdde072f2d191383b7169eba15e5f81998536031419913f57978a1d7a",
+      "robot_model_sha256": "524c6986dbbabe244e05801f262862205e880834d01459b06ee273016d0579ba",
+      "robot_uid": "panda",
+      "run_manifest_sha256": "3355600bd6bb548992101c9a10f18be1839b66d8581b74a9aed7710fee54ea6f",
+      "scored_predicates": [
+        "object_placed"
+      ],
+      "seed": 0,
+      "task_source_sha256": "8ae1536c13fae2fe8f5c84be0c60ff40a6acd625e738dfafc056ec333a16e0d8",
+      "unscored_predicates": [
+        "object_on_table",
+        "object_xy_at_goal"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "push-panda/seed-004-solver",
+      "env_id": "PushCube-v1",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicate_agreement": true,
+      "predicted_verdict": "supported",
+      "profile_id": "push-panda",
+      "reference_sha256": "aa611537f046201109fa43fcabec955744c9b01f8cf8b481cbf1cac78f6812fe",
+      "report_sha256": "002d8b1c94b71809072b012dfe015430646166610e5ccb0d6b4ade626e6e5c54",
+      "robot_model_sha256": "524c6986dbbabe244e05801f262862205e880834d01459b06ee273016d0579ba",
+      "robot_uid": "panda",
+      "run_manifest_sha256": "0963e7d4c9f6ecaa68810d36428bca80cee18f8126451ea3382354e9d05edc67",
+      "scored_predicates": [
+        "object_placed"
+      ],
+      "seed": 4,
+      "task_source_sha256": "8ae1536c13fae2fe8f5c84be0c60ff40a6acd625e738dfafc056ec333a16e0d8",
+      "unscored_predicates": [
+        "object_on_table",
+        "object_xy_at_goal"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "push-panda/seed-004-no-op",
+      "env_id": "PushCube-v1",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "push-panda",
+      "reference_sha256": "f9756e58009f87070e12a3354047c76dd9c64e7c66820021763da3c82b30d8e3",
+      "report_sha256": "461027036379e41ac4bff4611614a3d664dc0499fcec13ad699699f27bce8061",
+      "robot_model_sha256": "524c6986dbbabe244e05801f262862205e880834d01459b06ee273016d0579ba",
+      "robot_uid": "panda",
+      "run_manifest_sha256": "e9d53a6bf2c104914654bc0c0b6143a4492c6756caacb2bf6b61b9121967823a",
+      "scored_predicates": [
+        "object_placed"
+      ],
+      "seed": 4,
+      "task_source_sha256": "8ae1536c13fae2fe8f5c84be0c60ff40a6acd625e738dfafc056ec333a16e0d8",
+      "unscored_predicates": [
+        "object_on_table",
+        "object_xy_at_goal"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "stack-panda/seed-000-solver",
+      "env_id": "StackCube-v1",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicate_agreement": true,
+      "predicted_verdict": "supported",
+      "profile_id": "stack-panda",
+      "reference_sha256": "3f99ea913956b6cbeece43f789303f3d6827182ce53bba2d421ac7ff42f02145",
+      "report_sha256": "cc4c2d2224cf9f5f0d5ef57df448c97e4f0bc3a0848a0e1920c9397be49590a8",
+      "robot_model_sha256": "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412",
+      "robot_uid": "panda_wristcam",
+      "run_manifest_sha256": "60223ad6516bfe97f6c607a402a7e744df48421a6a86fc3d44dba18cef665275",
+      "scored_predicates": [
+        "cube_a_grasped",
+        "cube_a_on_cube_b",
+        "cube_a_static"
+      ],
+      "seed": 0,
+      "task_source_sha256": "ff14d7a4a1822da564f3bdbdbd95a7486cbc3832f722e8f18a80421a8fc8b697",
+      "unscored_predicates": [
+        "cube_a_xy_aligned",
+        "cube_a_z_aligned",
+        "left_grasp_contact",
+        "right_grasp_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "stack-panda/seed-000-no-op",
+      "env_id": "StackCube-v1",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "stack-panda",
+      "reference_sha256": "17b89705956d8922b1fec7bd92545d9db7bc3a3f80da2672af4ab6c283278a26",
+      "report_sha256": "a2a95787e3166bb5cc307fea076e3e822c159b3ca474128d2096f1b0e9645fcb",
+      "robot_model_sha256": "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412",
+      "robot_uid": "panda_wristcam",
+      "run_manifest_sha256": "599f0ab20789fe3a80f182904bf5ea9be89862e2e52975be0ba93f3107b6cb5d",
+      "scored_predicates": [
+        "cube_a_grasped",
+        "cube_a_on_cube_b",
+        "cube_a_static"
+      ],
+      "seed": 0,
+      "task_source_sha256": "ff14d7a4a1822da564f3bdbdbd95a7486cbc3832f722e8f18a80421a8fc8b697",
+      "unscored_predicates": [
+        "cube_a_xy_aligned",
+        "cube_a_z_aligned",
+        "left_grasp_contact",
+        "right_grasp_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "stack-panda/seed-004-solver",
+      "env_id": "StackCube-v1",
+      "intervention": "solver",
+      "official_verdict": "supported",
+      "predicate_agreement": true,
+      "predicted_verdict": "supported",
+      "profile_id": "stack-panda",
+      "reference_sha256": "608820bb0ac69c728515621839573b7928c116fcbed757a9688b8f0adfbaf5df",
+      "report_sha256": "8a78800fe1cd4c8a2c7411d32bb873eaa245e9fcf7a74ccdcfde311ee9f81258",
+      "robot_model_sha256": "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412",
+      "robot_uid": "panda_wristcam",
+      "run_manifest_sha256": "294cae4eddc9b63291ae29b99375970e005420cbcb7076c7766ee068b1f68587",
+      "scored_predicates": [
+        "cube_a_grasped",
+        "cube_a_on_cube_b",
+        "cube_a_static"
+      ],
+      "seed": 4,
+      "task_source_sha256": "ff14d7a4a1822da564f3bdbdbd95a7486cbc3832f722e8f18a80421a8fc8b697",
+      "unscored_predicates": [
+        "cube_a_xy_aligned",
+        "cube_a_z_aligned",
+        "left_grasp_contact",
+        "right_grasp_contact"
+      ]
+    },
+    {
+      "agreement": true,
+      "case_id": "stack-panda/seed-004-no-op",
+      "env_id": "StackCube-v1",
+      "intervention": "no-op",
+      "official_verdict": "refuted",
+      "predicate_agreement": true,
+      "predicted_verdict": "refuted",
+      "profile_id": "stack-panda",
+      "reference_sha256": "8abf3a88c564b76f7e91609cdf7214f7f5df899b60d58592abb77620c06971e6",
+      "report_sha256": "4794c3c48c9a7200c59ec4794c89a4eff2f93d1db797b01153101f3e70fdc754",
+      "robot_model_sha256": "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412",
+      "robot_uid": "panda_wristcam",
+      "run_manifest_sha256": "abd6e9ed7860d137227430736ac3c70314174d08e1b80276e480ad6d1cb3b405",
+      "scored_predicates": [
+        "cube_a_grasped",
+        "cube_a_on_cube_b",
+        "cube_a_static"
+      ],
+      "seed": 4,
+      "task_source_sha256": "ff14d7a4a1822da564f3bdbdbd95a7486cbc3832f722e8f18a80421a8fc8b697",
+      "unscored_predicates": [
+        "cube_a_xy_aligned",
+        "cube_a_z_aligned",
+        "left_grasp_contact",
+        "right_grasp_contact"
+      ]
+    }
+  ],
+  "environment": {
+    "adapter": "0.3.0",
+    "cuda_device": "NVIDIA GeForce RTX 4070",
+    "gymnasium": "1.3.0",
+    "mani_skill": "3.0.1",
+    "numpy": "1.26.4",
+    "nvidia_smi": "NVIDIA GeForce RTX 4070, 591.86",
+    "os": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.11.14",
+    "sapien": "3.0.3",
+    "torch": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "torch_cuda_available": true
+  },
+  "episode_metrics": {
+    "accuracy": {
+      "count": 16,
+      "estimate": 1.0,
+      "lower_95": 0.8063923194655637,
+      "total": 16,
+      "upper_95": 1.0
+    },
+    "confirmed_success_false_positive_rate": {
+      "count": 0,
+      "estimate": 0.0,
+      "lower_95": 0.0,
+      "total": 9,
+      "upper_95": 0.2991450484195441
+    },
+    "confirmed_success_precision": {
+      "count": 7,
+      "estimate": 1.0,
+      "lower_95": 0.6456695649333126,
+      "total": 7,
+      "upper_95": 1.0
+    },
+    "confusion_matrix": {
+      "conflicting": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 0,
+        "unknown": 0
+      },
+      "refuted": {
+        "conflicting": 0,
+        "refuted": 9,
+        "supported": 0,
+        "unknown": 0
+      },
+      "supported": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 7,
+        "unknown": 0
+      },
+      "unknown": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 0,
+        "unknown": 0
+      }
+    },
+    "count": 16,
+    "macro_f1": 1.0,
+    "per_label": {
+      "conflicting": {
+        "f1": null,
+        "precision": null,
+        "recall": null,
+        "support": 0
+      },
+      "refuted": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 9
+      },
+      "supported": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 7
+      },
+      "unknown": {
+        "f1": null,
+        "precision": null,
+        "recall": null,
+        "support": 0
+      }
+    }
+  },
+  "generation": [
+    {
+      "controller_generation_error": null,
+      "controller_outcomes_retained": false,
+      "profile_id": "peg-panda",
+      "seed": 0,
+      "solver_action_count": 107
+    },
+    {
+      "controller_generation_error": null,
+      "controller_outcomes_retained": false,
+      "profile_id": "peg-panda",
+      "seed": 4,
+      "solver_action_count": 156
+    },
+    {
+      "controller_generation_error": null,
+      "controller_outcomes_retained": false,
+      "profile_id": "pick-xarm",
+      "seed": 0,
+      "solver_action_count": 81
+    },
+    {
+      "controller_generation_error": null,
+      "controller_outcomes_retained": false,
+      "profile_id": "pick-xarm",
+      "seed": 4,
+      "solver_action_count": 82
+    },
+    {
+      "controller_generation_error": null,
+      "controller_outcomes_retained": false,
+      "profile_id": "push-panda",
+      "seed": 0,
+      "solver_action_count": 71
+    },
+    {
+      "controller_generation_error": null,
+      "controller_outcomes_retained": false,
+      "profile_id": "push-panda",
+      "seed": 4,
+      "solver_action_count": 66
+    },
+    {
+      "controller_generation_error": null,
+      "controller_outcomes_retained": false,
+      "profile_id": "stack-panda",
+      "seed": 0,
+      "solver_action_count": 107
+    },
+    {
+      "controller_generation_error": null,
+      "controller_outcomes_retained": false,
+      "profile_id": "stack-panda",
+      "seed": 4,
+      "solver_action_count": 109
+    }
+  ],
+  "limitations": [
+    "Results are bounded to pinned ManiSkill/SAPIEN simulation, declared raw channels, seeds, actions, geometry, thresholds, and horizons.",
+    "Cross-task and cross-robot simulation agreement does not establish hardware transfer, causation, authorization, or safety."
+  ],
+  "oracle_isolation": {
+    "action_files_contain_only_actions": true,
+    "all_cross_profile_predictions_written_before_official_replay": true,
+    "capture_discarded_step_returns": true,
+    "references_outside_candidate_runs": true
+  },
+  "predicate_metrics": {
+    "accuracy": {
+      "count": 28,
+      "estimate": 1.0,
+      "lower_95": 0.8793566952341543,
+      "total": 28,
+      "upper_95": 0.9999999999999998
+    },
+    "confirmed_success_false_positive_rate": {
+      "count": 0,
+      "estimate": 0.0,
+      "lower_95": 0.0,
+      "total": 13,
+      "upper_95": 0.22809537235419838
+    },
+    "confirmed_success_precision": {
+      "count": 15,
+      "estimate": 1.0,
+      "lower_95": 0.7961166989641515,
+      "total": 15,
+      "upper_95": 1.0
+    },
+    "confusion_matrix": {
+      "conflicting": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 0,
+        "unknown": 0
+      },
+      "refuted": {
+        "conflicting": 0,
+        "refuted": 13,
+        "supported": 0,
+        "unknown": 0
+      },
+      "supported": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 15,
+        "unknown": 0
+      },
+      "unknown": {
+        "conflicting": 0,
+        "refuted": 0,
+        "supported": 0,
+        "unknown": 0
+      }
+    },
+    "count": 28,
+    "macro_f1": 1.0,
+    "per_label": {
+      "conflicting": {
+        "f1": null,
+        "precision": null,
+        "recall": null,
+        "support": 0
+      },
+      "refuted": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 13
+      },
+      "supported": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "support": 15
+      },
+      "unknown": {
+        "f1": null,
+        "precision": null,
+        "recall": null,
+        "support": 0
+      }
+    }
+  },
+  "profiles": {
+    "peg-panda": {
+      "agreement_count": 4,
+      "case_count": 4,
+      "entity_map_sha256": "1c9dac089fe6421c9889cd95023c41254e4b4701b846d3380dbad8ab9629cccc",
+      "env_id": "PegInsertionSide-v1",
+      "fixed_horizon": 150,
+      "passed": true,
+      "predicate_agreement_count": 4,
+      "refuted_references": 3,
+      "robot_model_sha256": [
+        "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412"
+      ],
+      "robot_uid": "panda_wristcam",
+      "supported_references": 1,
+      "task_source_sha256": [
+        "79761d7a7b17ebdbd974c58f7427abcd3a50ec115f0340f6ed5d282a0d48fc6e"
+      ],
+      "task_spec_sha256": "271d27cdf78e88ea582d508df8c9fd7a78f57b078cc4c370032970c78c3fb15e"
+    },
+    "pick-xarm": {
+      "agreement_count": 4,
+      "case_count": 4,
+      "entity_map_sha256": "49aa530707658605e98486304f7efd72cee8b6e45bb92b85191fea72c5aa8149",
+      "env_id": "PickCube-v1",
+      "fixed_horizon": 100,
+      "passed": true,
+      "predicate_agreement_count": 4,
+      "refuted_references": 2,
+      "robot_model_sha256": [
+        "1a1147c0a49a5c0764f7345836e3e4fb0cbe26a43e9cd48e27966fcdc46ff242"
+      ],
+      "robot_uid": "xarm6_robotiq",
+      "supported_references": 2,
+      "task_source_sha256": [
+        "6f881f11151bd124a4ec6d1189e86e20b17d366aa1cbcc6e2f751f1f5bb03ed1"
+      ],
+      "task_spec_sha256": "9d18c775bca5ce3122a0e209143a393833960e7e593a3cf30bbff86eaff4f646"
+    },
+    "push-panda": {
+      "agreement_count": 4,
+      "case_count": 4,
+      "entity_map_sha256": "6935fc2926435a3ad91e0f1af7c9662c81f4c89f350c94fa12d94d8aaf2d3528",
+      "env_id": "PushCube-v1",
+      "fixed_horizon": 100,
+      "passed": true,
+      "predicate_agreement_count": 4,
+      "refuted_references": 2,
+      "robot_model_sha256": [
+        "524c6986dbbabe244e05801f262862205e880834d01459b06ee273016d0579ba"
+      ],
+      "robot_uid": "panda",
+      "supported_references": 2,
+      "task_source_sha256": [
+        "8ae1536c13fae2fe8f5c84be0c60ff40a6acd625e738dfafc056ec333a16e0d8"
+      ],
+      "task_spec_sha256": "a6c91a77773dc234eba24bd5f70ad026780de9795bdd6a30f09d50bf06a00da0"
+    },
+    "stack-panda": {
+      "agreement_count": 4,
+      "case_count": 4,
+      "entity_map_sha256": "da6ef840ac3874bc7086f43f9f37410e05410cf311dde2cb648e96c945842fa2",
+      "env_id": "StackCube-v1",
+      "fixed_horizon": 150,
+      "passed": true,
+      "predicate_agreement_count": 4,
+      "refuted_references": 2,
+      "robot_model_sha256": [
+        "d040277352476639950e2ddce1dff8a1c0e95df470e5e9ed186cd01c468fa412"
+      ],
+      "robot_uid": "panda_wristcam",
+      "supported_references": 2,
+      "task_source_sha256": [
+        "ff14d7a4a1822da564f3bdbdbd95a7486cbc3832f722e8f18a80421a8fc8b697"
+      ],
+      "task_spec_sha256": "b67a50b84fbcc24758e1c9b34410b8dc5a9672629f6140a3044ff8bcfe36a69b"
+    }
+  },
+  "render_backend": "cpu",
+  "schema_version": "robot-spatial-maniskill-manipulation-benchmark.v1",
+  "seeds": [
+    0,
+    4
+  ],
+  "sim_backend": "physx_cpu"
+}

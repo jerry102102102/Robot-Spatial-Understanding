@@ -1,0 +1,74 @@
+schema_version: robot-spatial-task-spec.v1
+task_id: StackCube-v1
+entities:
+  cube_a: cube_a
+  cube_b: cube_b
+  left_finger: left_finger
+  right_finger: right_finger
+requirements:
+  channels: [pose, contact]
+predicates:
+  - predicate_id: cube_a_xy_aligned
+    type: frame_position_within_tolerance
+    parameters:
+      entity: cube_a
+      target: {entity: cube_b}
+      axes: [x, y]
+      position_tolerance_m: 0.0332842712474619
+  - predicate_id: cube_a_z_aligned
+    type: frame_position_in_bounds
+    parameters:
+      entity: cube_a
+      reference: cube_b
+      coordinate_frame: world
+      bounds:
+        z: {minimum_m: 0.035, maximum_m: 0.045}
+  - predicate_id: cube_a_on_cube_b
+    type: evidence_conjunction
+    parameters:
+      predicates: [cube_a_xy_aligned, cube_a_z_aligned]
+  - predicate_id: cube_a_static
+    type: frame_velocity_below_threshold
+    parameters:
+      entity: cube_a
+      maximum_linear_speed_mps: 0.01
+      maximum_angular_speed_radps: 0.5
+  - predicate_id: left_grasp_contact
+    type: contact_force_at_terminal
+    parameters:
+      pair: [left_finger, cube_a]
+      minimum_force_n: 0.5
+      direction:
+        entity: left_finger
+        local_axis: [0, 1, 0]
+        maximum_angle_rad: 1.4835298641951802
+  - predicate_id: right_grasp_contact
+    type: contact_force_at_terminal
+    parameters:
+      pair: [right_finger, cube_a]
+      minimum_force_n: 0.5
+      direction:
+        entity: right_finger
+        local_axis: [0, -1, 0]
+        maximum_angle_rad: 1.4835298641951802
+  - predicate_id: cube_a_grasped
+    type: evidence_conjunction
+    parameters:
+      predicates: [left_grasp_contact, right_grasp_contact]
+goal:
+  all:
+    - cube_a_on_cube_b
+    - cube_a_static
+    - not: {predicate: cube_a_grasped}
+failure:
+  not:
+    all:
+      - cube_a_on_cube_b
+      - cube_a_static
+      - not: {predicate: cube_a_grasped}
+termination: {mode: episode_end}
+claim_boundaries:
+  simulation_only: true
+  causation_requires_counterfactual: true
+  authorization_established: false
+  safety_established: false

@@ -17,6 +17,7 @@ from .util import (
     pair_matches,
     quaternion_angle,
     relative_pose,
+    rotate_vector,
     require_list,
     require_mapping,
     require_string,
@@ -109,12 +110,17 @@ class PredicateEngine:
             # Individual predicates still run so the report names exact missing dependencies.
             pass
         deferred: list[dict[str, Any]] = []
+        conjunctions: list[dict[str, Any]] = []
         for predicate in self.task.predicates:
-            if predicate["type"] in {"object_grasped", "object_released_in_region"}:
+            if predicate["type"] == "evidence_conjunction":
+                conjunctions.append(predicate)
+            elif predicate["type"] in {"object_grasped", "object_released_in_region"}:
                 deferred.append(predicate)
             else:
                 self.results[predicate["predicate_id"]] = self._evaluate_one(predicate)
         for predicate in deferred:
+            self.results[predicate["predicate_id"]] = self._evaluate_one(predicate)
+        for predicate in conjunctions:
             self.results[predicate["predicate_id"]] = self._evaluate_one(predicate)
         return dict(self.results)
 
@@ -165,6 +171,21 @@ class PredicateEngine:
         identifier = require_string(value, label)
         return str(self.task.data["entities"].get(identifier, identifier))
 
+    def _number(self, value: Any, label: str) -> float:
+        """Resolve a literal or a raw per-episode measurement bound to the run."""
+
+        if not isinstance(value, dict):
+            return finite_number(value, label)
+        reference = require_mapping(value, label)
+        measurement_id = require_string(reference.get("measurement"), f"{label}.measurement")
+        measurements = require_mapping(self.run.manifest["world"].get("measurements", {}), "run.world.measurements")
+        if measurement_id not in measurements:
+            raise EvidenceError(f"run measurement {measurement_id!r} is absent")
+        measured = finite_number(measurements[measurement_id], f"run.world.measurements.{measurement_id}")
+        scale = finite_number(reference.get("scale", 1.0), f"{label}.scale")
+        offset = finite_number(reference.get("offset", 0.0), f"{label}.offset")
+        return measured * scale + offset
+
     def _window(self, predicate: dict[str, Any]) -> tuple[float, float]:
         declared = require_mapping(predicate.get("window", {}), f"{predicate['predicate_id']}.window")
         interval = self.run.manifest["interval"]
@@ -212,16 +233,20 @@ class PredicateEngine:
             "joint_velocity_below_threshold": self._joint_velocity_below_threshold,
             "frame_within_pose_tolerance": self._frame_within_pose_tolerance,
             "frame_position_within_tolerance": self._frame_position_within_tolerance,
+            "frame_position_in_bounds": self._frame_position_in_bounds,
+            "frame_velocity_below_threshold": self._frame_velocity_below_threshold,
             "base_reached_goal": self._frame_within_pose_tolerance,
             "collision_free_over_interval": self._collision_free,
             "path_stayed_within_corridor": self._path_stayed_within_corridor,
             "contact_sustained": self._contact_sustained,
+            "contact_force_at_terminal": self._contact_force_at_terminal,
             "object_above_height": self._object_above_height,
             "object_follows_frame_for_duration": self._object_follows_frame,
             "object_inside_region": self._object_inside_region,
             "object_grasped": self._object_grasped,
             "object_released_in_region": self._object_released,
             "inserted_to_depth": self._inserted_to_depth,
+            "evidence_conjunction": self._evidence_conjunction,
             "deformable_keypoints_in_region": self._deformable_keypoints_in_region,
             "deformable_shape_within_tolerance": self._deformable_shape_within_tolerance,
         }
@@ -525,9 +550,16 @@ class PredicateEngine:
             if len(target_position) != 3:
                 raise SchemaError("position target.position_m must contain three values")
             target_evidence = {"position_m": target_position}
-        error_m = euclidean(actual, target_position)
+        axes_raw = require_list(parameters.get("axes", ["x", "y", "z"]), "frame position axes")
+        axis_lookup = {"x": 0, "y": 1, "z": 2}
+        if not axes_raw or any(str(axis) not in axis_lookup for axis in axes_raw) or len(set(map(str, axes_raw))) != len(axes_raw):
+            raise SchemaError("frame position axes must be a non-empty unique subset of x, y, z")
+        axes = [str(axis) for axis in axes_raw]
+        axis_indices = [axis_lookup[axis] for axis in axes]
+        error_m = euclidean([actual[index] for index in axis_indices], [target_position[index] for index in axis_indices])
         tolerance = finite_number(parameters.get("position_tolerance_m", 1e-3), "position_tolerance_m")
-        passed = error_m <= tolerance
+        exclusive = bool(parameters.get("exclusive", False))
+        passed = error_m < tolerance if exclusive else error_m <= tolerance
         return _result(
             predicate,
             "supported" if passed else "refuted",
@@ -539,10 +571,170 @@ class PredicateEngine:
                 "time_s": float(times[row]),
                 "actual_position_m": actual,
                 "target": target_evidence,
+                "axes": axes,
                 "position_error_m": error_m,
                 "position_tolerance_m": tolerance,
+                "exclusive": exclusive,
                 "source_sha256": self.run.manifest["channels"][channel]["sha256"],
             }],
+        )
+
+    def _frame_position_in_bounds(self, predicate: dict[str, Any]) -> PredicateResult:
+        guard = self._guard(predicate, ["pose"], continuous=False)
+        if guard:
+            return guard
+        parameters = predicate["parameters"]
+        entity = self._entity(parameters.get("entity"), "frame_position_in_bounds.entity")
+        reference_raw = parameters.get("reference")
+        reference = self._entity(reference_raw, "frame_position_in_bounds.reference") if reference_raw is not None else None
+        coordinate_frame = str(parameters.get("coordinate_frame", "world"))
+        if coordinate_frame not in {"world", "reference"}:
+            raise SchemaError("frame_position_in_bounds.coordinate_frame must be world or reference")
+        if coordinate_frame == "reference" and reference is None:
+            raise SchemaError("reference coordinates require a reference entity")
+        stream = self.run.stream("pose")
+        entity_ids = [str(value) for value in stream["entity_ids"]]
+        missing = [name for name in (entity, reference) if name is not None and name not in entity_ids]
+        if missing:
+            return _result(predicate, "unknown", "A bounded-position entity is absent.", missing=[f"pose/{name}" for name in missing])
+        entity_column = entity_ids.index(entity)
+        reference_column = entity_ids.index(reference) if reference is not None else None
+        start, end = self._window(predicate)
+        mask = np.logical_and.reduce(
+            (stream["time_s"] >= start, stream["time_s"] <= end, stream["present"][:, entity_column])
+        )
+        if reference_column is not None:
+            mask = np.logical_and(mask, stream["present"][:, reference_column])
+        rows = np.flatnonzero(mask)
+        if rows.size == 0:
+            return _result(predicate, "unknown", "No synchronized bounded-position sample exists.", missing=[f"pose/{entity}+{reference}"])
+        row = int(rows[-1])
+        max_age = finite_number(parameters.get("max_sample_age_s", self.run.manifest["timestep_s"] * 2.5), "max_sample_age_s")
+        if end - float(stream["time_s"][row]) > max_age:
+            return _result(predicate, "unknown", "The terminal bounded-position sample is stale.", missing=[f"pose/{entity}/fresh_position"])
+        entity_position = [float(value) for value in stream["position_m"][row, entity_column]]
+        if reference_column is None:
+            coordinates = entity_position
+        else:
+            reference_position = [float(value) for value in stream["position_m"][row, reference_column]]
+            if coordinate_frame == "world":
+                coordinates = [actual - origin for actual, origin in zip(entity_position, reference_position)]
+            else:
+                coordinates, _ = relative_pose(
+                    reference_position,
+                    stream["quaternion_xyzw"][row, reference_column],
+                    entity_position,
+                    stream["quaternion_xyzw"][row, entity_column],
+                )
+        bounds = require_mapping(parameters.get("bounds"), "frame_position_in_bounds.bounds")
+        axis_lookup = {"x": 0, "y": 1, "z": 2}
+        if not bounds or any(str(axis) not in axis_lookup for axis in bounds):
+            raise SchemaError("frame_position_in_bounds.bounds must use one or more x, y, z keys")
+        checks: dict[str, Any] = {}
+        passed = True
+        for raw_axis, raw_bound in bounds.items():
+            axis = str(raw_axis)
+            value = float(coordinates[axis_lookup[axis]])
+            bound = require_mapping(raw_bound, f"bounds.{axis}")
+            if "minimum_m" not in bound and "maximum_m" not in bound:
+                raise SchemaError(f"bounds.{axis} requires minimum_m and/or maximum_m")
+            axis_passed = True
+            resolved: dict[str, Any] = {"value_m": value}
+            if "minimum_m" in bound:
+                try:
+                    minimum = self._number(bound["minimum_m"], f"bounds.{axis}.minimum_m")
+                except EvidenceError as error:
+                    return _result(predicate, "unknown", str(error), missing=[str(error)])
+                inclusive = bool(bound.get("minimum_inclusive", True))
+                axis_passed = axis_passed and (value >= minimum if inclusive else value > minimum)
+                resolved.update({"minimum_m": minimum, "minimum_inclusive": inclusive})
+            if "maximum_m" in bound:
+                try:
+                    maximum = self._number(bound["maximum_m"], f"bounds.{axis}.maximum_m")
+                except EvidenceError as error:
+                    return _result(predicate, "unknown", str(error), missing=[str(error)])
+                inclusive = bool(bound.get("maximum_inclusive", True))
+                axis_passed = axis_passed and (value <= maximum if inclusive else value < maximum)
+                resolved.update({"maximum_m": maximum, "maximum_inclusive": inclusive})
+            resolved["passed"] = axis_passed
+            checks[axis] = resolved
+            passed = passed and axis_passed
+        return _result(
+            predicate,
+            "supported" if passed else "refuted",
+            f"Terminal position is {'inside' if passed else 'outside'} the declared component bounds.",
+            evidence=[{
+                "channel": "pose",
+                "sample_index": row,
+                "time_s": float(stream["time_s"][row]),
+                "entity": entity,
+                "reference": reference,
+                "coordinate_frame": coordinate_frame,
+                "coordinates_m": [float(value) for value in coordinates],
+                "checks": checks,
+                "source_sha256": self.run.manifest["channels"]["pose"]["sha256"],
+            }],
+        )
+
+    def _frame_velocity_below_threshold(self, predicate: dict[str, Any]) -> PredicateResult:
+        guard = self._guard(predicate, ["pose"], continuous=False)
+        if guard:
+            return guard
+        parameters = predicate["parameters"]
+        entity = self._entity(parameters.get("entity"), "frame_velocity_below_threshold.entity")
+        try:
+            times, rows, column = self._pose_rows(predicate, "pose", entity)
+        except EvidenceError as error:
+            return _result(predicate, "unknown", str(error), missing=[f"pose/{entity}"])
+        if rows.size == 0:
+            return _result(predicate, "unknown", "No velocity-bearing pose sample exists.", missing=[f"pose/{entity}"])
+        row = int(rows[-1])
+        stream = self.run.stream("pose")
+        _, end = self._window(predicate)
+        max_age = finite_number(
+            parameters.get("max_sample_age_s", self.run.manifest["timestep_s"] * 2.5),
+            "max_sample_age_s",
+        )
+        if end - float(times[row]) > max_age:
+            return _result(
+                predicate,
+                "unknown",
+                "The terminal frame-velocity sample is stale.",
+                missing=[f"pose/{entity}/fresh_velocity"],
+            )
+        thresholds = {
+            "linear": parameters.get("maximum_linear_speed_mps"),
+            "angular": parameters.get("maximum_angular_speed_radps"),
+        }
+        if all(value is None for value in thresholds.values()):
+            raise SchemaError("frame_velocity_below_threshold requires a linear and/or angular threshold")
+        evidence: dict[str, Any] = {
+            "channel": "pose",
+            "entity": entity,
+            "sample_index": row,
+            "time_s": float(times[row]),
+            "source_sha256": self.run.manifest["channels"]["pose"]["sha256"],
+        }
+        passed = True
+        for kind, raw_threshold in thresholds.items():
+            if raw_threshold is None:
+                continue
+            array_name = f"{kind}_velocity_" + ("mps" if kind == "linear" else "radps")
+            mask_name = f"{kind}_velocity_present"
+            if array_name not in stream or mask_name not in stream or not bool(stream[mask_name][row, column]):
+                return _result(predicate, "unknown", f"Terminal {kind} velocity is absent.", missing=[f"pose/{entity}/{array_name}"])
+            vector = [float(value) for value in stream[array_name][row, column]]
+            speed = float(np.linalg.norm(vector))
+            threshold = finite_number(raw_threshold, f"maximum_{kind}_speed")
+            evidence[f"{kind}_velocity"] = vector
+            evidence[f"{kind}_speed"] = speed
+            evidence[f"maximum_{kind}_speed"] = threshold
+            passed = passed and speed <= threshold
+        return _result(
+            predicate,
+            "supported" if passed else "refuted",
+            f"Terminal frame velocity is {'within' if passed else 'above'} the declared thresholds.",
+            evidence=[evidence],
         )
 
     def _pair_rows(self, predicate: dict[str, Any], channel: str, pair: list[Any]) -> tuple[dict[str, np.ndarray], np.ndarray]:
@@ -715,6 +907,91 @@ class PredicateEngine:
             "refuted",
             "Contact existed, but not for the declared sustained duration.",
             evidence=[{"channel": "contact", "longest_duration_s": longest, "minimum_duration_s": minimum}],
+        )
+
+    def _contact_force_at_terminal(self, predicate: dict[str, Any]) -> PredicateResult:
+        parameters = predicate["parameters"]
+        direction_raw = parameters.get("direction")
+        channels = ["contact"] + (["pose"] if direction_raw is not None else [])
+        guard = self._guard(predicate, channels, continuous=False)
+        if guard:
+            return guard
+        pair = require_list(parameters.get("pair"), "contact_force_at_terminal.pair")
+        if len(pair) != 2:
+            raise SchemaError("contact_force_at_terminal.pair must contain two entities")
+        contact, rows = self._pair_rows(predicate, "contact", pair)
+        if rows.size == 0:
+            return _result(predicate, "unknown", "No terminal contact sample exists for the declared pair.", missing=[f"contact/{pair}"])
+        row = int(rows[-1])
+        _, end = self._window(predicate)
+        max_age = finite_number(parameters.get("max_sample_age_s", self.run.manifest["timestep_s"] * 2.5), "max_sample_age_s")
+        age = end - float(contact["time_s"][row])
+        if age > max_age:
+            return _result(predicate, "unknown", "The terminal contact sample is stale.", missing=[f"contact/{pair}/fresh_sample"])
+        minimum_force = finite_number(parameters.get("minimum_force_n", 0.0), "minimum_force_n")
+        if "normal_force_present" not in contact or not bool(contact["normal_force_present"][row]):
+            return _result(predicate, "unknown", "Terminal contact-force magnitude is absent.", missing=[f"contact/{pair}/normal_force_n"])
+        force = float(contact["normal_force_n"][row])
+        active = bool(contact["active"][row])
+        passed = active and force >= minimum_force
+        evidence: dict[str, Any] = {
+            "channel": "contact",
+            "sample_index": row,
+            "time_s": float(contact["time_s"][row]),
+            "pair": [self._entity(pair[0], "pair[0]"), self._entity(pair[1], "pair[1]")],
+            "active": active,
+            "force_magnitude_n": force,
+            "minimum_force_n": minimum_force,
+            "source_sha256": self.run.manifest["channels"]["contact"]["sha256"],
+        }
+        if direction_raw is not None:
+            direction = require_mapping(direction_raw, "contact_force_at_terminal.direction")
+            direction_entity = self._entity(direction.get("entity"), "contact direction entity")
+            local_axis = np.asarray(require_list(direction.get("local_axis"), "contact direction local_axis"), dtype=np.float64)
+            if local_axis.shape != (3,) or not np.isfinite(local_axis).all() or np.linalg.norm(local_axis) <= 1e-12:
+                raise SchemaError("contact direction local_axis must be a finite non-zero three-vector")
+            if "present" not in contact or not bool(contact["present"][row]):
+                return _result(predicate, "unknown", "Terminal contact-force vector is absent.", missing=[f"contact/{pair}/force_n"])
+            pose = self.run.stream("pose")
+            entity_ids = [str(value) for value in pose["entity_ids"]]
+            if direction_entity not in entity_ids:
+                return _result(predicate, "unknown", "Contact direction entity pose is absent.", missing=[f"pose/{direction_entity}"])
+            column = entity_ids.index(direction_entity)
+            synchronized = np.flatnonzero(
+                np.logical_and(
+                    np.isclose(pose["time_s"], contact["time_s"][row], rtol=0.0, atol=1e-12),
+                    pose["present"][:, column],
+                )
+            )
+            if synchronized.size == 0:
+                return _result(predicate, "unknown", "No synchronized pose exists for the force direction.", missing=[f"pose/{direction_entity}/at_contact_time"])
+            pose_row = int(synchronized[-1])
+            local_axis = local_axis / np.linalg.norm(local_axis)
+            world_axis = np.asarray(rotate_vector(pose["quaternion_xyzw"][pose_row, column], local_axis), dtype=np.float64)
+            force_vector = np.asarray(contact["force_n"][row], dtype=np.float64)
+            force_norm = float(np.linalg.norm(force_vector))
+            angle: float | None = None
+            if force_norm > 1e-12:
+                cosine = float(np.clip(np.dot(world_axis, force_vector / force_norm), -1.0, 1.0))
+                angle = float(math.acos(cosine))
+            maximum_angle = finite_number(direction.get("maximum_angle_rad"), "maximum_angle_rad")
+            passed = passed and angle is not None and angle <= maximum_angle
+            evidence.update(
+                {
+                    "direction_entity": direction_entity,
+                    "local_axis": [float(value) for value in local_axis],
+                    "world_axis": [float(value) for value in world_axis],
+                    "force_vector_n": [float(value) for value in force_vector],
+                    "angle_rad": angle,
+                    "maximum_angle_rad": maximum_angle,
+                    "pose_source_sha256": self.run.manifest["channels"]["pose"]["sha256"],
+                }
+            )
+        return _result(
+            predicate,
+            "supported" if passed else "refuted",
+            f"Terminal contact force is {'inside' if passed else 'outside'} the declared magnitude/direction bounds.",
+            evidence=[evidence],
         )
 
     def _object_above_height(self, predicate: dict[str, Any]) -> PredicateResult:
@@ -1260,6 +1537,51 @@ class PredicateEngine:
                 missing=missing,
             )
         return dependencies, None
+
+    def _evidence_conjunction(self, predicate: dict[str, Any]) -> PredicateResult:
+        references = require_list(predicate["parameters"].get("predicates"), "evidence_conjunction.predicates")
+        if not references:
+            raise SchemaError("evidence_conjunction.predicates must not be empty")
+        missing = [str(reference) for reference in references if str(reference) not in self.results]
+        if missing:
+            return _result(
+                predicate,
+                "unknown",
+                "Conjunction dependencies are missing.",
+                missing=[f"predicate/{reference}" for reference in missing],
+            )
+        dependencies = [self.results[str(reference)] for reference in references]
+        statuses = [dependency.status for dependency in dependencies]
+        if "refuted" in statuses:
+            status = "refuted"
+        elif "conflicting" in statuses:
+            status = "conflicting"
+        elif "unknown" in statuses:
+            status = "unknown"
+        else:
+            status = "supported"
+        return _result(
+            predicate,
+            status,
+            {
+                "supported": "Every declared evidence dependency is supported.",
+                "refuted": "At least one declared evidence dependency is refuted.",
+                "unknown": "At least one declared evidence dependency is unknown.",
+                "conflicting": "At least one declared evidence dependency conflicts.",
+            }[status],
+            evidence=[{
+                "type": "predicate_composition",
+                "operator": "all",
+                "requirements": [
+                    {
+                        "predicate_id": dependency.predicate_id,
+                        "status": dependency.status,
+                        "evidence_sha256": dependency.evidence_sha256,
+                    }
+                    for dependency in dependencies
+                ],
+            }],
+        )
 
     def _object_grasped(self, predicate: dict[str, Any]) -> PredicateResult:
         parameters = predicate["parameters"]

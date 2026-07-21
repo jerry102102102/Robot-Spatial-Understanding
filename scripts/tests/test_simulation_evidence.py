@@ -72,6 +72,25 @@ class SimulationEvidenceTests(unittest.TestCase):
         )
         self.assertFalse(first.manifest["boundaries"]["official_reward_or_success_imported"])
 
+    def test_maniskill_v2_maps_cover_multiple_tasks_and_robots(self) -> None:
+        profiles = {
+            "pushcube-live": "PushCube-v1",
+            "stackcube-live": "StackCube-v1",
+            "peginsertion-live": "PegInsertionSide-v1",
+            "pickcube-xarm-live": "PickCube-v1",
+        }
+        robot_uids: set[str] = set()
+        for directory, env_id in profiles.items():
+            entity_map = next((REPO_ROOT / "examples" / directory).glob("*-entities.yaml"))
+            mapping, digest = ManiSkillAdapter._load_entity_map(entity_map, env_id)
+            self.assertEqual(mapping["schema_version"], ManiSkillAdapter.entity_map_schema_v2)
+            self.assertEqual(len(digest), 64)
+            self.assertTrue(mapping["entities"])
+            robot_uids.add(mapping["robot_uid"])
+        self.assertIn("panda", robot_uids)
+        self.assertIn("panda_wristcam", robot_uids)
+        self.assertIn("xarm6_robotiq", robot_uids)
+
     def test_pickcube_composite_grasp_requires_four_independent_predicates(self) -> None:
         report = AssuranceReport.evaluate(self.import_trace(), self.task())
         predicates = {item["predicate_id"]: item for item in report.data["predicates"]}
@@ -553,6 +572,106 @@ class SimulationEvidenceTests(unittest.TestCase):
         task = TaskSpec.load(self.write_json(self.root / "insertion-task.json", task_data))
         report = AssuranceReport.evaluate(self.import_trace(trace, "insertion"), task)
         self.assertEqual(report.data["verdict"]["goal_status"], "supported")
+
+    def test_reference_local_bounds_resolve_run_measurements(self) -> None:
+        trace = copy.deepcopy(self.trace)
+        trace["run_id"] = "example/rotated-insertion/seed-3"
+        trace["task_id"] = "manipulation/rotated-insertion"
+        trace["world"]["measurements"] = {"hole_radius_m": 0.02}
+        quarter_turn = [0.0, 0.0, 2**-0.5, 2**-0.5]
+        for sample in trace["samples"]["pose"]:
+            sample["entities"]["hole"] = {
+                "position_m": [0.2, 0.1, 0.3],
+                "quaternion_xyzw": quarter_turn,
+            }
+            # World delta [-0.01, 0, 0] is local +Y under the reference rotation.
+            sample["entities"]["peg_head"] = {
+                "position_m": [0.19, 0.1, 0.3],
+                "quaternion_xyzw": quarter_turn,
+            }
+        task_data = {
+            "schema_version": TASK_SCHEMA,
+            "task_id": trace["task_id"],
+            "entities": {"peg_head": "peg_head", "hole": "hole"},
+            "requirements": {"channels": ["pose"]},
+            "predicates": [
+                {
+                    "predicate_id": "inserted",
+                    "type": "frame_position_in_bounds",
+                    "parameters": {
+                        "entity": "peg_head",
+                        "reference": "hole",
+                        "coordinate_frame": "reference",
+                        "bounds": {
+                            "x": {"minimum_m": -0.015},
+                            "y": {
+                                "minimum_m": {"measurement": "hole_radius_m", "scale": -1},
+                                "maximum_m": {"measurement": "hole_radius_m"},
+                            },
+                            "z": {
+                                "minimum_m": {"measurement": "hole_radius_m", "scale": -1},
+                                "maximum_m": {"measurement": "hole_radius_m"},
+                            },
+                        },
+                    },
+                }
+            ],
+            "goal": {"predicate": "inserted"},
+        }
+        task = TaskSpec.load(self.write_json(self.root / "rotated-insertion-task.json", task_data))
+        report = AssuranceReport.evaluate(self.import_trace(trace, "rotated-insertion"), task)
+        predicate = report.data["predicates"][0]
+        self.assertEqual(predicate["status"], "supported")
+        self.assertAlmostEqual(predicate["evidence"][0]["coordinates_m"][1], 0.01, places=9)
+
+    def test_pose_velocity_and_terminal_force_conjunction(self) -> None:
+        trace = copy.deepcopy(self.trace)
+        trace["run_id"] = "example/stack/seed-1"
+        trace["task_id"] = "manipulation/stack"
+        for sample in trace["samples"]["pose"]:
+            sample["entities"]["cube"]["linear_velocity_mps"] = [0.005, 0.0, 0.0]
+            sample["entities"]["cube"]["angular_velocity_radps"] = [0.0, 0.0, 0.1]
+        trace["samples"]["contact"][-1]["force_n"] = [1.0, 0.0, 0.0]
+        task_data = {
+            "schema_version": TASK_SCHEMA,
+            "task_id": trace["task_id"],
+            "entities": {"finger": "tcp", "cube": "cube"},
+            "requirements": {"channels": ["pose", "contact"]},
+            "predicates": [
+                {
+                    "predicate_id": "static",
+                    "type": "frame_velocity_below_threshold",
+                    "parameters": {
+                        "entity": "cube",
+                        "maximum_linear_speed_mps": 0.01,
+                        "maximum_angular_speed_radps": 0.5,
+                    },
+                },
+                {
+                    "predicate_id": "directed_contact",
+                    "type": "contact_force_at_terminal",
+                    "parameters": {
+                        "pair": ["finger", "cube"],
+                        "minimum_force_n": 0.5,
+                        "direction": {
+                            "entity": "finger",
+                            "local_axis": [1.0, 0.0, 0.0],
+                            "maximum_angle_rad": 0.1,
+                        },
+                    },
+                },
+                {
+                    "predicate_id": "joint_evidence",
+                    "type": "evidence_conjunction",
+                    "parameters": {"predicates": ["static", "directed_contact"]},
+                },
+            ],
+            "goal": {"predicate": "joint_evidence"},
+        }
+        task = TaskSpec.load(self.write_json(self.root / "stack-task.json", task_data))
+        report = AssuranceReport.evaluate(self.import_trace(trace, "stack"), task)
+        statuses = {item["predicate_id"]: item["status"] for item in report.data["predicates"]}
+        self.assertEqual(statuses, {"static": "supported", "directed_contact": "supported", "joint_evidence": "supported"})
 
     def test_release_requires_region_and_absence_of_sustained_contact(self) -> None:
         trace = copy.deepcopy(self.trace)

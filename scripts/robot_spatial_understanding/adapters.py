@@ -65,9 +65,11 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
     """Offline SAPIEN/ManiSkill state export adapter; reward/success fields are rejected."""
 
     name = "maniskill"
+    version = "0.3.0"
     accepted_simulators = ("maniskill", "sapien")
 
     entity_map_schema = "robot-spatial-maniskill-entity-map.v1"
+    entity_map_schema_v2 = "robot-spatial-maniskill-entity-map.v2"
 
     @staticmethod
     def _numpy(value: Any) -> Any:
@@ -89,6 +91,127 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
         }
 
     @staticmethod
+    def _resolve_path(root: Any, path: str) -> Any:
+        """Resolve a declared public attribute path without evaluating code."""
+
+        value = root
+        for segment in path.split("."):
+            if not segment or segment.startswith("_") or not segment.isidentifier():
+                raise AdapterError(f"invalid ManiSkill source path {path!r}")
+            if not hasattr(value, segment):
+                raise AdapterError(f"ManiSkill source path {path!r} has no attribute {segment!r}")
+            value = getattr(value, segment)
+        return value
+
+    @classmethod
+    def _entity_specs(cls, mapping: dict[str, Any]) -> dict[str, dict[str, Any]]:
+        """Normalize legacy PickCube roles and declarative v2 entity specs."""
+
+        if mapping["schema_version"] == cls.entity_map_schema:
+            legacy_paths = {
+                "tcp": "agent.tcp",
+                "left_finger": "agent.finger1_link",
+                "right_finger": "agent.finger2_link",
+                "cube": "cube",
+                "goal": "goal_site",
+            }
+            return {
+                role: {
+                    "source_path": legacy_paths[role],
+                    "expected_name": source,
+                    "capture_velocity": False,
+                }
+                for role, source in mapping["entities"].items()
+            }
+        return {str(role): dict(spec) for role, spec in mapping["entities"].items()}
+
+    @classmethod
+    def _contact_pairs(cls, mapping: dict[str, Any]) -> list[tuple[str, str]]:
+        if mapping["schema_version"] == cls.entity_map_schema:
+            return [("left_finger", "cube"), ("right_finger", "cube")]
+        return [tuple(str(role) for role in pair) for pair in mapping.get("contact_pairs", [])]
+
+    @classmethod
+    def _resolve_entities(cls, raw: Any, mapping: dict[str, Any]) -> dict[str, Any]:
+        objects: dict[str, Any] = {}
+        for role, spec in cls._entity_specs(mapping).items():
+            obj = cls._resolve_path(raw, str(spec["source_path"]))
+            expected_name = spec.get("expected_name")
+            if expected_name is not None:
+                actual_name = getattr(obj, "name", None)
+                if actual_name != expected_name:
+                    raise AdapterError(
+                        f"entity map role {role!r} expected simulator object {expected_name!r}, got {actual_name!r}"
+                    )
+            objects[role] = obj
+        return objects
+
+    @classmethod
+    def _entity_pose(cls, obj: Any, spec: dict[str, Any], index: int) -> dict[str, Any]:
+        pose = getattr(obj, "pose", obj)
+        raw_pose = getattr(pose, "raw_pose", None)
+        if raw_pose is None:
+            raise AdapterError(f"declared ManiSkill entity at {spec['source_path']!r} does not expose a pose")
+        record: dict[str, Any] = cls._pose(raw_pose, index)
+        if bool(spec.get("capture_velocity", False)):
+            for source_name, output_name in (
+                ("linear_velocity", "linear_velocity_mps"),
+                ("angular_velocity", "angular_velocity_radps"),
+            ):
+                if not hasattr(obj, source_name):
+                    raise AdapterError(
+                        f"entity {spec['source_path']!r} requested {output_name} but exposes no {source_name}"
+                    )
+                values = cls._numpy(getattr(obj, source_name))[index]
+                record[output_name] = [float(value) for value in values]
+        return record
+
+    @classmethod
+    def _measurements(cls, raw: Any, mapping: dict[str, Any], index: int) -> dict[str, float]:
+        measurements: dict[str, float] = {}
+        for measurement_id, raw_spec in mapping.get("measurements", {}).items():
+            spec = require_mapping(raw_spec, f"entity_map.measurements.{measurement_id}")
+            values = cls._numpy(cls._resolve_path(raw, str(spec["source_path"])))
+            value = values if getattr(values, "ndim", 0) == 0 else values[index]
+            component = spec.get("component")
+            if component is not None:
+                value = value[int(component)]
+            try:
+                scalar = float(value)
+            except (TypeError, ValueError) as error:
+                raise AdapterError(f"measurement {measurement_id!r} did not resolve to one scalar") from error
+            if not math.isfinite(scalar):
+                raise AdapterError(f"measurement {measurement_id!r} is not finite")
+            measurements[str(measurement_id)] = scalar
+        return measurements
+
+    @classmethod
+    def _state_snapshot(
+        cls,
+        raw: Any,
+        mapping: dict[str, Any],
+        index: int,
+        joint_map: dict[str, str],
+        source_joint_index: dict[str, int],
+    ) -> tuple[dict[str, Any], dict[str, Any], dict[str, float]]:
+        qpos = cls._numpy(raw.agent.robot.get_qpos())
+        qvel = cls._numpy(raw.agent.robot.get_qvel())
+        joint_state = {
+            "positions": {
+                output_id: float(qpos[index, source_joint_index[source_id]])
+                for output_id, source_id in joint_map.items()
+            },
+            "velocities": {
+                output_id: float(qvel[index, source_joint_index[source_id]])
+                for output_id, source_id in joint_map.items()
+            },
+        }
+        objects = cls._resolve_entities(raw, mapping)
+        specs = cls._entity_specs(mapping)
+        poses = {role: cls._entity_pose(obj, specs[role], index) for role, obj in objects.items()}
+        return joint_state, poses, cls._measurements(raw, mapping, index)
+
+    @staticmethod
     def _canonical_body_name(name: str, aliases: dict[str, str]) -> str:
         source = re.sub(r"^scene-\d+_", "", name)
         return aliases.get(source, source)
@@ -96,19 +219,57 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
     @classmethod
     def _load_entity_map(cls, path: str | Path, env_id: str) -> tuple[dict[str, Any], str]:
         data = require_mapping(load_structured(Path(path)), "ManiSkill entity map")
-        if data.get("schema_version") != cls.entity_map_schema:
-            raise AdapterError(f"ManiSkill entity map schema must be {cls.entity_map_schema!r}")
+        schema_version = data.get("schema_version")
+        if schema_version not in {cls.entity_map_schema, cls.entity_map_schema_v2}:
+            raise AdapterError(
+                f"ManiSkill entity map schema must be {cls.entity_map_schema!r} or {cls.entity_map_schema_v2!r}"
+            )
         if require_string(data.get("env_id"), "entity_map.env_id") != env_id:
             raise AdapterError(f"entity map env_id does not match requested environment {env_id!r}")
         require_string(data.get("control_mode"), "entity_map.control_mode")
         joints = require_mapping(data.get("joints"), "entity_map.joints")
         entities = require_mapping(data.get("entities"), "entity_map.entities")
-        required_entities = {"tcp", "left_finger", "right_finger", "cube", "goal"}
-        if set(entities) != required_entities:
-            raise AdapterError(f"entity_map.entities must contain exactly {sorted(required_entities)}")
-        for output_id, source_id in list(joints.items()) + list(entities.items()):
+        for output_id, source_id in joints.items():
             require_string(str(output_id), "entity map output ID")
             require_string(source_id, f"entity map source for {output_id}")
+        if not joints:
+            raise AdapterError("entity_map.joints must not be empty")
+        if schema_version == cls.entity_map_schema:
+            required_entities = {"tcp", "left_finger", "right_finger", "cube", "goal"}
+            if set(entities) != required_entities:
+                raise AdapterError(f"entity_map.entities must contain exactly {sorted(required_entities)}")
+            for output_id, source_id in entities.items():
+                require_string(str(output_id), "entity map output ID")
+                require_string(source_id, f"entity map source for {output_id}")
+        else:
+            require_string(data.get("robot_uid"), "entity_map.robot_uid")
+            if not entities:
+                raise AdapterError("entity_map.entities must not be empty")
+            for role, raw_spec in entities.items():
+                require_string(str(role), "entity map role")
+                spec = require_mapping(raw_spec, f"entity_map.entities.{role}")
+                require_string(spec.get("source_path"), f"entity_map.entities.{role}.source_path")
+                if "expected_name" in spec:
+                    require_string(spec["expected_name"], f"entity_map.entities.{role}.expected_name")
+                if "capture_velocity" in spec and not isinstance(spec["capture_velocity"], bool):
+                    raise AdapterError(f"entity_map.entities.{role}.capture_velocity must be boolean")
+            for index, raw_pair in enumerate(require_list(data.get("contact_pairs", []), "entity_map.contact_pairs")):
+                pair = require_list(raw_pair, f"entity_map.contact_pairs[{index}]")
+                if len(pair) != 2:
+                    raise AdapterError(f"entity_map.contact_pairs[{index}] must name two declared entity roles")
+                for role_index, role in enumerate(pair):
+                    require_string(role, f"entity_map.contact_pairs[{index}][{role_index}]")
+                    if role not in entities:
+                        raise AdapterError(f"entity_map.contact_pairs[{index}] names undeclared role {role!r}")
+            measurements = require_mapping(data.get("measurements", {}), "entity_map.measurements")
+            for measurement_id, raw_spec in measurements.items():
+                require_string(str(measurement_id), "measurement ID")
+                spec = require_mapping(raw_spec, f"entity_map.measurements.{measurement_id}")
+                require_string(spec.get("source_path"), f"entity_map.measurements.{measurement_id}.source_path")
+                if "component" in spec and (
+                    not isinstance(spec["component"], int) or isinstance(spec["component"], bool) or spec["component"] < 0
+                ):
+                    raise AdapterError(f"entity_map.measurements.{measurement_id}.component must be non-negative integer")
         aliases = require_mapping(data.get("collision_aliases", {}), "entity_map.collision_aliases")
         for source_id, output_id in aliases.items():
             require_string(str(source_id), "collision alias source")
@@ -183,15 +344,17 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
 
         control_mode = str(mapping["control_mode"])
         try:
-            environment = gym.make(
-                env_id,
-                num_envs=num_envs,
-                obs_mode="state",
-                control_mode=control_mode,
-                render_mode=None,
-                render_backend=render_backend,
-                sim_backend=sim_backend,
-            )
+            environment_options: dict[str, Any] = {
+                "num_envs": num_envs,
+                "obs_mode": "state",
+                "control_mode": control_mode,
+                "render_mode": None,
+                "render_backend": render_backend,
+                "sim_backend": sim_backend,
+            }
+            if mapping["schema_version"] == self.entity_map_schema_v2:
+                environment_options["robot_uids"] = str(mapping["robot_uid"])
+            environment = gym.make(env_id, **environment_options)
         except Exception as error:
             raise AdapterError(f"failed to create ManiSkill environment {env_id!r}: {error}") from error
 
@@ -201,7 +364,10 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
             environment.reset(seed=reset_seeds)
             raw = environment.unwrapped
             if initialization == "goal_at_cube":
-                raw.goal_site.set_pose(raw.cube.pose)
+                objects = self._resolve_entities(raw, mapping)
+                if "goal" not in objects or "cube" not in objects or not hasattr(objects["goal"], "set_pose"):
+                    raise AdapterError("goal_at_cube initialization requires declared cube and mutable goal entities")
+                objects["goal"].set_pose(getattr(objects["cube"], "pose"))
             active_joints = [joint.name for joint in raw.agent.robot.get_active_joints()]
             joint_map = {str(output_id): str(source_id) for output_id, source_id in mapping["joints"].items()}
             if set(joint_map.values()) != set(active_joints):
@@ -210,20 +376,14 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
                     f"expected {sorted(active_joints)}, got {sorted(joint_map.values())}"
                 )
             source_joint_index = {name: index for index, name in enumerate(active_joints)}
-            entities = {str(role): str(source) for role, source in mapping["entities"].items()}
-            simulator_objects = {
-                "tcp": raw.agent.tcp,
-                "left_finger": raw.agent.finger1_link,
-                "right_finger": raw.agent.finger2_link,
-                "cube": raw.cube,
-                "goal": raw.goal_site,
+            entity_specs = self._entity_specs(mapping)
+            simulator_objects = self._resolve_entities(raw, mapping)
+            contact_pairs = self._contact_pairs(mapping)
+            aliases = {
+                str(obj.name): role
+                for role, obj in simulator_objects.items()
+                if getattr(obj, "name", None) is not None
             }
-            for role, actor in simulator_objects.items():
-                if actor.name != entities[role]:
-                    raise AdapterError(
-                        f"entity map role {role!r} expected simulator object {entities[role]!r}, got {actor.name!r}"
-                    )
-            aliases = {source: role for role, source in entities.items()}
             aliases.update({str(source): str(target) for source, target in mapping.get("collision_aliases", {}).items()})
 
             action_dimension = int(environment.action_space.shape[-1])
@@ -255,11 +415,13 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
                     "fixed_horizon": fixed_horizon,
                     "entity_map_sha256": mapping_digest,
                     "initialization": initialization,
+                    "robot_uid": str(mapping.get("robot_uid", raw.robot_uids)),
                 }
             )
             collision_available = sim_backend == "physx_cpu" and num_envs == 1
             for index in range(num_envs):
                 run_seed = int(seed) + index
+                measurements = self._measurements(raw, mapping, index)
                 traces.append(
                     {
                         "schema_version": "robot-spatial-generic-trace.v1",
@@ -285,7 +447,7 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
                             "initialization": initialization,
                         },
                         "robot": {
-                            "robot_id": "panda",
+                            "robot_id": str(mapping.get("robot_uid", raw.robot_uids)),
                             "root_frame": "world",
                             "model_sha256": model_digest,
                             "active_joint_ids": sorted(joint_map),
@@ -295,6 +457,11 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
                             "task_source_sha256": task_source_digest,
                             "config_sha256": config_digest,
                             "entity_map_sha256": mapping_digest,
+                            **(
+                                {"measurements": measurements}
+                                if mapping["schema_version"] == self.entity_map_schema_v2
+                                else {}
+                            ),
                         },
                         "conventions": {
                             "length_unit": "m",
@@ -332,6 +499,8 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
                             "versions": versions,
                             "raw_state_source": "env.unwrapped",
                             "reward_or_success_read": False,
+                            "entity_mapping": "declarative_v2" if mapping["schema_version"] == self.entity_map_schema_v2 else "legacy_pickcube_v1",
+                            "contact_pairs": [list(pair) for pair in contact_pairs],
                             "collision_enumeration": "complete_cpu_scene_contacts" if collision_available else "unavailable_on_gpu_backend",
                         },
                     }
@@ -342,14 +511,20 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
             def capture_sample(time_s: float) -> None:
                 qpos = np.asarray(self._numpy(raw.agent.robot.get_qpos()), dtype=np.float64)
                 qvel = np.asarray(self._numpy(raw.agent.robot.get_qvel()), dtype=np.float64)
-                left_vectors = np.asarray(
-                    self._numpy(raw.scene.get_pairwise_contact_forces(raw.agent.finger1_link, raw.cube)),
-                    dtype=np.float64,
-                )
-                right_vectors = np.asarray(
-                    self._numpy(raw.scene.get_pairwise_contact_forces(raw.agent.finger2_link, raw.cube)),
-                    dtype=np.float64,
-                )
+                # Re-resolve every declared pose source. Actor handles are stable, but computed
+                # properties such as PegInsertionSide.peg_head_pose return one-time Pose values.
+                current_objects = self._resolve_entities(raw, mapping)
+                pair_vectors = {
+                    pair: np.asarray(
+                        self._numpy(
+                            raw.scene.get_pairwise_contact_forces(
+                                simulator_objects[pair[0]], simulator_objects[pair[1]]
+                            )
+                        ),
+                        dtype=np.float64,
+                    )
+                    for pair in contact_pairs
+                }
                 collision_pairs: list[tuple[str, str]] = []
                 if collision_available:
                     for contact in raw.scene.get_contacts():
@@ -373,24 +548,23 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
                         {
                             "time_s": time_s,
                             "entities": {
-                                role: self._pose(actor.pose.raw_pose, env_index)
-                                for role, actor in simulator_objects.items()
+                                role: self._entity_pose(actor, entity_specs[role], env_index)
+                                for role, actor in current_objects.items()
                             },
                         }
                     )
                     current_contacts: dict[str, bool] = {}
-                    for label, body, vector in (
-                        ("left", "left_finger", left_vectors[env_index]),
-                        ("right", "right_finger", right_vectors[env_index]),
-                    ):
+                    for pair in contact_pairs:
+                        label = "|".join(pair)
+                        vector = pair_vectors[pair][env_index]
                         force = float(np.linalg.norm(vector))
                         active = force > 1e-12
                         current_contacts[label] = active
                         trace["samples"]["contact"].append(
                             {
                                 "time_s": time_s,
-                                "body_a": body,
-                                "body_b": "cube",
+                                "body_a": pair[0],
+                                "body_b": pair[1],
                                 "active": active,
                                 "force_n": [float(value) for value in vector],
                                 "normal_force_n": force,
@@ -402,8 +576,8 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
                                 {
                                     "time_s": time_s,
                                     "type": "contact_begin" if active else "contact_end",
-                                    "body_a": body,
-                                    "body_b": "cube",
+                                    "body_a": pair[0],
+                                    "body_b": pair[1],
                                 }
                             )
                     previous_contacts[env_index] = current_contacts
@@ -445,13 +619,14 @@ class ManiSkillAdapter(DeclaredSimulatorExportAdapter):
                     )
             for trace in traces:
                 initial_pose = trace["samples"]["pose"][0]["entities"]
-                trace["world"]["initial_state_sha256"] = sha256_json(
-                    {
-                        "seed": trace["seed"],
-                        "joint_state": trace["samples"]["joint_state"][0],
-                        "poses": initial_pose,
-                    }
-                )
+                initial_state = {
+                    "seed": trace["seed"],
+                    "joint_state": trace["samples"]["joint_state"][0],
+                    "poses": initial_pose,
+                }
+                if mapping["schema_version"] == self.entity_map_schema_v2:
+                    initial_state["measurements"] = trace["world"]["measurements"]
+                trace["world"]["initial_state_sha256"] = sha256_json(initial_state)
                 trace["world"]["world_sha256"] = sha256_json(trace["world"])
                 trace["events"].append(
                     {"time_s": fixed_horizon * timestep_s, "type": "rollout_status", "status": "completed", "steps": fixed_horizon}

@@ -5,10 +5,10 @@ adapter class, schema, or unit test is not counted as simulator/benchmark eviden
 
 | Milestone | Current status | Implemented evidence | Remaining release gate |
 | --- | --- | --- | --- |
-| M0 product baseline | implemented, pending tagged GitHub workflow run | installable wheel/sdist, legacy CLI forwarding, CI/release workflows, changelog, license manifest, 194 passing tests | observe remote CI and tagged release jobs |
-| M1 evidence protocol | live PickCube gate passed locally; pending remote CI | versioned run/task/report contracts, 17 predicate types, live raw qpos/qvel/pose/contact/collision capture, oracle-isolated 100-case record with 51 supported/49 refuted references, semantic negatives, corruption controls, CUDA parity smoke | observe the pushed GitHub workflow; no simulator or hardware scope expansion is implied |
+| M0 product baseline | implemented; main CI passed | installable wheel/sdist, legacy CLI forwarding, CI/release workflows, changelog, license manifest, full passing test suite | tagged release jobs remain a release-time gate |
+| M1 evidence protocol | live PickCube and manipulation-matrix gates passed | versioned run/task/report contracts, 21 predicate types, declarative multi-robot ManiSkill maps, raw qpos/qvel/pose/rigid-velocity/contact/collision capture, oracle-isolated 100-case PickCube record plus 16-case cross-task/cross-robot matrix, semantic negatives, corruption controls, determinism, CPU/CUDA parity | no hardware or unrestricted task/robot scope is implied |
 | M2 developer preview | local preview implemented; external usability gate open | generic importer, SDK, CLI, two quickstarts, adapter contract, core and ManiSkill Dockerfiles | five unfamiliar-developer trials, Meta-World commit suite, publish v0.3 only after 4/5 onboarding gate |
-| M3 robot-family validation | adapter surfaces and semantic predicates only | AGV corridor/goal unit case, SCARA insertion unit case, grasp/push negative semantics | Gazebo Harmonic/Jazzy adapters and runs for BARN, UR5e, SCARA; 400 ManiSkill episodes; equivalence audit for BARN conversion |
+| M3 robot-family validation | first live cross-robot/task slice passed | Panda/PandaWristCam Push/Stack/Peg plus xArm6 Pick manipulation matrix; AGV corridor/goal and SCARA insertion unit cases | Gazebo Harmonic/Jazzy runs for BARN, UR5e, SCARA; larger held-out ManiSkill task/robot suite; equivalence audit for BARN conversion |
 | M4 cross-engine/deformable | partial schema surface only | deformable keypoint/shape predicates with explicit partial-state limits | robosuite 300, BEHAVIOR 200, LIBERO held-out translation, full `deformable-state.v1` topology/material/particle or mesh snapshots |
 | M5 bounded causation/v1.0 | report-level comparison implemented; replay orchestration open | exact matched-run counterfactual checker and no-op negative control | deterministic snapshot/restore adapters, external beta, acceptance metrics, PyPI/Docker/reproducibility release |
 
@@ -34,10 +34,16 @@ correctly supported because the cube starts within the official goal tolerance. 
 therefore meets the required minimum of 25 supported and 25 refuted references without reading an
 outcome during prediction.
 
+The manipulation-matrix record adds four declarative profiles: `push-panda`, `stack-panda`,
+`peg-panda`, and `pick-xarm`. Across seeds 0 and 4 plus matched no-op controls, all 16 episode
+verdicts and all 28 scored official subpredicates agree. The references contain 7 supported and 9
+refuted episodes, with both labels represented inside every profile. A second full 162-file run is
+byte-identical; cross-profile corruption controls pass 21/21; sealed CPU-planner actions replay
+through PhysX CUDA with prediction-first official comparison at 4/4.
+
 ## Next execution order
 
-1. Observe the remote CI result for the live PickCube delivery.
-2. Add the Meta-World commit subset without exposing `_check_success()` during prediction.
-3. Run the five-developer onboarding study and turn every failure into a regression test.
-4. Begin Gazebo M3 with one AGV episode before UR5e and SCARA so clock/frame/collision mapping is
+1. Add the Meta-World commit subset without exposing `_check_success()` during prediction.
+2. Run the five-developer onboarding study and turn every failure into a regression test.
+3. Begin Gazebo M3 with one AGV episode before UR5e and SCARA so clock/frame/collision mapping is
    stabilized once rather than separately per robot.

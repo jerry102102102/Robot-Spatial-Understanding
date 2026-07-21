@@ -122,16 +122,20 @@ Core predicate types:
 - `joint_velocity_below_threshold`
 - `frame_within_pose_tolerance`
 - `frame_position_within_tolerance`
+- `frame_position_in_bounds`
+- `frame_velocity_below_threshold`
 - `base_reached_goal`
 - `collision_free_over_interval`
 - `path_stayed_within_corridor`
 - `contact_sustained`
+- `contact_force_at_terminal`
 - `object_above_height`
 - `object_follows_frame_for_duration`
 - `object_inside_region`
 - `object_grasped`
 - `object_released_in_region`
 - `inserted_to_depth`
+- `evidence_conjunction`
 - `deformable_keypoints_in_region`
 - `deformable_shape_within_tolerance`
 
@@ -145,6 +149,14 @@ declared `allowed_pairs` and `ignored_pairs`; an unlisted active pair still refu
 `frame_within_pose_tolerance.target` may be either a fixed pose or `{entity: role}`. The latter
 compares two observed poses at the exact evaluated sample and lets a simulator-supplied goal remain
 state evidence instead of copying episode-specific coordinates into the task spec.
+
+`frame_position_within_tolerance.axes` can project a comparison onto a declared subset of `x`,
+`y`, and `z`. `frame_position_in_bounds` can check world or reference-local component bounds;
+each bound can be a literal or a digest-bound per-episode measurement from `run.world.measurements`.
+`frame_velocity_below_threshold` evaluates captured rigid-body linear/angular velocity and must
+abstain when the terminal velocity is stale. `contact_force_at_terminal` can additionally compare
+a contact vector to a declared local body axis. `evidence_conjunction` preserves the evidence
+digests of every required predicate instead of introducing task-specific Python success code.
 
 ## 5. Predicate results
 

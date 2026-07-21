@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jerry102102102/Robot-Spatial-Understanding/schemas/maniskill-entity-map.v2.schema.json",
+  "title": "Robot Spatial ManiSkill entity map v2",
+  "type": "object",
+  "required": ["schema_version", "env_id", "robot_uid", "control_mode", "joints", "entities"],
+  "properties": {
+    "schema_version": {"const": "robot-spatial-maniskill-entity-map.v2"},
+    "env_id": {"type": "string", "minLength": 1},
+    "robot_uid": {"type": "string", "minLength": 1},
+    "control_mode": {"type": "string", "minLength": 1},
+    "joints": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "entities": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["source_path"],
+        "properties": {
+          "source_path": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z][A-Za-z0-9_]*)*$"
+          },
+          "expected_name": {"type": "string", "minLength": 1},
+          "capture_velocity": {"type": "boolean"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "contact_pairs": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [{"type": "string"}, {"type": "string"}],
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "measurements": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["source_path"],
+        "properties": {
+          "source_path": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z][A-Za-z0-9_]*)*$"
+          },
+          "component": {"type": "integer", "minimum": 0}
+        },
+        "additionalProperties": false
+      }
+    },
+    "collision_aliases": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "minLength": 1}
+    }
+  },
+  "additionalProperties": false
+}

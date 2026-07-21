@@ -1,0 +1,28 @@
+schema_version: robot-spatial-maniskill-entity-map.v2
+env_id: PickCube-v1
+robot_uid: xarm6_robotiq
+control_mode: pd_joint_pos
+joints:
+  xarm_joint1: joint1
+  xarm_joint2: joint2
+  xarm_joint3: joint3
+  xarm_joint4: joint4
+  xarm_joint5: joint5
+  xarm_joint6: joint6
+  left_outer_knuckle_joint: left_outer_knuckle_joint
+  left_inner_knuckle_joint: left_inner_knuckle_joint
+  right_outer_knuckle_joint: right_outer_knuckle_joint
+  right_inner_knuckle_joint: right_inner_knuckle_joint
+  left_inner_finger_joint: left_inner_finger_joint
+  right_inner_finger_joint: right_inner_finger_joint
+entities:
+  tcp: {source_path: agent.tcp, expected_name: eef}
+  left_finger: {source_path: agent.finger1_link, expected_name: left_inner_finger_pad}
+  right_finger: {source_path: agent.finger2_link, expected_name: right_inner_finger_pad}
+  cube: {source_path: cube, expected_name: cube, capture_velocity: true}
+  goal: {source_path: goal_site, expected_name: goal_site}
+contact_pairs:
+  - [left_finger, cube]
+  - [right_finger, cube]
+collision_aliases:
+  table-workspace: table

@@ -57,8 +57,10 @@ robot-spatial evaluate work/pickcube-live/run \
   --out work/pickcube-live/result
 ```
 
-The live path reads Panda qpos/qvel, TCP/finger/cube/goal poses, pairwise finger contact forces,
-and CPU scene collision pairs directly from `env.unwrapped`. It opens only `traj_N/actions` in the
+The live path reads mapped robot qpos/qvel, declared actor/computed-frame poses, optional rigid-body
+velocities and episode geometry, declared pairwise contact forces, and CPU scene collision pairs
+directly from `env.unwrapped`. Entity-map v2 selects the ManiSkill robot and resolves public source
+paths without task-specific adapter code. It opens only `traj_N/actions` in the
 trajectory archive, discards every `step()` return, and never reads reward, success, `info`, or
 `evaluate()` during prediction. GPU capture retains pairwise contact evidence and marks complete
 collision enumeration unavailable.
@@ -72,6 +74,29 @@ gate without changing the official evaluator or using outcome-dependent terminat
 The [16-environment CUDA smoke record](benchmarks/records/maniskill-pickcube-v1-cuda-smoke.json)
 separately verifies one digest-bound run per sub-environment and `unknown` collision diagnostics
 when complete GPU collision enumeration is unavailable.
+
+The cross-task/cross-robot [ManiSkill manipulation matrix](benchmarks/records/maniskill-manipulation-matrix.json)
+adds Panda/PandaWristCam PushCube, StackCube, and PegInsertionSide plus xArm6 PickCube. Its 16 sealed
+solver/no-op episodes contain 7 supported and 9 refuted official references with 16/16 episode and
+28/28 scored-predicate agreement. Each profile independently contains both labels. The complete
+162-file run repeats byte-for-byte in the [determinism record](benchmarks/records/maniskill-manipulation-determinism.json),
+the cross-profile [corruption matrix](benchmarks/records/maniskill-manipulation-corruption.json)
+passes 21/21, and the prediction-first [CUDA replay gate](benchmarks/records/maniskill-manipulation-cuda-smoke.json)
+passes 4/4. These are enumerated simulation profiles, not evidence of unrestricted robot/task or
+hardware generalization.
+
+The xArm profile requires ManiSkill's official `xarm6_robotiq` asset (download with
+`python -m mani_skill.utils.download_asset xarm6_robotiq -y`). The record binds its robot-model,
+task-source, entity-map, task-spec, initial-state, action, run, report, and reference digests.
+
+```bash
+PYTHONPATH=scripts python benchmarks/maniskill_manipulation_evidence.py \
+  --out work/maniskill-manipulation --seeds 0 4
+PYTHONPATH=scripts python benchmarks/maniskill_manipulation_corruption.py \
+  --benchmark-root work/maniskill-manipulation --out work/maniskill-corruption
+PYTHONPATH=scripts:benchmarks python benchmarks/maniskill_manipulation_cuda_smoke.py \
+  --cpu-benchmark-root work/maniskill-manipulation --out work/maniskill-cuda
+```
 
 Run a real MuJoCo episode with the optional Gymnasium Robotics adapter:
 
@@ -165,7 +190,9 @@ The layers intentionally remain separate:
 - Normalize immutable ManiSkill/SAPIEN, MuJoCo, Gazebo/ROS 2, generic JSON, and partial deformable-state exports without importing their success labels.
 - Capture fixed-horizon ManiSkill/SAPIEN state and contacts live from action-only trajectories, with one digest-bound run per sub-environment.
 - Capture three-dimensional Gymnasium Robotics GoalEnv pose episodes directly from MuJoCo while discarding reward and official success output.
-- Evaluate AGV goal/corridor, arm pose/joint, sampled collision-free, sustained contact, lift, follow, grasp, release, region, and insertion predicates.
+- Evaluate AGV goal/corridor, arm pose/joint, rigid-body static, sampled collision-free, sustained
+  or terminal directional contact, lift, follow, grasp, release, world/reference-local region, and
+  insertion predicates, including digest-bound per-episode geometry thresholds.
 - Detect missing, stale, gapped, out-of-order, conflicting, identity-corrupted, and digest-tampered evidence.
 - Score predictions against separately loaded benchmark references with confusion matrices, F1, confirmed-success precision/FPR, and 95% Wilson intervals.
 - Compare matched action/no-op replays for simulation-bounded contribution evidence without calling it real-world causation.

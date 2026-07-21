@@ -1,0 +1,27 @@
+schema_version: robot-spatial-maniskill-entity-map.v2
+env_id: PushCube-v1
+robot_uid: panda
+control_mode: pd_joint_pos
+joints:
+  panda_joint1: panda_joint1
+  panda_joint2: panda_joint2
+  panda_joint3: panda_joint3
+  panda_joint4: panda_joint4
+  panda_joint5: panda_joint5
+  panda_joint6: panda_joint6
+  panda_joint7: panda_joint7
+  panda_finger_joint1: panda_finger_joint1
+  panda_finger_joint2: panda_finger_joint2
+entities:
+  tcp: {source_path: agent.tcp, expected_name: panda_hand_tcp}
+  left_finger: {source_path: agent.finger1_link, expected_name: panda_leftfinger}
+  right_finger: {source_path: agent.finger2_link, expected_name: panda_rightfinger}
+  object: {source_path: obj, expected_name: cube, capture_velocity: true}
+  goal: {source_path: goal_region, expected_name: goal_region}
+contact_pairs:
+  - [left_finger, object]
+  - [right_finger, object]
+collision_aliases:
+  table-workspace: table
+  panda_leftfinger_pad: left_finger_pad
+  panda_rightfinger_pad: right_finger_pad

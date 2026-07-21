@@ -43,8 +43,13 @@ length would otherwise become a hidden success channel.
 The ManiSkill live path:
 
 - opens only `traj_N/actions` from its input HDF5 and rejects invalid action shapes;
-- maps every active joint and the TCP, fingers, cube, and goal through an explicit entity map;
-- captures qpos/qvel, world poses, pairwise finger contact vectors, actions, and lifecycle events;
+- maps every active joint through an explicit entity map. Legacy v1 maps cover Panda PickCube;
+  v2 maps declare `robot_uid`, public entity `source_path` values, optional name checks and rigid-body
+  velocity capture, arbitrary pairwise contact roles, and scalar per-episode geometry measurements;
+- re-resolves declared pose paths at every sample so computed frames such as peg heads and holes do
+  not become reset-time snapshots;
+- captures qpos/qvel, declared world poses and velocities, declared pairwise contact vectors,
+  per-episode geometry, actions, and lifecycle events;
 - enumerates complete scene collision pairs only for a single `physx_cpu` environment;
 - marks collision unavailable for `physx_cuda` instead of copying data from another replay;
 - creates an independently digest-bound run for every requested sub-environment;

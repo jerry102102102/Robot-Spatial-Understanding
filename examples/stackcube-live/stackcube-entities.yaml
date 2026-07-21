@@ -1,0 +1,27 @@
+schema_version: robot-spatial-maniskill-entity-map.v2
+env_id: StackCube-v1
+robot_uid: panda_wristcam
+control_mode: pd_joint_pos
+joints:
+  panda_joint1: panda_joint1
+  panda_joint2: panda_joint2
+  panda_joint3: panda_joint3
+  panda_joint4: panda_joint4
+  panda_joint5: panda_joint5
+  panda_joint6: panda_joint6
+  panda_joint7: panda_joint7
+  panda_finger_joint1: panda_finger_joint1
+  panda_finger_joint2: panda_finger_joint2
+entities:
+  tcp: {source_path: agent.tcp, expected_name: panda_hand_tcp}
+  left_finger: {source_path: agent.finger1_link, expected_name: panda_leftfinger}
+  right_finger: {source_path: agent.finger2_link, expected_name: panda_rightfinger}
+  cube_a: {source_path: cubeA, expected_name: cubeA, capture_velocity: true}
+  cube_b: {source_path: cubeB, expected_name: cubeB}
+contact_pairs:
+  - [left_finger, cube_a]
+  - [right_finger, cube_a]
+collision_aliases:
+  table-workspace: table
+  panda_leftfinger_pad: left_finger_pad
+  panda_rightfinger_pad: right_finger_pad

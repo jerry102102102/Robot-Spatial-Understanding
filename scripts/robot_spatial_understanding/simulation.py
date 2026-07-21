@@ -163,8 +163,8 @@ def _channel_completeness(
         "effort": "effort_present",
         "position_m": "present",
         "quaternion_xyzw": "present",
-        "linear_velocity_mps": "present",
-        "angular_velocity_radps": "present",
+        "linear_velocity_mps": "linear_velocity_present",
+        "angular_velocity_radps": "angular_velocity_present",
         "force_n": "present",
         "torque_nm": "present",
         "normal_force_n": "normal_force_present",
@@ -327,6 +327,10 @@ def _pose_arrays(samples: list[Any], label: str = "pose") -> dict[str, np.ndarra
         "position_m": np.full((*shape, 3), np.nan, dtype=np.float64),
         "quaternion_xyzw": np.full((*shape, 4), np.nan, dtype=np.float64),
         "present": np.zeros(shape, dtype=np.bool_),
+        "linear_velocity_mps": np.full((*shape, 3), np.nan, dtype=np.float64),
+        "angular_velocity_radps": np.full((*shape, 3), np.nan, dtype=np.float64),
+        "linear_velocity_present": np.zeros(shape, dtype=np.bool_),
+        "angular_velocity_present": np.zeros(shape, dtype=np.bool_),
     }
     for row, record in enumerate(records):
         arrays["time_s"][row] = _as_time(record.get("time_s"), f"{label}[{row}].time_s")
@@ -340,6 +344,20 @@ def _pose_arrays(samples: list[Any], label: str = "pose") -> dict[str, np.ndarra
                 _vector(pose.get("quaternion_xyzw"), 4, f"{label}[{row}].entities.{entity}.quaternion_xyzw")
             )
             arrays["present"][row, column] = True
+            for source_name, output_name in (
+                ("linear_velocity_mps", "linear_velocity_mps"),
+                ("angular_velocity_radps", "angular_velocity_radps"),
+            ):
+                if source_name in pose:
+                    arrays[output_name][row, column] = _vector(
+                        pose[source_name], 3, f"{label}[{row}].entities.{entity}.{source_name}"
+                    )
+                    mask_name = (
+                        "linear_velocity_present"
+                        if output_name == "linear_velocity_mps"
+                        else "angular_velocity_present"
+                    )
+                    arrays[mask_name][row, column] = True
     return arrays
 
 
@@ -401,8 +419,10 @@ def _odometry_arrays(samples: list[Any]) -> dict[str, np.ndarray]:
         column = index_by_entity[entity]
         if "linear_velocity_mps" in record:
             arrays["linear_velocity_mps"][row, column] = _vector(record["linear_velocity_mps"], 3, f"odometry[{row}].linear_velocity_mps")
+            arrays["linear_velocity_present"][row, column] = True
         if "angular_velocity_radps" in record:
             arrays["angular_velocity_radps"][row, column] = _vector(record["angular_velocity_radps"], 3, f"odometry[{row}].angular_velocity_radps")
+            arrays["angular_velocity_present"][row, column] = True
     return arrays
 
 

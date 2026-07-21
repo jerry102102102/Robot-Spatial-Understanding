@@ -1,0 +1,34 @@
+schema_version: robot-spatial-task-spec.v1
+task_id: PushCube-v1
+entities:
+  object: object
+  goal: goal
+requirements:
+  channels: [pose]
+predicates:
+  - predicate_id: object_xy_at_goal
+    type: frame_position_within_tolerance
+    parameters:
+      entity: object
+      target: {entity: goal}
+      axes: [x, y]
+      position_tolerance_m: 0.1
+      exclusive: true
+  - predicate_id: object_on_table
+    type: frame_position_in_bounds
+    parameters:
+      entity: object
+      bounds:
+        z: {maximum_m: 0.025, maximum_inclusive: false}
+  - predicate_id: object_placed
+    type: evidence_conjunction
+    parameters:
+      predicates: [object_xy_at_goal, object_on_table]
+goal: {predicate: object_placed}
+failure: {not: {predicate: object_placed}}
+termination: {mode: episode_end}
+claim_boundaries:
+  simulation_only: true
+  causation_requires_counterfactual: true
+  authorization_established: false
+  safety_established: false

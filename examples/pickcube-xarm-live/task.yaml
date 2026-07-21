@@ -1,0 +1,36 @@
+schema_version: robot-spatial-task-spec.v1
+task_id: PickCube-v1
+entities:
+  cube: cube
+  goal: goal
+  xarm_joint1: xarm_joint1
+  xarm_joint2: xarm_joint2
+  xarm_joint3: xarm_joint3
+  xarm_joint4: xarm_joint4
+  xarm_joint5: xarm_joint5
+  xarm_joint6: xarm_joint6
+requirements:
+  channels: [joint_state, pose]
+predicates:
+  - predicate_id: cube_at_goal
+    type: frame_position_within_tolerance
+    parameters:
+      entity: cube
+      target: {entity: goal}
+      position_tolerance_m: 0.025
+  - predicate_id: robot_static
+    type: joint_velocity_below_threshold
+    parameters:
+      joints: [xarm_joint1, xarm_joint2, xarm_joint3, xarm_joint4, xarm_joint5, xarm_joint6]
+      maximum_abs_velocity: 0.2
+goal: {all: [cube_at_goal, robot_static]}
+failure:
+  any:
+    - not: {predicate: cube_at_goal}
+    - not: {predicate: robot_static}
+termination: {mode: episode_end}
+claim_boundaries:
+  simulation_only: true
+  causation_requires_counterfactual: true
+  authorization_established: false
+  safety_established: false

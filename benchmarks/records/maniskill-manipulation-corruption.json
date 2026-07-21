@@ -1,0 +1,212 @@
+{
+  "case_count": 21,
+  "cases": [
+    {
+      "actual": "unknown",
+      "case_id": "peg-panda/stale-pose",
+      "channel": "pose",
+      "corruption": "stale-tail",
+      "expected": "unknown",
+      "passed": true,
+      "report_sha256": "a5c5ef70ef228a3ae04e70c92a30a45a756844a42db4c8d4153491779bafd501",
+      "run_manifest_sha256": "39dca72ff4c916d19252c483b352b71a04eb4692c6607a056a2a5bd249fdc897"
+    },
+    {
+      "actual": "conflicting",
+      "case_id": "peg-panda/out-of-order-pose",
+      "channel": "pose",
+      "corruption": "out-of-order",
+      "expected": "conflicting",
+      "passed": true,
+      "report_sha256": "24984f6fb6967c5eefee2c73200e658eb68b667c2c34989583d4be0e60d5187e",
+      "run_manifest_sha256": "54aafc1ec87651aa3668d18f10e21160ca55f4a6f3763628fb6eecb36b5980cb"
+    },
+    {
+      "actual": "unknown",
+      "case_id": "peg-panda/missing-pose",
+      "channel": "pose",
+      "corruption": "missing-channel",
+      "expected": "unknown",
+      "passed": true,
+      "report_sha256": "d3dc223c5bea1fcd7fd64b6e9604bc8fc876ac173336d5e9e700bf88f3b11555",
+      "run_manifest_sha256": "ab71eaa7855a318ce52d0a20c16abe548bddc773a172e79b5abd4b14ebce248d"
+    },
+    {
+      "actual": "supported",
+      "case_id": "peg-panda/terminal-status-tamper",
+      "corruption": "terminal-status-tamper",
+      "expected": "supported",
+      "passed": true,
+      "report_sha256": "b9582a91a8e21ade443b254eff043b31f1d36dd7401573557713f656631cf28b"
+    },
+    {
+      "actual": "rejected_before_evaluation",
+      "case_id": "peg-panda/digest-tamper",
+      "corruption": "digest-tamper",
+      "expected": "rejected_before_evaluation",
+      "passed": true
+    },
+    {
+      "actual": "unknown",
+      "case_id": "pick-xarm/stale-pose",
+      "channel": "pose",
+      "corruption": "stale-tail",
+      "expected": "unknown",
+      "passed": true,
+      "report_sha256": "3f3bb6ccde5187ac628fe5a433cdeeeeca1bee2a14e0070b52684fd5bae2f6c7",
+      "run_manifest_sha256": "f30d28cabdb8f22f8acd81e1436cf64a3283b6ad2a5fd79b6151871f1edff55d"
+    },
+    {
+      "actual": "conflicting",
+      "case_id": "pick-xarm/out-of-order-pose",
+      "channel": "pose",
+      "corruption": "out-of-order",
+      "expected": "conflicting",
+      "passed": true,
+      "report_sha256": "415f640a340f41a1bb177b55d976da3ebf761c58972faf6f6160b3e03cb526b0",
+      "run_manifest_sha256": "affc927c3e3ca089fb7d59e4c06186ac6557f8827005d170c18af5cbb42f629e"
+    },
+    {
+      "actual": "unknown",
+      "case_id": "pick-xarm/missing-pose",
+      "channel": "pose",
+      "corruption": "missing-channel",
+      "expected": "unknown",
+      "passed": true,
+      "report_sha256": "b398a2f01690dea3a05ea51dd741978d400b011a76be3ff68707b3f95d703308",
+      "run_manifest_sha256": "ec58d40d9ad94cebd17634f374f1bf442f46035daa41095cdbe82793be8e9eae"
+    },
+    {
+      "actual": "supported",
+      "case_id": "pick-xarm/terminal-status-tamper",
+      "corruption": "terminal-status-tamper",
+      "expected": "supported",
+      "passed": true,
+      "report_sha256": "962778a754bf3494400f1023d3abef5ce505cdb5067707976c4440a7bca3db57"
+    },
+    {
+      "actual": "rejected_before_evaluation",
+      "case_id": "pick-xarm/digest-tamper",
+      "corruption": "digest-tamper",
+      "expected": "rejected_before_evaluation",
+      "passed": true
+    },
+    {
+      "actual": "unknown",
+      "case_id": "push-panda/stale-pose",
+      "channel": "pose",
+      "corruption": "stale-tail",
+      "expected": "unknown",
+      "passed": true,
+      "report_sha256": "2fb2bc41d9fa34dd39238051753616ccfa9d26cd9698a9bd16d52b840e96f27c",
+      "run_manifest_sha256": "76af2a9496a96362fcede0cdf56d064981e3d3497773facb767812e36b032cfc"
+    },
+    {
+      "actual": "conflicting",
+      "case_id": "push-panda/out-of-order-pose",
+      "channel": "pose",
+      "corruption": "out-of-order",
+      "expected": "conflicting",
+      "passed": true,
+      "report_sha256": "658dd49bf5be1e116f7d1d2f09d26fac2fd56eefc1ae31d3a38f7aa7a2304c65",
+      "run_manifest_sha256": "aabf67a8803eaa495f308f04f6b9ce6a9ba3799bac15a88af111fc3ce6da9bfb"
+    },
+    {
+      "actual": "unknown",
+      "case_id": "push-panda/missing-pose",
+      "channel": "pose",
+      "corruption": "missing-channel",
+      "expected": "unknown",
+      "passed": true,
+      "report_sha256": "e916a312ea662a5984fa988c4673158f4c1a6201446b38593d1598edf68f8904",
+      "run_manifest_sha256": "c04ee6e4028bc0fbe4cd7f4433ba441cbe11fd843e7e8802acb4867d8216bcb5"
+    },
+    {
+      "actual": "supported",
+      "case_id": "push-panda/terminal-status-tamper",
+      "corruption": "terminal-status-tamper",
+      "expected": "supported",
+      "passed": true,
+      "report_sha256": "39ec8caeb6eaf2f0614366e9968db00fbc2a3afdfc7e8e7eae6fe544b05e1e19"
+    },
+    {
+      "actual": "rejected_before_evaluation",
+      "case_id": "push-panda/digest-tamper",
+      "corruption": "digest-tamper",
+      "expected": "rejected_before_evaluation",
+      "passed": true
+    },
+    {
+      "actual": "unknown",
+      "case_id": "stack-panda/stale-pose",
+      "channel": "pose",
+      "corruption": "stale-tail",
+      "expected": "unknown",
+      "passed": true,
+      "report_sha256": "edd949a4b48d432cd564999b7c53d0bd8602511cae169321a4482edd4676a038",
+      "run_manifest_sha256": "0634a88a40c41a06013716c6b6c822ad651631340cb8cd3a6ae7b86f0db90d43"
+    },
+    {
+      "actual": "conflicting",
+      "case_id": "stack-panda/out-of-order-pose",
+      "channel": "pose",
+      "corruption": "out-of-order",
+      "expected": "conflicting",
+      "passed": true,
+      "report_sha256": "568efdff1649111a23a9b059db15a824df92b7b44ec75952bdd42391e227aa05",
+      "run_manifest_sha256": "fb1aaab9d851d98c26514838f8b7005c1ea8ae420ad79c4a9e18819d7496eb17"
+    },
+    {
+      "actual": "unknown",
+      "case_id": "stack-panda/missing-pose",
+      "channel": "pose",
+      "corruption": "missing-channel",
+      "expected": "unknown",
+      "passed": true,
+      "report_sha256": "8d4d7841464078c750f53d80634e389f5ce76e2eaf26cf17ef3718f5168197a1",
+      "run_manifest_sha256": "439716718152fa894997e2dfde3339d390eec599b8510ae334fbff839fb401a7"
+    },
+    {
+      "actual": "supported",
+      "case_id": "stack-panda/terminal-status-tamper",
+      "corruption": "terminal-status-tamper",
+      "expected": "supported",
+      "passed": true,
+      "report_sha256": "3709a9d5b7732c2c3d912c69e676b205270eca73b37a236feec0ee6a9a74be34"
+    },
+    {
+      "actual": "rejected_before_evaluation",
+      "case_id": "stack-panda/digest-tamper",
+      "corruption": "digest-tamper",
+      "expected": "rejected_before_evaluation",
+      "passed": true
+    },
+    {
+      "actual": "unknown",
+      "case_id": "stack-panda/missing-contact",
+      "channel": "contact",
+      "corruption": "missing-channel",
+      "expected": "unknown",
+      "passed": true,
+      "report_sha256": "2d1cb1b27b2f93ad0ef612a4ca12c8b5a1d0854e5ae33243de0fa677a53ae8fd"
+    }
+  ],
+  "limitations": [
+    "Corruptions are evidence-integrity controls over four real normalized simulator runs, not additional physical episodes."
+  ],
+  "matrix_sha256": "7cd5ca3cb39f32ae5d286d13827a0da55be532c3857423251e5a905158944af4",
+  "passed_count": 21,
+  "schema_version": "robot-spatial-maniskill-manipulation-corruption-matrix.v1",
+  "source_run_manifest_sha256": {
+    "peg-panda": "2d4a944a6535e5c709e7feabdbfbe3d73f94882fa1ad6ae7f88bfab102cf7d69",
+    "pick-xarm": "9a8015156d78c526a35d15a3c9fc8762098a042780c880999983b4056fc885af",
+    "push-panda": "fb196463d268432b3338b2867aa3dfaa64e70d06eba5285d44f684b85758698c",
+    "stack-panda": "60223ad6516bfe97f6c607a402a7e744df48421a6a86fc3d44dba18cef665275"
+  },
+  "task_spec_sha256": {
+    "peg-panda": "271d27cdf78e88ea582d508df8c9fd7a78f57b078cc4c370032970c78c3fb15e",
+    "pick-xarm": "9d18c775bca5ce3122a0e209143a393833960e7e593a3cf30bbff86eaff4f646",
+    "push-panda": "a6c91a77773dc234eba24bd5f70ad026780de9795bdd6a30f09d50bf06a00da0",
+    "stack-panda": "b67a50b84fbcc24758e1c9b34410b8dc5a9672629f6140a3044ff8bcfe36a69b"
+  }
+}
